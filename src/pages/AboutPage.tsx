@@ -17,7 +17,7 @@ function AboutPage() {
           <div className="module-card">
             <h2>🧮 Compute-Month Framework</h2>
             <p>
-              Interactive tool for modeling AI datacenter economics using the 1GW-H100-Month standardized unit. Analyze training capacity, inference workloads, and financial metrics.
+              Methodology and calculator to model AI datacenter economics using the 1GW-H100-Month standardized unit. Analyze training capacity, inference workloads, and financial metrics.
             </p>
             <Link to="/compute-month" className="module-link">Explore Framework →</Link>
           </div>
