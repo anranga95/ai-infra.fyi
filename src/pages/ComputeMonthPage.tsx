@@ -4,6 +4,7 @@ import CalculatorPage from './CalculatorPage';
 function ComputeMonthPage() {
   const [activeTab, setActiveTab] = useState<'framework' | 'calculator'>('framework');
   const [activeSection, setActiveSection] = useState<string>('definition');
+  const [tocOpen, setTocOpen] = useState<boolean>(false);
 
   // Scroll spy to track active section
   useEffect(() => {
@@ -86,13 +87,14 @@ function ComputeMonthPage() {
               <h1>🌐 Compute-Month Framework</h1>
               <p>
                 A "Compute-month" (GW-H100-Month) is a standardized economic unit representing 30 days utilization of 1GW of power used in a 2025 standard AI factory housing Nvidia H100-equivalent GPU chips. The units are H100-hours or FLOPs.<br />
-                The following framework demonstrates how to derive and utilize the compute-month.
+                The following framework demonstrates how to derive and utilize the compute-month.<br />
+                Key research questions: What can a compute-month produce, and how much does it cost?
               </p>
             </div>
             <a
               href="/Compute Month Framework - v1.pdf"
               download="Compute Month Framework - v1.pdf"
-              className="mode-toggle"
+              className="mode-toggle pdf-download-btn"
               style={{
                 textDecoration: 'none',
                 position: 'absolute',
@@ -108,8 +110,17 @@ function ComputeMonthPage() {
           <div className="framework-layout">
             <aside className="framework-toc-sidebar">
               <div className="toc-sticky">
-                <h3 style={{ marginTop: 0, marginBottom: '1rem', fontSize: '1.1rem' }}>Contents</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                  <h3 style={{ margin: 0, fontSize: '1.1rem' }}>Contents</h3>
+                  <button
+                    className="toc-toggle-btn"
+                    onClick={() => setTocOpen(!tocOpen)}
+                    aria-label="Toggle table of contents"
+                  >
+                    {tocOpen ? '−' : '+'}
+                  </button>
+                </div>
+                <ul className={`toc-list ${tocOpen ? 'toc-open' : ''}`} style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                   <li style={{ margin: '0.5rem 0' }}>
                     <a
                       href="#definition"

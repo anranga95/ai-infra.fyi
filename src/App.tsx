@@ -1,11 +1,21 @@
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import ComputeMonthPage from './pages/ComputeMonthPage';
 import MapPage from './pages/MapPage';
 import AboutPage from './pages/AboutPage';
 import EnergyPage from './pages/EnergyPage';
 import SourcesPage from './pages/SourcesPage';
 import './styles/global.css';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,6 +30,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="app">
         <nav className="main-nav">
           <div className="nav-container">
