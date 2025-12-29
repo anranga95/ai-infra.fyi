@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ComputeMonthPage from './pages/ComputeMonthPage';
 import MapPage from './pages/MapPage';
@@ -7,20 +8,41 @@ import SourcesPage from './pages/SourcesPage';
 import './styles/global.css';
 
 function App() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     <Router>
       <div className="app">
         <nav className="main-nav">
           <div className="nav-container">
-            <Link to="/" className="nav-logo">
+            <Link to="/" className="nav-logo" onClick={closeMobileMenu}>
               AI-infra.fyi
             </Link>
-            <div className="nav-links">
-              <Link to="/">About</Link>
-              <Link to="/compute-month">Compute-Month</Link>
-              <Link to="/map">Market Map</Link>
-              <Link to="/energy">Load Growth</Link>
-              <Link to="/sources">Sources</Link>
+            <button
+              className="mobile-menu-toggle"
+              onClick={toggleMobileMenu}
+              aria-label="Toggle menu"
+            >
+              <span className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </button>
+            <div className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+              <Link to="/" onClick={closeMobileMenu}>About</Link>
+              <Link to="/compute-month" onClick={closeMobileMenu}>Compute-Month</Link>
+              <Link to="/map" onClick={closeMobileMenu}>Market Map</Link>
+              <Link to="/energy" onClick={closeMobileMenu}>Load Growth</Link>
+              <Link to="/sources" onClick={closeMobileMenu}>Sources</Link>
             </div>
           </div>
         </nav>

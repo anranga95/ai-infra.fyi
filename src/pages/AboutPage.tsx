@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function AboutPage() {
   return (
     <div className="about-container">
@@ -17,7 +19,7 @@ function AboutPage() {
             <p>
               Interactive tool for modeling AI datacenter economics using the 1GW-H100-Month standardized unit. Analyze training capacity, inference workloads, and financial metrics.
             </p>
-            <a href="/compute-month" className="module-link">Explore Framework →</a>
+            <Link to="/compute-month" className="module-link">Explore Framework →</Link>
           </div>
 
           <div className="module-card">
@@ -25,7 +27,7 @@ function AboutPage() {
             <p>
               Interactive network visualization of the AI infrastructure ecosystem. Explore relationships between data centers, hyperscalers, energy providers, hardware manufacturers, investors, and other stakeholders.
             </p>
-            <a href="/map" className="module-link">View Map →</a>
+            <Link to="/map" className="module-link">View Map →</Link>
           </div>
 
           <div className="module-card">
@@ -33,7 +35,7 @@ function AboutPage() {
             <p>
               View regional and aggregate energy demand growth from the AI infrastructure expansion in the USA. Compare Front-of-the-Meter and Behind-the-Meter capacity.
             </p>
-            <a href="/energy" className="module-link">View Model →</a>
+            <Link to="/energy" className="module-link">View Model →</Link>
           </div>
         </div>
 
