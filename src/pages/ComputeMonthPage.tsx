@@ -20,6 +20,7 @@ function ComputeMonthPage() {
         'inference-capacity',
         'market-value',
         'cost-estimation',
+        'environmental-impact',
         'conclusion'
       ];
 
@@ -176,6 +177,16 @@ function ComputeMonthPage() {
                           Cost Estimation
                         </a>
                       </li>
+                      <li style={{ margin: '0.25rem 0' }}>
+                        <a
+                          href="#environmental-impact"
+                          onClick={(e) => handleTocClick(e, 'environmental-impact')}
+                          className={activeSection === 'environmental-impact' ? 'active' : ''}
+                          style={{ fontSize: '0.9rem' }}
+                        >
+                          Environmental Impact
+                        </a>
+                      </li>
                     </ul>
                   </li>
                   <li style={{ margin: '0.5rem 0' }}>
@@ -206,6 +217,8 @@ function ComputeMonthPage() {
               <li>Handle <strong>986 billion standard inference queries</strong> across model sizes</li>
               <li>Process <strong>288 trillion tokens</strong> during standard inference workloads</li>
               <li>Generate <strong>$1.05 billion revenue</strong> from compute rentals (based on $2.19/H100-hour spot price)</li>
+              <li>Produce <strong>200,500 tonnes of CO₂e emissions</strong> from operations</li>
+              <li>Consume <strong>6.8 million m³ of water</strong> (direct + indirect usage)</li>
             </ul>
             <p>
               A compute-month, or GW-H100-Month, represents the expected output of the maximum number of Nvidia H100-equivalent GPUs that can be powered by 1GW of energy, based on the efficiency of a standard AI data center. The default value is roughly 478M H100-hours, which is generally allocated across different workloads in practice.
@@ -687,6 +700,105 @@ function ComputeMonthPage() {
               <li><strong>Mid:</strong> $409M/month (baseline assumptions)</li>
               <li><strong>High:</strong> $530M/month (premium GPUs @ $30K, expensive power @ $0.15/kWh)</li>
             </ul>
+
+            <h3 id="environmental-impact">Environmental Impact</h3>
+            <p>
+              AI datacenter operations carry significant environmental costs beyond energy consumption. A 1 GW compute-month generates substantial carbon emissions and water consumption that must be understood in context of global sustainability goals.
+            </p>
+
+            <h4>Carbon Emissions</h4>
+            <p><strong>Calculation:</strong></p>
+            <div style={{ background: 'var(--bg-tertiary)', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)', fontFamily: 'inherit' }}>
+              <div style={{ marginBottom: '0.25rem' }}>DGX H100 servers: 654,762 GPUs ÷ 8 GPUs/server = 81,845 servers</div>
+              <div style={{ marginBottom: '1rem' }}>CO₂ emissions per server: 2,450 kg CO₂e/month <span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>(Source: <a href="https://newsletter.semianalysis.com/p/ai-datacenter-energy-dilemma-race" target="_blank" rel="noopener noreferrer">SemiAnalysis, 2024</a>)</span></div>
+
+              <div style={{ marginBottom: '1rem' }}>Total monthly emissions: 81,845 servers × 2,450 kg CO₂e = <strong>200,520 tonnes CO₂e/month</strong></div>
+
+              <div style={{ fontWeight: 600 }}>Annual emissions: 200,520 × 12 = 2.41 million tonnes CO₂e/year</div>
+            </div>
+
+            <p><strong>Context:</strong></p>
+            <p>
+              A single GW-scale AI datacenter produces approximately <strong>200,500 tonnes of CO₂e per month</strong> from operations (Scope 2 emissions), equivalent to:
+            </p>
+            <ul>
+              <li>Annual emissions from ~43,500 passenger vehicles</li>
+              <li>Annual energy use of ~23,000 U.S. homes</li>
+              <li>Carbon sequestered by ~3.3 million tree seedlings grown for 10 years</li>
+            </ul>
+            <p>
+              These emissions are driven primarily by electricity generation from fossil fuels. The actual carbon footprint varies significantly by grid carbon intensity - facilities in regions with high renewable penetration (Pacific Northwest, Texas wind corridor) can achieve 50-70% lower emissions than those in coal-heavy grids.
+            </p>
+
+            <h4>Water Consumption</h4>
+            <p><strong>Calculation:</strong></p>
+            <div style={{ background: 'var(--bg-tertiary)', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)', fontFamily: 'inherit' }}>
+              <div style={{ marginBottom: '1rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Monthly energy consumption:</div>
+                <div style={{ marginLeft: '1rem' }}>1 GW × 730 hours × 1,000 kW/MW = 730,000 MWh/month</div>
+              </div>
+
+              <div style={{ marginBottom: '1rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Direct water use (on-site cooling):</div>
+                <div style={{ marginLeft: '1rem', marginBottom: '0.25rem' }}>Average WUE: 1.8 L/kWh (industry standard)</div>
+                <div style={{ marginLeft: '1rem', marginBottom: '0.25rem' }}>Direct water: 730,000,000 kWh × 1.8 L/kWh = 1,314 million liters/month</div>
+                <div style={{ marginLeft: '1rem', marginBottom: '0.25rem' }}>= 1.31 million m³/month</div>
+                <div style={{ marginLeft: '1rem' }}>= 347 million gallons/month</div>
+              </div>
+
+              <div style={{ marginBottom: '1rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Indirect water use (electricity generation):</div>
+                <div style={{ marginLeft: '1rem', marginBottom: '0.25rem' }}>Thermoelectric generation: ~2 gallons per kWh (U.S. average)</div>
+                <div style={{ marginLeft: '1rem', marginBottom: '0.25rem' }}>Indirect water: 730,000,000 kWh × 2 gal/kWh × 3.785 L/gal = 5,525 million liters/month</div>
+                <div style={{ marginLeft: '1rem', marginBottom: '0.25rem' }}>= 5.53 million m³/month</div>
+                <div style={{ marginLeft: '1rem' }}>= 1,460 million gallons/month</div>
+              </div>
+
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', marginTop: '1rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Total water footprint:</div>
+                <div style={{ marginBottom: '0.25rem' }}><strong>6.84 million m³/month = 1.81 billion gallons/month</strong></div>
+                <div><strong>Annual water footprint: 82 million m³/year = 21.7 billion gallons/year</strong></div>
+              </div>
+            </div>
+
+            <p><strong>Context:</strong></p>
+            <p>
+              A 1 GW compute-month requires approximately <strong>6.8 million cubic meters of water monthly</strong> (direct + indirect), equivalent to:
+            </p>
+            <ul>
+              <li>Daily water use of 1.5 million people</li>
+              <li>Annual water consumption of ~130,000 U.S. households</li>
+              <li>Enough to fill ~2,700 Olympic-sized swimming pools</li>
+            </ul>
+            <p>This water footprint is split between:</p>
+            <ul>
+              <li><strong>19% direct use:</strong> On-site evaporative cooling (1.31 million m³/month)</li>
+              <li><strong>81% indirect use:</strong> Water consumed in electricity generation (5.53 million m³/month)</li>
+            </ul>
+            <p>The indirect component varies dramatically by energy source:</p>
+            <ul>
+              <li><strong>Coal/natural gas plants:</strong> 2-3 gallons per kWh</li>
+              <li><strong>Hydroelectric:</strong> Up to 18 gallons per kWh (reservoir evaporation)</li>
+              <li><strong>Wind/solar:</strong> Effectively zero water consumption</li>
+            </ul>
+
+            <h4>Regional Considerations</h4>
+            <p>
+              Water stress amplifies the environmental impact of AI datacenter deployment. States like Arizona, California, and Nevada face severe water scarcity, yet host significant datacenter capacity. A 1 GW facility in these regions can consume:
+            </p>
+            <ul>
+              <li>3-5% of a medium-sized city's annual water allocation</li>
+              <li>Equivalent water to irrigate 5,000-8,000 acres of farmland</li>
+            </ul>
+            <p>Optimal siting strategies prioritize:</p>
+            <ol>
+              <li><strong>Low carbon grids:</strong> Pacific Northwest (hydro), Texas (wind), Midwest (wind + solar)</li>
+              <li><strong>Low water stress:</strong> Avoiding Southwest and California</li>
+              <li><strong>Renewable potential:</strong> Regions with abundant wind/solar for future expansion</li>
+            </ol>
+            <p>
+              Best-case deployment (Midwest wind/solar regions) can reduce both carbon emissions by 60-70% and water consumption by 85% compared to worst-case deployment (coal-heavy, water-stressed regions).
+            </p>
 
             <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
