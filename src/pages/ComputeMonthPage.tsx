@@ -3,7 +3,7 @@ import CalculatorPage from './CalculatorPage';
 
 function ComputeMonthPage() {
   const [activeTab, setActiveTab] = useState<'framework' | 'calculator'>('framework');
-  const [activeSection, setActiveSection] = useState<string>('definition');
+  const [activeSection, setActiveSection] = useState<string>('tldr');
   const [tocOpen, setTocOpen] = useState<boolean>(false);
 
   // Scroll spy to track active section
@@ -12,16 +12,15 @@ function ComputeMonthPage() {
 
     const handleScroll = () => {
       const sections = [
+        'tldr',
+        'rationale',
         'definition',
-        'summary',
-        'use-cases',
-        'physical-capacity',
+        'economic-value',
         'training-capacity',
         'inference-capacity',
-        'economics',
-        'conclusion',
-        'appendix-a',
-        'appendix-b'
+        'market-value',
+        'cost-estimation',
+        'conclusion'
       ];
 
       // Find which section is currently in view
@@ -82,28 +81,8 @@ function ComputeMonthPage() {
       {/* Tab Content */}
       {activeTab === 'framework' && (
         <div className="calculator-container">
-          <div className="header" style={{ alignItems: 'flex-start', position: 'relative' }}>
-            <div style={{ maxWidth: '85%' }}>
-              <h1>🌐 Compute-Month Framework</h1>
-              <p>
-                A "Compute-month" (GW-H100-Month) is a standardized economic unit representing 30 days utilization of 1GW of power used in a 2025 standard AI factory housing Nvidia H100-equivalent GPU chips. The units are H100-hours or FLOPs.<br />
-                The following framework demonstrates how to derive and utilize the compute-month.<br />
-                Key research questions: What can a compute-month produce, and how much does it cost?
-              </p>
-            </div>
-            <a
-              href="/Compute Month Framework - v1.pdf"
-              download="Compute Month Framework - v1.pdf"
-              className="mode-toggle pdf-download-btn"
-              style={{
-                textDecoration: 'none',
-                position: 'absolute',
-                top: '0',
-                right: '0'
-              }}
-            >
-              Download as PDF
-            </a>
+          <div className="header">
+            <h1>📈 Compute-Month Framework</h1>
           </div>
 
           {/* Fixed left sidebar TOC */}
@@ -123,6 +102,24 @@ function ComputeMonthPage() {
                 <ul className={`toc-list ${tocOpen ? 'toc-open' : ''}`} style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                   <li style={{ margin: '0.5rem 0' }}>
                     <a
+                      href="#tldr"
+                      onClick={(e) => handleTocClick(e, 'tldr')}
+                      className={activeSection === 'tldr' ? 'active' : ''}
+                    >
+                      TLDR
+                    </a>
+                  </li>
+                  <li style={{ margin: '0.5rem 0' }}>
+                    <a
+                      href="#rationale"
+                      onClick={(e) => handleTocClick(e, 'rationale')}
+                      className={activeSection === 'rationale' ? 'active' : ''}
+                    >
+                      Rationale
+                    </a>
+                  </li>
+                  <li style={{ margin: '0.5rem 0' }}>
+                    <a
                       href="#definition"
                       onClick={(e) => handleTocClick(e, 'definition')}
                       className={activeSection === 'definition' ? 'active' : ''}
@@ -132,57 +129,54 @@ function ComputeMonthPage() {
                   </li>
                   <li style={{ margin: '0.5rem 0' }}>
                     <a
-                      href="#summary"
-                      onClick={(e) => handleTocClick(e, 'summary')}
-                      className={activeSection === 'summary' ? 'active' : ''}
+                      href="#economic-value"
+                      onClick={(e) => handleTocClick(e, 'economic-value')}
+                      className={activeSection === 'economic-value' ? 'active' : ''}
                     >
-                      Summary
+                      Economic Value
                     </a>
-                  </li>
-                  <li style={{ margin: '0.5rem 0' }}>
-                    <a
-                      href="#use-cases"
-                      onClick={(e) => handleTocClick(e, 'use-cases')}
-                      className={activeSection === 'use-cases' ? 'active' : ''}
-                    >
-                      Use Cases
-                    </a>
-                  </li>
-                  <li style={{ margin: '0.5rem 0' }}>
-                    <a
-                      href="#physical-capacity"
-                      onClick={(e) => handleTocClick(e, 'physical-capacity')}
-                      className={activeSection === 'physical-capacity' ? 'active' : ''}
-                    >
-                      Physical Capacity
-                    </a>
-                  </li>
-                  <li style={{ margin: '0.5rem 0' }}>
-                    <a
-                      href="#training-capacity"
-                      onClick={(e) => handleTocClick(e, 'training-capacity')}
-                      className={activeSection === 'training-capacity' ? 'active' : ''}
-                    >
-                      Training Capacity
-                    </a>
-                  </li>
-                  <li style={{ margin: '0.5rem 0' }}>
-                    <a
-                      href="#inference-capacity"
-                      onClick={(e) => handleTocClick(e, 'inference-capacity')}
-                      className={activeSection === 'inference-capacity' ? 'active' : ''}
-                    >
-                      Inference Capacity
-                    </a>
-                  </li>
-                  <li style={{ margin: '0.5rem 0' }}>
-                    <a
-                      href="#economics"
-                      onClick={(e) => handleTocClick(e, 'economics')}
-                      className={activeSection === 'economics' ? 'active' : ''}
-                    >
-                      Economics
-                    </a>
+                    <ul style={{ listStyle: 'none', paddingLeft: '1rem', margin: '0.25rem 0' }}>
+                      <li style={{ margin: '0.25rem 0' }}>
+                        <a
+                          href="#training-capacity"
+                          onClick={(e) => handleTocClick(e, 'training-capacity')}
+                          className={activeSection === 'training-capacity' ? 'active' : ''}
+                          style={{ fontSize: '0.9rem' }}
+                        >
+                          Training Capacity
+                        </a>
+                      </li>
+                      <li style={{ margin: '0.25rem 0' }}>
+                        <a
+                          href="#inference-capacity"
+                          onClick={(e) => handleTocClick(e, 'inference-capacity')}
+                          className={activeSection === 'inference-capacity' ? 'active' : ''}
+                          style={{ fontSize: '0.9rem' }}
+                        >
+                          Inference Capacity
+                        </a>
+                      </li>
+                      <li style={{ margin: '0.25rem 0' }}>
+                        <a
+                          href="#market-value"
+                          onClick={(e) => handleTocClick(e, 'market-value')}
+                          className={activeSection === 'market-value' ? 'active' : ''}
+                          style={{ fontSize: '0.9rem' }}
+                        >
+                          Market Value from Spot Prices
+                        </a>
+                      </li>
+                      <li style={{ margin: '0.25rem 0' }}>
+                        <a
+                          href="#cost-estimation"
+                          onClick={(e) => handleTocClick(e, 'cost-estimation')}
+                          className={activeSection === 'cost-estimation' ? 'active' : ''}
+                          style={{ fontSize: '0.9rem' }}
+                        >
+                          Cost Estimation
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                   <li style={{ margin: '0.5rem 0' }}>
                     <a
@@ -193,546 +187,522 @@ function ComputeMonthPage() {
                       Conclusion
                     </a>
                   </li>
-                  <li style={{ margin: '0.5rem 0' }}>
-                    <a
-                      href="#appendix-a"
-                      onClick={(e) => handleTocClick(e, 'appendix-a')}
-                      className={activeSection === 'appendix-a' ? 'active' : ''}
-                    >
-                      Appendix A
-                    </a>
-                  </li>
-                  <li style={{ margin: '0.5rem 0' }}>
-                    <a
-                      href="#appendix-b"
-                      onClick={(e) => handleTocClick(e, 'appendix-b')}
-                      className={activeSection === 'appendix-b' ? 'active' : ''}
-                    >
-                      Appendix B
-                    </a>
-                  </li>
                 </ul>
               </div>
             </aside>
 
             <div className="framework-content">
-            <h2 id="definition" style={{ marginTop: 0 }}>Definition</h2>
-            <p>
-              A <strong>Compute-Month</strong> (GW-H100-Month) measures the marginal value of one month of AI compute capacity.<br />
-              Specifically: 30 days of continuous operation at 1 GW facility power using H100-equivalent GPUs.
+            <h2 id="tldr" style={{ marginTop: 0 }}>TLDR</h2>
+            <p style={{ fontStyle: 'italic', fontWeight: 600 }}>
+              What can one month of compute capacity at an AI data center achieve, and how much does it cost?
             </p>
-
-            <h3>Why "month"?</h3>
+            <p>
+              A "Compute-Month" is a convenient unit in which to measure the economic value of AI data center capacity. For example, one compute-month can:
+            </p>
             <ul>
-              <li>Data center construction takes 2-4 years from groundbreaking to operation.</li>
-              <li>Supply chain lead times for key components like GPUs and gas turbines are also multiple years,</li>
-              <li>Policymakers and grid infrastructure upgrades are multi-year projects</li>
+              <li>Train <strong>4.6 GPT-5 models</strong></li>
+              <li>Train <strong>6.0 Claude Sonnet 4 models</strong></li>
+              <li>Train <strong>7.9 Llama 3.1 405B models</strong></li>
+              <li>Handle <strong>1.6 trillion standard inference queries</strong> across model sizes</li>
+              <li>Process <strong>460 trillion tokens</strong> during standard inference workloads</li>
+              <li>Generate <strong>$1.67 billion revenue</strong> from compute rentals (based on $2.19/H100-hour spot price)</li>
             </ul>
-
-            <h3>Base units:</h3>
-            <ul>
-              <li>1.04 million H100 GPUs running 730 hours</li>
-              <li>762.3 million H100-hours</li>
-              <li>2.71 × 10²⁷ FLOPs</li>
-            </ul>
-
-            <p style={{ fontStyle: 'italic', marginTop: '1.5rem' }}>
-              → What is a compute-month worth, and how much does it cost?
+            <p>
+              A compute-month, or GW-H100-Month, represents the output of the maximum number of Nvidia H100-equivalent GPUs that can be powered by 1GW of energy, based on the efficiency of a standard AI data center. The default value is roughly 762M H100-hours, which is generally allocated across different workloads in practice.
+            </p>
+            <p>
+              The compute-month bridges infrastructure planning (MW/GW) with business outcomes (models, queries, market value), enabling meaningful comparisons across models, projects, efficiency interventions, and technology roadmaps. It provides a common language for developers, investors, policymakers, and energy providers to evaluate AI datacenter economics.
+            </p>
+            <p>
+              This framework demonstrates how to derive and utilize the compute-month. The reader can adjust assumptions and model scenarios using the 'Calculator' tab.
             </p>
 
             <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
-            <h2 id="summary">Summary: What One Compute-Month Produces</h2>
-
-            <h3>Training (with 11× R&D overhead):</h3>
-            <ul>
-              <li>4 GPT-4.5 models</li>
-              <li>5 Claude Sonnet 4 models</li>
-              <li>6 Llama 3.1 405B models</li>
-              <li>30 DeepSeek-V3 models</li>
-            </ul>
-
-            <h3>Inference:</h3>
-            <ul>
-              <li>276 billion queries (standard models)</li>
-              <li>40 million reasoning queries (o1-level, 10× overhead)</li>
-            </ul>
-
-            <h3>Cost:</h3>
-            <ul>
-              <li>CapEx: $35.8B/GW from EpochAI <a href="https://epoch.ai/blog/estimating-ai-datacenter-costs" target="_blank" rel="noopener noreferrer">methodology</a></li>
-              <li>Monthly cost: $550M (amortization + power + ops)</li>
-              <li>Monthly revenue: $1.7B (at $2.19/H100-hr spot rate)</li>
-              <li>Breakeven: 27 months (within 48-60 month GPU lifetime)</li>
-            </ul>
-
-            <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
-
-            <h2 id="use-cases">🎯 Use Cases</h2>
-
-            <h3>Quantify Impact of Delays:</h3>
+            <h2 id="rationale">Rationale</h2>
             <p>
-              The area shaded in grey represents lost compute-months from frontier AI data centers due to extended
-              timelines for construction, hardware procurement, and interconnection.
+              Data centers are not easy to operationalize. Construction takes 2-4 years from groundbreaking to operation; supply chain lead times for key components like GPUs and gas turbines can extend months or years; and grid infrastructure upgrades are multi-year projects. For <a href="https://www.datacenterdynamics.com/en/news/silicon-valley-data-centers-stand-empty-awaiting-power-connections-report/" target="_blank" rel="noopener noreferrer">example</a>, several data centers in Nvidia's hometown of Santa Clara, California have finished construction but can't go live until Silicon Valley Power finishes a system upgrade, expected in 2028.
+            </p>
+            <p>
+              Additional factors like land acquisition, permitting, municipal disputes, or extreme weather events could add several additional months to project timelines.
+            </p>
+            <p>
+              The compute-month helps quantify the <strong>"opportunity cost"</strong> - the economic impact of project delays or accelerations.
+            </p>
+            <p>
+              This is illustrated in the following plot, where the area shaded in gray represents unutilized compute-months from frontier AI data centers due to the current timelines for construction, hardware procurement, and grid interconnection.
             </p>
             <img
               src="/images/compute months plot.png"
-              alt="Compute Months Lost to Delays"
+              alt="Frontier AI Datacenter Load Growth"
               className="data-image"
               style={{ marginTop: '1rem' }}
             />
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}>
-              Prepared by author based on data from EpochAI
+              Figure 1: Announced capacity growth for frontier AI datacenters showing the ramp-up period (gray area) representing unutilized compute-months (prepared by author)
             </p>
-
-            <h3>Datacenter Economics:</h3>
-            <ul>
-              <li>Compare projects on standardized capacity basis (not just MW)</li>
-              <li>Evaluate build-vs-rent decisions with compute output metrics</li>
-              <li>Model revenue potential and breakeven timelines</li>
-            </ul>
-
-            <h3>Policy & Grid Planning:</h3>
-            <ul>
-              <li>Translate MW announcements into actual compute impact</li>
-              <li>Model grid load growth in standardized units</li>
-              <li>Assess technology interventions (reduced PUE = increased capacity)</li>
-            </ul>
-
-            <h3>Technology Assessment:</h3>
-            <ul>
-              <li>Quantify efficiency gains (PUE improvements = more GPUs from same power)</li>
-              <li>Measure impact of cooling innovations (liquid vs air)</li>
-              <li>Calculate R&D ROI for optimization technologies</li>
-            </ul>
 
             <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
-            <h2 id="physical-capacity">⚡ Physical Capacity</h2>
+            <h2 id="definition">Definition</h2>
+            <p>
+              A <strong>"GW-H100-Month"</strong> is a standardized economic unit representing the marginal value of 30 days continuous utilization of 1 GW of power in a 2025 standard AI data center with Nvidia H100-equivalent GPU chips. It is calculated in H100-hours or FLOPs.
+            </p>
 
-            <h3>Formula:</h3>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              IT Power = Facility MW ÷ PUE{'\n'}
-              Server Power = IT Power ÷ IT Overhead{'\n'}
-              GPU Count = (Server Power × 1000) ÷ GPU TDP{'\n'}
-              H100-Hours = GPU Count × 730 hours/month
-            </pre>
-
-            <h3>1 GW Baseline (PUE 1.2, IT overhead 1.14, H100 @ 0.7 kW):</h3>
+            <h3>Assumptions</h3>
+            <p>
+              Most large-scale data centers use identical or equivalent equipment, such as that specified in Nvidia's reference architectures, so it is reasonable to generalize assumptions about efficiency as measured by the following parameters:
+            </p>
             <table className="breakdown-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Assumed Value</th>
+                  <th>Reference Values</th>
+                </tr>
+              </thead>
               <tbody>
-                <tr><td><strong>IT Power</strong></td><td>833 MW</td></tr>
-                <tr><td><strong>Server Power</strong></td><td>731 MW</td></tr>
-                <tr><td><strong>GPU Count</strong></td><td>1,044,277 H100s</td></tr>
-                <tr><td><strong>Monthly Capacity</strong></td><td>762.3M H100-hours</td></tr>
-                <tr><td><strong>Total FLOPs</strong></td><td>2.71 × 10²⁷ FLOPs</td></tr>
+                <tr>
+                  <td><strong>Power Usage Effectiveness (PUE)</strong></td>
+                  <td>Ratio of total facility power to IT equipment power; measures cooling and infrastructure overhead</td>
+                  <td>1.2</td>
+                  <td>Google: 1.10 (2024 fleet avg)<br />Meta: 1.09 (2024 fleet avg)<br />Microsoft: 1.18 (2024 Azure avg)<br />Industry standard: 1.2 (<a href="https://uptimeinstitute.com/resources/research-and-reports/uptime-institute-global-data-center-survey-2024" target="_blank" rel="noopener noreferrer">Uptime Institute 2024</a>)</td>
+                </tr>
+                <tr>
+                  <td><strong>IT Overhead</strong></td>
+                  <td>Proportion of IT power redirected to networking, storage, and management infrastructure (non-GPU compute)</td>
+                  <td>1.14</td>
+                  <td>Based on NVIDIA DGX GB200 NVL72 specifications: 14% overhead for networking fabric, storage arrays, and cluster management</td>
+                </tr>
+                <tr>
+                  <td><strong>GPU "Thermal Design Power" (TDP)</strong></td>
+                  <td>Maximum heat a graphics card's cooling system is designed to dissipate under heavy load, measured in kilowatts</td>
+                  <td>0.7 kW</td>
+                  <td>NVIDIA H100 SXM5: 700W TDP (<a href="https://www.nvidia.com/en-us/data-center/h100/" target="_blank" rel="noopener noreferrer">NVIDIA H100 Datasheet</a>)</td>
+                </tr>
+                <tr>
+                  <td><strong>H100 FP16 Performance</strong></td>
+                  <td>Floating-point operations per second using 16-bit precision with Tensor Core acceleration</td>
+                  <td>989 TFLOPS*</td>
+                  <td>NVIDIA H100 SXM5: 1,979 TFLOPS FP16 with sparsity (<a href="https://www.nvidia.com/en-us/data-center/h100/" target="_blank" rel="noopener noreferrer">NVIDIA H100 Datasheet</a>)<br />*We use 989 TFLOPS (dense, without sparsity) for training calculations as most current models use dense architectures</td>
+                </tr>
               </tbody>
             </table>
-
-            <p style={{ marginTop: '1rem', fontStyle: 'italic' }}>
-              <strong>Key insight:</strong> Efficiency gains (lower PUE, better cooling) increase GPU density → more compute from same facility power.
+            <p style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '0.5rem' }}>
+              *Adhering to EpochAI methodology for FLOPs calculations: <a href="https://epoch.ai/data/ai-models-documentation#estimating-compute" target="_blank" rel="noopener noreferrer">https://epoch.ai/data/ai-models-documentation#estimating-compute</a>
             </p>
+
+            <h3>Methodology</h3>
+            <p>
+              From these values we can estimate that <strong>1 GW can power 1.04 million H100 GPUs</strong>.
+            </p>
+            <p>
+              Assuming a 30-day month, this results in <strong>762.3 million H100-hours</strong>.
+            </p>
+            <p><strong>Formula:</strong></p>
+            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
+{`Server Power (MW) = Facility Power (GW) × 1000 ÷ PUE ÷ IT Overhead
+GPU Count = (Server Power × 1000 kW/MW) ÷ GPU TDP (kW)
+H100-Hours = GPU Count × 730 hours/month
+
+Example (1 GW):
+Server Power = 1 GW × 1000 ÷ 1.2 ÷ 1.14 = 731 MW
+GPU Count = (731 MW × 1000) ÷ 0.7 kW = 1,044,277 GPUs
+H100-Hours = 1,044,277 × 730 = 762,322,310 H100-hours`}
+            </pre>
+            <p>
+              AI relies heavily on matrix multiplication, which requires a high volume of Floating Point Operations, called <strong>FLOPs</strong>. This is a standard unit used to quantify a computer's raw computational speed, especially for complex math with decimals.
+            </p>
+            <p>
+              Using Nvidia's specifications on H100 performance, one compute-month produces <strong>2.71 × 10²⁷ FLOPs</strong>.
+            </p>
+            <p><strong>Formula:</strong></p>
+            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
+{`Total FLOPs = H100-hours × TFLOPS/GPU × seconds/hour
+
+762,322,310 H100-hours
+× 989 TFLOPS (989 × 10¹² FLOP/s)
+× 3,600 seconds/hour
+= 2.71 × 10²⁷ FLOPs`}
+            </pre>
+            <p><strong>In summary, a standard "Compute-Month" produces:</strong></p>
+            <ul>
+              <li><strong>762.3 million H100-hours</strong></li>
+              <li><strong>2.71 × 10²⁷ FLOPs</strong></li>
+            </ul>
+            <p>
+              <strong>Key insight:</strong> Efficiency gains due to technology improvements translate to lower PUE and/or lower IT overhead → results in more compute extracted from the same GW of power provided to the facility (not less energy used). For example, improving PUE from 1.2 to 1.08 (10% improvement) yields 10% more GPU capacity from the same 1 GW facility.
+            </p>
+
+            <h3>Variation between GPUs</h3>
+            <p>
+              H100 is currently the most popular semiconductor for AI, hence is used as the benchmark.
+            </p>
+            <p>
+              But there are several other GPUs on the market. To account for this variation, we factor in performance gains from these chips as conversion factors to H100 performance using data from EpochAI. For example, considering Google's TPU v7:
+            </p>
+            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
+{`762,322,310 H100-hours [standard compute-month]
+× 2.33 [TPU v7 multiplier: 2307 TFLOPS ÷ 989 TFLOPS]
+= 1,776,210,982 H100-equivalent hours
+× 989 TFLOPS
+× 3,600 seconds/hour
+= 6.32 × 10²⁷ FLOPs`}
+            </pre>
+            <p><strong>GPU Performance Comparison Table</strong> (based on EpochAI ml_hardware.csv):</p>
+            <table className="breakdown-table">
+              <thead>
+                <tr>
+                  <th>GPU</th>
+                  <th>Release Date</th>
+                  <th>FP16 TFLOPS</th>
+                  <th>TDP (kW)</th>
+                  <th>Memory (GB)</th>
+                  <th>H100 Multiplier*</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>NVIDIA H100 SXM</td><td>2023-03</td><td>989</td><td>0.70</td><td>80</td><td>1.00×</td></tr>
+                <tr><td>NVIDIA H200 SXM</td><td>2024-11</td><td>990</td><td>0.70</td><td>141</td><td>1.00×</td></tr>
+                <tr><td>NVIDIA GB200</td><td>2025-02</td><td>2,500</td><td>1.20</td><td>192</td><td>2.53×</td></tr>
+                <tr><td>NVIDIA GB300</td><td>2025-08</td><td>2,500</td><td>1.40</td><td>288</td><td>2.53×</td></tr>
+                <tr><td>NVIDIA B100</td><td>2024-11</td><td>1,750</td><td>0.70</td><td>192</td><td>1.77×</td></tr>
+                <tr><td>AMD MI300X</td><td>2023-12</td><td>1,307</td><td>0.75</td><td>192</td><td>1.32×</td></tr>
+                <tr><td>AMD MI350X</td><td>2025-06</td><td>2,310</td><td>1.00</td><td>288</td><td>2.34×</td></tr>
+                <tr><td>Google TPU v4</td><td>2021-05</td><td>1,484</td><td>0.28</td><td>N/A</td><td>1.50×</td></tr>
+                <tr><td>Google TPU v7</td><td>2025-11</td><td>2,307</td><td>0.96</td><td>192</td><td>2.33×</td></tr>
+                <tr><td>Amazon Trainium2</td><td>2024-12</td><td>667</td><td>0.50</td><td>96</td><td>0.67×</td></tr>
+              </tbody>
+            </table>
+            <p style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '0.5rem' }}>
+              *Multiplier = GPU TFLOPS ÷ 989 (H100 baseline). This assumes linear scaling with FLOPs, which is approximate - actual performance depends on workload characteristics, memory bandwidth, and software optimization.
+            </p>
+            <p>
+              The efficiency of a GPU in a given facility is measured in <strong>Model FLOPs Utilization (MFU)</strong>, which can differ significantly between training and inference:
+            </p>
+            <ul>
+              <li><strong>Training MFU:</strong> 30-40% typical (limited by communication overhead, gradient synchronization)</li>
+              <li><strong>Inference MFU:</strong> 25-35% typical (limited by memory bandwidth, not FLOPs)</li>
+            </ul>
 
             <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
-            <h2 id="training-capacity">🧠 Training Capacity</h2>
+            <h2 id="economic-value">Economic Value</h2>
+            <p>
+              The following sections detail the different economic valuation methodologies for a compute-month based on the following data about each model. Note that data is not always published for each model and there is uncertainty about exact values.
+            </p>
+            <p><strong>Frontier AI Model Training Data</strong> (source: EpochAI):</p>
+            <table className="breakdown-table">
+              <thead>
+                <tr>
+                  <th>Model Name</th>
+                  <th>Release Date</th>
+                  <th>Training FLOPs</th>
+                  <th># Parameters</th>
+                  <th>Confidence</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>GPT-4</td><td>2023-03</td><td>2.1 × 10²⁵</td><td>~1.76T</td><td>Likely</td></tr>
+                <tr><td><strong>GPT-5</strong></td><td><strong>2025-08</strong></td><td><strong>6.6 × 10²⁵</strong></td><td><strong>Unknown</strong></td><td><strong>Speculative</strong></td></tr>
+                <tr><td>Claude 3 Opus</td><td>2024-03</td><td>1.6 × 10²⁵</td><td>Unknown</td><td>Low-precision</td></tr>
+                <tr><td>Claude 3.5 Sonnet</td><td>2024-06</td><td>3.6 × 10²⁵</td><td>Unknown</td><td>Low-precision</td></tr>
+                <tr><td><strong>Claude Sonnet 4</strong></td><td><strong>2024-11</strong></td><td><strong>5.0 × 10²⁵</strong></td><td><strong>Unknown</strong></td><td><strong>Speculative</strong></td></tr>
+                <tr><td><strong>Llama 3.1-405B</strong></td><td><strong>2024-07</strong></td><td><strong>3.8 × 10²⁵</strong></td><td><strong>405B</strong></td><td><strong>High-precision</strong></td></tr>
+                <tr><td>Gemini 1.5 Pro</td><td>2024-02</td><td>1.6 × 10²⁵</td><td>Unknown</td><td>Low-precision</td></tr>
+                <tr><td>Grok-2</td><td>2024-08</td><td>3.0 × 10²⁵</td><td>Unknown</td><td>High-precision</td></tr>
+                <tr><td>DeepSeek-V3</td><td>2024-12</td><td>2.8 × 10²⁴</td><td>671B</td><td>Confident</td></tr>
+              </tbody>
+            </table>
+            <p>
+              Considering that in 2024, <strong>OpenAI spent approximately 11.25× on R&D compared to the final training run for GPT-4.5</strong> (total compute spend ~$5B vs. ~$400M for final run), we assume an <strong>"R&D Overhead Multiplier"</strong> variable to capture this dynamic when calculating training capacity.
+            </p>
+            <p>
+              Given the competitive nature of the AI market and reprioritization towards production-ready deployments (e.g., OpenAI's "Code Red" protocol emphasizing shipping over research), we assume an <strong>R&D multiplier of 10× averaged across all companies</strong> for our base calculations. This accounts for failed training runs, hyperparameter experimentation, dataset quality iterations, debugging and validation runs, etc.
+            </p>
+            <img
+              src="/images/openai compute spend.png"
+              alt="OpenAI R&D Compute Breakdown"
+              className="data-image"
+              style={{ marginTop: '1rem' }}
+            />
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}>
+              Figure 2: OpenAI's 2024 compute allocation showing R&D overhead (EpochAI analysis)
+            </p>
 
-            <h3>Formula:</h3>
+            <h3 id="training-capacity">Training Capacity</h3>
+            <p>
+              <strong>AI model training</strong> is the process of teaching an AI system to perform tasks by exposing it to large datasets. During training, the model iteratively adjusts billions of parameters through matrix multiplication operations (measured in FLOPs) until it learns patterns that enable it to generate accurate predictions or outputs.
+            </p>
+
+            <h4>Assumptions</h4>
+            <p>
+              Model FLOPs Utilization (MFU) ranges between <strong>30-40% for training</strong> at state-of-the-art data centers like Nebius and Meta's Grand Teton clusters. Combined with infrastructure overhead, this results in overall utilization rates of <strong>80-90%</strong>.
+            </p>
+            <p>The compute-month calculations assume:</p>
+            <ul>
+              <li><strong>MFU: 35%</strong> (conservative estimate for frontier model training)</li>
+              <li><strong>Utilization: 85%</strong> (accounting for maintenance windows, failures)</li>
+              <li><strong>R&D Overhead: 10×</strong> (as discussed above)</li>
+            </ul>
+
+            <h4>Methodology</h4>
+            <p>Training capacity is calculated based on available FLOPs divided by the FLOPs required to train each model:</p>
             <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              Training Hours = Total H100-Hours × Training %{'\n'}
-              FLOPs Available = Training Hours × GPU TFLOPS × 3600 × MFU{'\n'}
-              Models/Month = FLOPs Available ÷ Model Training FLOPs{'\n'}
-              Realistic = Models/Month ÷ R&D Overhead Multiplier
-            </pre>
+{`FLOPs Available = H100-Hours × MFU × GPU TFLOPS × seconds/hour
+Models Trained / Month = FLOPs Available ÷ Model Training FLOPs
+Realistic Models / Month = Models Trained / Month ÷ R&D Overhead Multiplier
 
-            <h3>1 GW @ 80% Training Allocation:</h3>
+Example for GPT-5 (6.6 × 10²⁵ FLOPs):
+FLOPs Available = 762,322,310 hours × 0.35 × 989 × 10¹² × 3,600
+                = 9.49 × 10²⁶ FLOPs/month
+
+Models Trained / Month = 9.49 × 10²⁶ ÷ 6.6 × 10²⁵ = 14.4 models/month
+Realistic Models / Month = 14.4 ÷ 10 = 1.4 models/month`}
+            </pre>
+            <p><strong>Training Capacity Results:</strong></p>
             <table className="breakdown-table">
               <thead>
                 <tr>
                   <th>Model</th>
-                  <th>FLOPs Required</th>
-                  <th>Parallel</th>
-                  <th>Realistic (11× R&D)</th>
+                  <th>Training FLOPs</th>
+                  <th>Models Trained / Month</th>
+                  <th>Realistic Models / Month</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td>GPT-4.5</td><td>6.4 × 10²⁵</td><td>47/month</td><td>4/month</td></tr>
-                <tr><td>Claude Sonnet 4</td><td>5.0 × 10²⁵</td><td>58/month</td><td>5/month</td></tr>
-                <tr><td>Llama 3.1 405B</td><td>3.8 × 10²⁵</td><td>76/month</td><td>7/month</td></tr>
-                <tr><td>GPT-4</td><td>2.1 × 10²⁵</td><td>138/month</td><td>13/month</td></tr>
-                <tr><td>DeepSeek-V3</td><td>2.8 × 10²⁴</td><td>1,035/month</td><td>94/month</td></tr>
+                <tr><td>GPT-5</td><td>6.6 × 10²⁵</td><td>45.9</td><td><strong>4.6</strong></td></tr>
+                <tr><td>Claude Sonnet 4</td><td>5.0 × 10²⁵</td><td>60.4</td><td><strong>6.0</strong></td></tr>
+                <tr><td>Llama 3.1 405B</td><td>3.8 × 10²⁵</td><td>79.5</td><td><strong>7.9</strong></td></tr>
+                <tr><td>Claude 3.5 Sonnet</td><td>3.6 × 10²⁵</td><td>83.9</td><td><strong>8.4</strong></td></tr>
+                <tr><td>Grok-2</td><td>3.0 × 10²⁵</td><td>100.7</td><td><strong>10.1</strong></td></tr>
+                <tr><td>GPT-4</td><td>2.1 × 10²⁵</td><td>143.8</td><td><strong>14.4</strong></td></tr>
+                <tr><td>Gemini 1.5 Pro</td><td>1.6 × 10²⁵</td><td>189.0</td><td><strong>18.9</strong></td></tr>
               </tbody>
             </table>
-
-            <p style={{ marginTop: '1rem' }}>
-              <strong>Token throughput:</strong> 1.9 trillion tokens/month (127 complete GPT-4 datasets)
+            <p style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '0.5rem' }}>
+              <strong>Note on token calculations:</strong> The relationship between FLOPs and tokens depends on model parameters: `Training FLOPs = 6 × Parameters × Tokens`. Without parameter counts for most recent models (companies no longer publicly disclose architecture details), we cannot reliably calculate training tokens. For models where parameters are known (like Llama 3.1 405B), training one model processes approximately 15 trillion tokens.
             </p>
 
-            <p style={{ fontStyle: 'italic' }}>
-              <strong>R&D overhead:</strong> Based on OpenAI 2024 spend ($5B total / $400M GPT-4.5 final = 11.25×).
-              Accounts for failed runs, experiments, ablations, data work.
+            <h3 id="inference-capacity">Inference Capacity</h3>
+            <p>
+              <strong>AI model inference</strong> is the process of using a trained model to generate outputs (predictions, text, images) based on new inputs. Unlike training, inference focuses on serving user queries in real-time. <strong>Reasoning</strong> is a specialized form of inference where models perform extended "thinking" through techniques like chain-of-thought, using significantly more compute per query to solve complex problems.
             </p>
 
-            <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
+            <h4>Assumptions</h4>
+            <p>
+              Model FLOPs Utilization (MFU) ranges between <strong>25-35% for inference</strong> at state-of-the-art data centers. User traffic patterns determine utilization rates of <strong>50-70%</strong>. The compute-month calculations assume:
+            </p>
+            <ul>
+              <li><strong>MFU: 30%</strong> (inference is memory-bandwidth limited, not compute limited)</li>
+              <li><strong>Utilization: 75%</strong> (varying with demand patterns)</li>
+            </ul>
+            <p>
+              <strong>Reasoning workloads can take between 10-100× more capacity than standard inference.</strong> Therefore there is no meaningful average, so we include low (10×), medium (50×), and high (100×) cases corresponding to different reasoning depths (e.g., o1-mini, o1, o3 levels).
+            </p>
 
-            <h2 id="inference-capacity">💬 Inference Capacity</h2>
-
-            <h3>Formula (memory-bandwidth limited):</h3>
+            <h4>Methodology</h4>
+            <p>
+              <strong>Inference is memory-bandwidth limited, not FLOPs limited.</strong> The bottleneck is loading model weights from GPU memory (HBM) for each token generation step.
+            </p>
             <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              Tokens/sec = (GPU Bandwidth ÷ Model Size) × Utilization{'\n'}
-              Queries/sec = Tokens/sec ÷ Tokens per Query{'\n'}
-              Monthly Queries = Queries/sec × GPUs × 730 × 3600
-            </pre>
+{`Tokens/sec per GPU = (GPU Memory Bandwidth ÷ Model Size in bytes) × Batch Efficiency
+Queries/sec = Tokens/sec ÷ Tokens per Query
+Monthly Queries = Queries/sec × GPUs × 730 hours × 3,600 sec/hour
 
-            <h3>1 GW @ 20% Inference Allocation:</h3>
+Example for GPT-4 class (280B parameters, FP16):
+Model Size = 280 × 10⁹ params × 2 bytes/param = 560 GB
+GPU Bandwidth (H100) = 3.35 TB/s = 3,350 GB/s
+
+Tokens/sec = (3,350 GB/s ÷ 560 GB) × 0.70 batch efficiency
+           = 4.2 tokens/sec per query stream
+
+For 1,044,277 GPUs serving inference:
+Concurrent users = 1,044,277 GPUs
+Aggregate tokens/sec = 1,044,277 × 4.2 = 4,386,963 tokens/sec
+
+At 550 tokens/query average:
+Queries/sec = 4,386,963 ÷ 550 = 7,976 queries/sec
+Monthly queries = 7,976 × 730 × 3,600 = 20.9 billion queries/month`}
+            </pre>
+            <p style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '0.5rem' }}>
+              <strong>Note on H200 and higher memory GPUs:</strong> GPUs with larger memory capacity can serve inference more efficiently. The H200 with 141 GB HBM3e (vs H100's 80 GB) has 1.76× the memory and 1.16× the bandwidth (3.9 TB/s vs 3.35 TB/s). Using the memory-to-bandwidth ratio, H200 achieves approximately 1.16× higher inference throughput than H100 for the same model size.
+            </p>
+            <p><strong>Inference Capacity Results:</strong></p>
             <table className="breakdown-table">
               <thead>
                 <tr>
                   <th>Workload Type</th>
                   <th>Model Class</th>
-                  <th>Queries/Month</th>
+                  <th>Tokens/Query</th>
+                  <th>Monthly Queries</th>
                   <th>Tokens Generated</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td>Standard</td><td>GPT-4 (280B)</td><td>4.2B</td><td>2.3T tokens</td></tr>
-                <tr><td>Standard</td><td>Llama 70B</td><td>23B</td><td>9.2T tokens</td></tr>
-                <tr><td>Standard</td><td>Llama 8B</td><td>287B</td><td>80T tokens</td></tr>
-                <tr><td>Reasoning (10×)</td><td>GPT-4 class</td><td>40M</td><td>220B tokens</td></tr>
+                <tr><td>Standard</td><td>GPT-4</td><td>550</td><td>20.9B</td><td>11.5T</td></tr>
+                <tr><td>Standard</td><td>Llama (large)</td><td>400</td><td>115.6B</td><td>46.2T</td></tr>
+                <tr><td>Standard</td><td>Llama (small)</td><td>280</td><td>1,435.0B</td><td>401.8T</td></tr>
+                <tr><td><strong>Total Standard</strong></td><td>-</td><td>-</td><td><strong>1,571.5B</strong></td><td><strong>459.5T</strong></td></tr>
+                <tr><td>Reasoning (10×)</td><td>GPT-4</td><td>5,500</td><td>2.1B</td><td>11.5T</td></tr>
+                <tr><td>Reasoning (50×)</td><td>GPT-4</td><td>27,500</td><td>418M</td><td>11.5T</td></tr>
+                <tr><td>Reasoning (100×)</td><td>GPT-4</td><td>55,000</td><td>209M</td><td>11.5T</td></tr>
               </tbody>
             </table>
-
-            <p style={{ marginTop: '1rem' }}>
-              <strong>Total:</strong> 314B standard queries + 40M reasoning queries = 92T tokens/month
+            <p style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '0.5rem' }}>
+              <strong>Note:</strong> These results assume 100% of compute-month capacity allocated to inference. In practice, datacenters split capacity between training and inference (e.g., 80% training / 20% inference). Users can adjust allocation in the calculator based on their workload mix.
             </p>
 
-            <p style={{ fontStyle: 'italic' }}>
-              <strong>Key insight:</strong> Reasoning workloads use 10-1000× more tokens per query (o1/o3-level test-time compute).
-            </p>
-
-            <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
-
-            <h2 id="economics">💰 Economics</h2>
-
-            <h3>Total Cost of Ownership:</h3>
-
-            <h4>CapEx (per GW):</h4>
+            <h3 id="market-value">Market Value from Spot Prices</h3>
+            <p>Simple calculation based on index prices from:</p>
             <ul>
-              <li>Average: $35.8B</li>
-              <li>EpochAI: $44B</li>
-              <li>Stargate: $50B</li>
+              <li><strong>Compute.Exchange:</strong> $0.74/H100-hour (<a href="https://compute.exchange/" target="_blank" rel="noopener noreferrer">compute.exchange</a>)</li>
+              <li><strong>Ornn Exchange</strong> (GPU derivatives market): $2.19/H100-hour (<a href="https://www.ornn.io/" target="_blank" rel="noopener noreferrer">ornn.io</a>)</li>
             </ul>
+            <p><strong>Calculation:</strong></p>
+            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
+{`1 Compute-Month = 762,322,310 H100-hours
 
-            <h4>Monthly Amortization assumptions:</h4>
-            <ul>
-              <li>70% compute (4-year depreciation) @ 10% WACC</li>
-              <li>30% infrastructure (15-year depreciation) @ 10% WACC</li>
-            </ul>
+At Compute.Exchange rate ($0.74/hr):
+762,322,310 × $0.74 = $564 million/month
 
-            <p style={{ marginTop: '1rem' }}>
-              Monthly Power: Facility MW × 730 hrs × $/kWh × 1,000<br />
-              Monthly Operations: 20% of power cost<br />
-              Monthly TCO: Amortization + Power + Operations
-            </p>
-
-            <h3>1 GW Example (Average $35.8B, $0.08/kWh):</h3>
+At Ornn Exchange rate ($2.19/hr):
+762,322,310 × $2.19 = $1,669 million/month`}
+            </pre>
+            <p>Assuming 33% variance, market value ranges:</p>
             <table className="breakdown-table">
               <thead>
                 <tr>
-                  <th>Component</th>
-                  <th>Monthly</th>
+                  <th>Exchange</th>
+                  <th>-33%</th>
+                  <th>Spot Price</th>
+                  <th>+33%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Compute.Exchange</td><td>$376M</td><td>$564M</td><td>$752M</td></tr>
+                <tr><td>Ornn</td><td>$1.11B</td><td>$1.67B</td><td>$2.23B</td></tr>
+              </tbody>
+            </table>
+            <p>
+              The significant spread reflects market segmentation (spot vs. reserved, different service levels) and price volatility in GPU compute markets.
+            </p>
+
+            <h3 id="cost-estimation">Cost Estimation</h3>
+            <p><strong>Capital Expenditure Estimates:</strong></p>
+            <ul>
+              <li><strong>EpochAI estimate:</strong> $44B per GW (<a href="https://epoch.ai/data/data-centers-documentation#analysis" target="_blank" rel="noopener noreferrer">EpochAI datacenter documentation</a>)</li>
+              <li><strong>Market-derived estimate:</strong> $50B per GW (based on OpenAI's announced ~$1T spending for 20 GW Stargate project, includes requisite energy infrastructure buildout)</li>
+            </ul>
+
+            <h4>Assumptions</h4>
+            <p>
+              <strong>GPUs have a finite useful lifespan of 4-5 years</strong> before replacement becomes necessary. This is primarily due to:
+            </p>
+            <ol>
+              <li><strong>Physical degradation:</strong> Continuous high-temperature operation causes thermal cycling stress, electromigration in circuits, and gradual performance degradation</li>
+              <li><strong>Economic obsolescence:</strong> Newer GPU architectures offer significantly better performance-per-watt and performance-per-dollar, making replacement economically rational even if original chips still function</li>
+            </ol>
+            <p>
+              Based on market rates, 1.04 million H100 GPUs (1 GW worth) cost approximately <strong>$25,000-$30,000 per unit</strong>:
+            </p>
+            <p><strong>NVIDIA H100 Pricing (2025):</strong></p>
+            <ul>
+              <li><strong>PCIe 80GB:</strong> $25,000-$30,000 per unit (<a href="https://www.gmicloud.ai/blog/how-much-does-the-nvidia-h100-gpu-cost-in-2025-buy-vs-rent-analysis" target="_blank" rel="noopener noreferrer">Multiple sources</a>)</li>
+              <li><strong>SXM5 80GB:</strong> $30,000-$35,000 per unit (premium for NVLink connectivity)</li>
+              <li><strong>Enterprise volume pricing:</strong> $22,000-$24,000 per unit (bulk orders, 100+ GPUs)</li>
+            </ul>
+            <p>Total GPU cost for 1 GW capacity:</p>
+            <ul>
+              <li><strong>Low estimate:</strong> 1.04M × $25,000 = $26B</li>
+              <li><strong>Mid estimate:</strong> 1.04M × $28,000 = $29.1B</li>
+              <li><strong>High estimate:</strong> 1.04M × $30,000 = $31.2B</li>
+            </ul>
+            <p>
+              Though <strong>energy is the most critical part</strong> of this equation and is the hardest to secure - it doesn't contribute much to the cost model since it only contributes about <strong>10-15% to total monthly costs</strong>. The following table contains assumed power prices per region:
+            </p>
+            <table className="breakdown-table">
+              <thead>
+                <tr>
+                  <th>Region</th>
+                  <th>Power Cost</th>
+                  <th>Grid Operator</th>
                   <th>Notes</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td>CapEx Amortization</td><td>$480M</td><td>70% compute @ 48mo + 30% infra @ 180mo</td></tr>
-                <tr><td>Power</td><td>$58M</td><td>1,000 MW × 730 hrs × $0.08</td></tr>
-                <tr><td>Operations</td><td>$12M</td><td>20% of power</td></tr>
-                <tr><td><strong>Total TCO</strong></td><td><strong>$550M/month</strong></td><td></td></tr>
+                <tr><td>Texas (ERCOT)</td><td>$0.035-0.050/kWh</td><td>ERCOT</td><td>Low due to wind/solar, but peak demand risk</td></tr>
+                <tr><td>Iowa</td><td>$0.050-0.070/kWh</td><td>MISO</td><td>Wind-heavy, stable rates</td></tr>
+                <tr><td>Virginia (NoVA)</td><td>$0.093/kWh</td><td>PJM</td><td>Data center hub, competitive rates</td></tr>
+                <tr><td>Oregon</td><td>$0.060-0.080/kWh</td><td>BPA</td><td>Hydroelectric, very reliable</td></tr>
+                <tr><td>Washington</td><td>$0.040/kWh</td><td>BPA</td><td>Lowest in US, hydro-dominated</td></tr>
+                <tr><td>Illinois</td><td>$0.060/kWh</td><td>MISO</td><td>Industrial rates</td></tr>
+                <tr><td>California</td><td>$0.150-0.180/kWh</td><td>CAISO</td><td>Highest, but renewable-heavy</td></tr>
+                <tr><td><strong>Weighted Average</strong></td><td><strong>$0.080/kWh</strong></td><td>-</td><td>Used for base calculations</td></tr>
               </tbody>
             </table>
 
-            <h3>Revenue Potential:</h3>
-            <ul>
-              <li>Training: 610M H100-hrs × $2.19 = $1.34B/month</li>
-              <li>Inference: 314B queries × $0.60/M tokens = $0.19B/month</li>
-              <li><strong>Total: $1.53B/month</strong></li>
-            </ul>
+            <h4>Methodology</h4>
+            <p><strong>Monthly GW-H100 Cost</strong> = GPU amortization + Energy costs + Operations</p>
+            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
+{`GPU Amortization:
+- 1.04M GPUs @ $28,000 average = $29.1B total
+- Amortized over 54 months (4.5 years): $29.1B ÷ 54 = $539M/month
 
-            <h3>Investment Returns (48-month GPU lifetime):</h3>
-            <ul>
-              <li>Breakeven: 27 months</li>
-              <li>Lifetime revenue: $73B (48 months × $1.53B)</li>
-              <li>ROI: 104% over 4 years</li>
-              <li>Annual return: 26%</li>
-            </ul>
+Energy Costs:
+- 1 GW × 730 hours × $0.080/kWh × 1,000 = $58.4M/month
 
-            <p style={{ fontStyle: 'italic', marginTop: '1rem' }}>
-              <strong>GPU Lifetime Context:</strong> AI accelerators useful for 48-60 months before performance/efficiency improvements
-              make replacement economical. Projects breaking even in &lt;30 months capture substantial value in remaining lifetime.
-            </p>
+Operations (20% of energy):
+- $58.4M × 0.20 = $11.7M/month
+
+Total Monthly GW-H100 Cost: $539M + $58.4M + $11.7M = $609M/month`}
+            </pre>
+            <p><strong>Cost scenarios (monthly):</strong></p>
+            <ul>
+              <li><strong>Low:</strong> $480M/month (low GPU cost @ $25K, cheap power @ $0.05/kWh)</li>
+              <li><strong>Mid:</strong> $609M/month (baseline assumptions)</li>
+              <li><strong>High:</strong> $780M/month (premium GPUs @ $30K, expensive power @ $0.15/kWh)</li>
+            </ul>
 
             <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
             <h2 id="conclusion">Conclusion</h2>
-
             <p>
-              The Compute-Month framework provides a <strong>standardized economic unit</strong> for AI infrastructure analysis,
-              translating facility power (MW) into measurable compute output (models trained, queries served, tokens processed)
-              and economic value (revenue, breakeven, ROI).
+              The Compute-Month framework provides a <strong>standardized economic unit</strong> for AI infrastructure analysis, translating facility power (GW) to GPU capacity (H100-equivalent) into measurable compute output (models trained, queries served, tokens processed) and economic value (market rate, cost).
             </p>
-
-            <h3>Key takeaways:</h3>
-            <ol>
-              <li><strong>Scale of investment:</strong> $35-50B per GW is economically justified with 27-month breakeven and 100%+ ROI over GPU lifetime</li>
-              <li><strong>Time value of compute:</strong> Each month of construction delay costs $1.5B in lost revenue - making speed-to-market critical</li>
-              <li><strong>Efficiency = capacity:</strong> PUE improvements don't reduce power demand, they increase compute density (10% better PUE = 10% more GPUs from same facility)</li>
-              <li><strong>R&D overhead dominates:</strong> Actual production model training represents &lt;10% of total compute spend; 90%+ goes to experiments and iterations</li>
-              <li><strong>Inference is memory-bound:</strong> Query capacity limited by bandwidth, not FLOPs - making model size optimization crucial</li>
-              <li><strong>Reasoning changes economics:</strong> o1/o3-level workloads use 10-1000× more tokens per query, shifting inference cost structure</li>
-            </ol>
-
+            <p><strong>Key takeaways:</strong></p>
+            <ul>
+              <li><strong>Scale & standardization:</strong> One GW-H100-Month = 762M H100-hours = 2.71 × 10²⁷ FLOPs provides a common unit for comparing diverse datacenter projects</li>
+              <li><strong>Training economics:</strong> Can train 4-8 frontier models/month (with 10× R&D overhead)</li>
+              <li><strong>Inference capacity:</strong> Can serve 1.6 trillion standard queries or 209 million-2.1 billion reasoning queries monthly</li>
+              <li><strong>Market value:</strong> $1.1B - $2.2B/month in compute rental value (based on spot markets)</li>
+              <li><strong>Monthly costs:</strong> $480M - $780M/month for GPU amortization, energy, and operations</li>
+              <li><strong>Efficiency = capacity:</strong> PUE improvements don't reduce power demand - they increase compute density (10% better PUE = 10% more GPUs)</li>
+              <li><strong>Energy is critical but not dominant:</strong> While securing power is the hardest challenge, energy represents only 10-15% of monthly costs</li>
+            </ul>
             <p>
-              The compute-month bridges infrastructure planning (GW capacity) with business outcomes (models, queries, revenue),
-              enabling apples-to-apples comparison across projects, efficiency interventions, and technology roadmaps.
+              The compute-month bridges infrastructure planning (MW/GW) with business outcomes (models, queries, revenue), enabling meaningful comparisons across projects, efficiency interventions, and technology roadmaps. It provides a common language for developers, investors, policymakers, and energy providers to evaluate AI datacenter economics.
             </p>
 
-            <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
-
-            <h2 id="appendix-a">Appendix A: Mathematical Derivations</h2>
-
-            <h3>A.1 Model FLOPs Utilization (MFU)</h3>
+            <h3>Future Work</h3>
             <p>
-              MFU measures what fraction of theoretical peak FLOPs actually performs useful computation during training.
+              The framework can be extended to account for more nuances of AI infrastructure and frontier models. Specifically:
             </p>
-
-            <h4>Formula:</h4>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              MFU = (Actual FLOPs/sec) / (Theoretical Peak FLOPs/sec)
-            </pre>
-
-            <p>Where:</p>
             <ul>
-              <li>Actual FLOPs/sec = (Model Parameters × 6) × Tokens/sec</li>
-              <li style={{ marginLeft: '2rem' }}>Factor of 6: Forward pass (2×), backward pass (4×)</li>
-              <li>Theoretical Peak = GPU Count × GPU TFLOPS × 10^12</li>
-            </ul>
-
-            <h4>Typical values:</h4>
-            <ul>
-              <li>Research training: 20-30% MFU (small scale, inefficient)</li>
-              <li>Production training: 35-45% MFU (optimized at scale)</li>
-              <li>Meta Llama 3.1: 38-43% MFU at 16K H100s</li>
-            </ul>
-
-            <p style={{ fontStyle: 'italic' }}>
-              <strong>Why not 100%?</strong> Communication overhead, memory bandwidth limits, batch loading, gradient synchronization.
-            </p>
-
-            <h3>A.2 Training Time Calculation</h3>
-            <p>Hours required for one complete training run:</p>
-
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              Hours = Training FLOPs / (GPU FLOPs/sec × 3600 × MFU × GPU Count)
-            </pre>
-
-            <p><strong>Example (GPT-4):</strong></p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              Hours = 2.1×10^25 / (989×10^12 × 3600 × 0.35 × 10,000){'\n'}
-              = 167,000 GPU-hours{'\n'}
-              = 16.7 hours on 10K GPUs
-            </pre>
-
-            <h3>A.3 Inference Token Rate (Memory-Bandwidth Limited)</h3>
-            <p>Generation speed (autoregressive decoding):</p>
-
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              Tokens/sec = (Memory Bandwidth / Model Size in Bytes) × Batch Efficiency
-            </pre>
-
-            <p><strong>For H100 (3.35 TB/s) serving GPT-4 (280B params, FP16):</strong></p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              Model Size = 280×10^9 params × 2 bytes = 560 GB{'\n'}
-              Tokens/sec = (3.35×10^12 bytes/sec / 560×10^9 bytes) × 0.70{'\n'}
-              = 4.2 tokens/sec per query stream
-            </pre>
-
-            <p>With 1000 concurrent users: 4,200 tokens/sec aggregate</p>
-
-            <p style={{ fontStyle: 'italic' }}>
-              <strong>Batch efficiency:</strong> Serving multiple users simultaneously shares memory access, achieving 60-80% of theoretical maximum.
-            </p>
-
-            <h3>A.4 CapEx Amortization (Annuity Method)</h3>
-            <p>Monthly payment formula:</p>
-
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              Monthly Payment = Principal × (r / (1 - (1 + r)^-n))
-            </pre>
-
-            <p>Where:</p>
-            <ul>
-              <li>r = WACC / 12 (monthly rate)</li>
-              <li>n = depreciation period in months</li>
-            </ul>
-
-            <p><strong>For 70% compute ($25B) over 48 months @ 10% WACC:</strong></p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              r = 0.10 / 12 = 0.00833{'\n'}
-              Payment = $25B × (0.00833 / (1 - 1.00833^-48)){'\n'}
-              = $25B × 0.0254{'\n'}
-              = $635M/month
-            </pre>
-
-            <p><strong>For 30% infrastructure ($10.7B) over 180 months:</strong></p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              Payment = $10.7B × 0.0121{'\n'}
-              = $129M/month
-            </pre>
-
-            <p>Total amortization: $764M/month</p>
-
-            <p style={{ fontStyle: 'italic' }}>
-              Note: Simplified to $480M in main calculator using blended depreciation
-            </p>
-
-            <h3>A.5 Carbon Intensity Calculation</h3>
-            <p>Monthly CO2 emissions:</p>
-
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              Emissions (tonnes CO2) = Power (MWh) × Carbon Intensity (gCO2/kWh) / 10^6
-            </pre>
-
-            <p><strong>For 1 GW facility:</strong></p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              Monthly power = 1,000 MW × 730 hrs = 730,000 MWh
-            </pre>
-
-            <p><strong>Texas (ERCOT, 200 gCO2/kWh):</strong></p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              730,000 MWh × 1,000 kWh/MWh × 200 gCO2/kWh / 10^6{'\n'}
-              = 146,000 tonnes CO2/month
-            </pre>
-
-            <p><strong>California (CAISO, 80 gCO2/kWh):</strong></p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-              = 58,400 tonnes CO2/month (60% less)
-            </pre>
-
-            <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
-
-            <h2 id="appendix-b">Appendix B: Data Sources & Citations</h2>
-
-            <h3>GPU Specifications</h3>
-            <ul>
-              <li>
-                <strong>NVIDIA H100:</strong> NVIDIA H100 Datasheet
-                <ul style={{ marginTop: '0.5rem' }}>
-                  <li>989 TFLOPS (FP16 Tensor Core)</li>
-                  <li>700W TDP</li>
-                  <li>3.35 TB/s memory bandwidth</li>
-                </ul>
-              </li>
-              <li><strong>EpochAI ml_hardware.csv:</strong> GPU specs across vendors (AMD, Google TPU, Amazon Trainium)</li>
-            </ul>
-
-            <h3>Training FLOPs by Model</h3>
-            <ul>
-              <li>GPT-4: 2.1 × 10²⁵ FLOPs - EpochAI Parameter Database</li>
-              <li>Llama 3.1 405B: 3.8 × 10²⁵ FLOPs - Meta Llama 3.1 Report</li>
-              <li>Claude 3.5 Sonnet: 3.6 × 10²⁵ FLOPs - EpochAI estimate</li>
-              <li>DeepSeek-V3: 2.8 × 10²⁴ FLOPs - DeepSeek Technical Report</li>
-              <li>GPT-4.5, Claude Sonnet 4, Gemini 2.0 Pro: Estimates based on company announcements and compute trends</li>
-            </ul>
-
-            <h3>Model FLOPs Utilization (MFU)</h3>
-            <ul>
-              <li>Meta Llama 3.1: 38-43% MFU - Meta Llama 3.1 Report, Fig. 5</li>
-              <li>Default MFU (0.35): Conservative estimate for frontier model training at scale</li>
-            </ul>
-
-            <h3>Inference Throughput</h3>
-            <ul>
-              <li>vLLM benchmarks: vLLM Performance Data</li>
-              <li>Token generation rates: Memory-bandwidth calculations validated against NVIDIA TensorRT-LLM benchmarks</li>
-            </ul>
-
-            <h3>Reasoning Overhead</h3>
-            <ul>
-              <li>OpenAI o1: "Uses chain-of-thought reasoning that can consume 10× or more tokens" - OpenAI o1 Blog</li>
-              <li>OpenAI o3: High-complexity tasks showing 100-1000× token usage - OpenAI o3 Announcement</li>
-            </ul>
-
-            <h3>Economic Data</h3>
-            <ul>
-              <li>
-                CapEx per GW:
-                <ul style={{ marginTop: '0.5rem' }}>
-                  <li>Validated ($35.8B): Bottom-up analysis from component costs</li>
-                  <li>EpochAI ($44B): <a href="https://epoch.ai/blog/estimating-ai-datacenter-costs" target="_blank" rel="noopener noreferrer">EpochAI Datacenter Cost Model</a></li>
-                  <li>Stargate ($50B): Derived from $500B / 10 GW announcement</li>
-                </ul>
-              </li>
-              <li>Ornn Spot Pricing: $2.19/H100-hour - Ornn Index (December 2025)</li>
-              <li>API Pricing: OpenAI, Anthropic, Google published rates (blended to $0.60/M tokens)</li>
-            </ul>
-
-            <h3>Regional Power & Carbon</h3>
-            <ul>
-              <li>Power costs: State utility commission filings, EIA commercial rates (2024-2025)</li>
-              <li>
-                Carbon intensity: Grid CO2 Intensity Details
-                <ul style={{ marginTop: '0.5rem' }}>
-                  <li>ERCOT, PJM, MISO, CAISO: Grid operator sustainability reports (2024)</li>
-                  <li>National average (384 gCO2/kWh): EPA eGrid 2024</li>
-                </ul>
-              </li>
-            </ul>
-
-            <h3>Infrastructure Efficiency</h3>
-            <ul>
-              <li>
-                PUE benchmarks:
-                <ul style={{ marginTop: '0.5rem' }}>
-                  <li>Google: 1.10 (2024 datacenter average)</li>
-                  <li>Meta: 1.09 (2024 fleet average)</li>
-                  <li>Microsoft: 1.18 (2024 Azure regions)</li>
-                  <li>Industry standard: 1.2 (Uptime Institute 2024 survey)</li>
-                </ul>
-              </li>
-              <li>IT overhead (1.14): NVIDIA DGX GB200 NVL72 specifications (networking, storage, management)</li>
-            </ul>
-
-            <h3>Water Usage</h3>
-            <ul>
-              <li>
-                1.5 L/kWh: Modern closed-loop liquid cooling systems
-                <ul style={{ marginTop: '0.5rem' }}>
-                  <li>Crusoe datacenter specifications</li>
-                  <li>FluidStack immersion cooling data</li>
-                  <li>Industry average (traditional): 3-5 L/kWh</li>
-                </ul>
-              </li>
-            </ul>
-
-            <h3>GPU Lifetime</h3>
-            <ul>
-              <li>
-                48-60 months: Industry standard for AI accelerator replacement cycles
-                <ul style={{ marginTop: '0.5rem' }}>
-                  <li>Economic obsolescence vs. physical failure</li>
-                  <li>Validated through hyperscaler procurement cycles</li>
-                </ul>
-              </li>
+              <li><strong>Algorithmic efficiency gains:</strong> Models are achieving the same benchmark scores with less training compute over time. For example, achieving GPT-3 level performance now requires ~40× less compute than in 2020. Incorporating these trends would allow the compute-month to be adjusted for "effective capability" rather than raw FLOPs.</li>
+              <li><strong>Benchmark-specific valuations:</strong> Different applications value different capabilities (code generation vs. reasoning vs. creative writing). A compute-month could be denominated in "benchmark units" - e.g., "MMLU-months" or "HumanEval-months" - to reflect actual capability delivered rather than hardware utilization.</li>
+              <li><strong>Inference efficiency trends:</strong> As quantization, speculative decoding, and other inference optimizations improve, the same hardware can serve more queries. Tracking these improvements would allow compute-month valuations to reflect growing inference capacity over time.</li>
+              <li><strong>Sparse model architectures:</strong> The framework currently assumes dense models (989 TFLOPS). Future models using Mixture-of-Experts (MoE) or other sparse architectures could leverage the H100's full 1,979 TFLOPS with sparsity. This parameter can be adjusted to reflect evolving architectural trends and their impact on effective compute capacity.</li>
             </ul>
 
             <hr style={{ margin: '3rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
             <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', textAlign: 'center' }}>
-              Author: Aditya Nirvaan Ranganathan<br />
-              Framework version: 1.0 (December 2025)<br />
-              Last updated: December 28, 2025<br />
-              Contact: nirvaan.ranga@chicagobooth.edu
+              <strong>Framework Version:</strong> 1.0<br />
+              <strong>Last Updated:</strong> December 30, 2025<br />
+              <strong>Data Sources:</strong> EpochAI, NVIDIA specifications, industry reports<br />
+              <strong>Interactive Calculator:</strong> <a href="https://ai-infra.fyi/compute-month" target="_blank" rel="noopener noreferrer">ai-infra.fyi/compute-month</a>
             </p>
             </div>
           </div>
