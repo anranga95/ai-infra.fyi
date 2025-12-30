@@ -115,7 +115,7 @@ function ComputeMonthPage() {
                       onClick={(e) => handleTocClick(e, 'rationale')}
                       className={activeSection === 'rationale' ? 'active' : ''}
                     >
-                      Rationale
+                      Motivation
                     </a>
                   </li>
                   <li style={{ margin: '0.5rem 0' }}>
@@ -200,26 +200,26 @@ function ComputeMonthPage() {
               A "Compute-Month" is a convenient unit in which to measure the economic value of AI data center capacity. For example, one compute-month can:
             </p>
             <ul>
-              <li>Train <strong>4.6 GPT-5 models</strong></li>
-              <li>Train <strong>6.0 Claude Sonnet 4 models</strong></li>
-              <li>Train <strong>7.9 Llama 3.1 405B models</strong></li>
-              <li>Handle <strong>1.6 trillion standard inference queries</strong> across model sizes</li>
-              <li>Process <strong>460 trillion tokens</strong> during standard inference workloads</li>
-              <li>Generate <strong>$1.67 billion revenue</strong> from compute rentals (based on $2.19/H100-hour spot price)</li>
+              <li>Train <strong>0.9 GPT-5 models</strong></li>
+              <li>Train <strong>1.2 Claude Sonnet 4 models</strong></li>
+              <li>Train <strong>1.6 Llama 3.1 models</strong></li>
+              <li>Handle <strong>986 billion standard inference queries</strong> across model sizes</li>
+              <li>Process <strong>288 trillion tokens</strong> during standard inference workloads</li>
+              <li>Generate <strong>$1.05 billion revenue</strong> from compute rentals (based on $2.19/H100-hour spot price)</li>
             </ul>
             <p>
-              A compute-month, or GW-H100-Month, represents the output of the maximum number of Nvidia H100-equivalent GPUs that can be powered by 1GW of energy, based on the efficiency of a standard AI data center. The default value is roughly 762M H100-hours, which is generally allocated across different workloads in practice.
+              A compute-month, or GW-H100-Month, represents the output of the maximum number of Nvidia H100-equivalent GPUs that can be powered by 1GW of energy, based on the efficiency of a standard AI data center. The default value is roughly 478M H100-hours, which is generally allocated across different workloads in practice.
             </p>
             <p>
-              The compute-month bridges infrastructure planning (MW/GW) with business outcomes (models, queries, market value), enabling meaningful comparisons across models, projects, efficiency interventions, and technology roadmaps. It provides a common language for developers, investors, policymakers, and energy providers to evaluate AI datacenter economics.
+              The compute-month bridges energy infrastructure planning (MW/GW) with business outcomes (models, queries, market value), enabling meaningful comparisons across projects, efficiency interventions, and technology roadmaps. It provides a common language for developers, investors, policymakers, and energy providers to evaluate AI datacenter economics.
             </p>
             <p>
-              This framework demonstrates how to derive and utilize the compute-month. The reader can adjust assumptions and model scenarios using the 'Calculator' tab.
+              This framework demonstrates how to derive and utilize the compute-month. Adjust assumptions and model scenarios using the 'Calculator' tab.
             </p>
 
             <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
-            <h2 id="rationale">Rationale</h2>
+            <h2 id="rationale">Motivation</h2>
             <p>
               Data centers are not easy to operationalize. Construction takes 2-4 years from groundbreaking to operation; supply chain lead times for key components like GPUs and gas turbines can extend months or years; and grid infrastructure upgrades are multi-year projects. For <a href="https://www.datacenterdynamics.com/en/news/silicon-valley-data-centers-stand-empty-awaiting-power-connections-report/" target="_blank" rel="noopener noreferrer">example</a>, several data centers in Nvidia's hometown of Santa Clara, California have finished construction but can't go live until Silicon Valley Power finishes a system upgrade, expected in 2028.
             </p>
@@ -230,7 +230,7 @@ function ComputeMonthPage() {
               The compute-month helps quantify the <strong>"opportunity cost"</strong> - the economic impact of project delays or accelerations.
             </p>
             <p>
-              This is illustrated in the following plot, where the area shaded in gray represents unutilized compute-months from frontier AI data centers due to the current timelines for construction, hardware procurement, and grid interconnection.
+              This is illustrated in the following plot, where the area shaded in gray represents unutilized compute-months from frontier AI data centers due to the current timelines for construction, hardware procurement, grid interconnection, and other factors.
             </p>
             <img
               src="/images/compute months plot.png"
@@ -239,7 +239,7 @@ function ComputeMonthPage() {
               style={{ marginTop: '1rem' }}
             />
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}>
-              Figure 1: Announced capacity growth for frontier AI datacenters showing the ramp-up period (gray area) representing unutilized compute-months (prepared by author)
+              Figure 1: Announced capacity growth for frontier AI datacenters showing the ramp-up period (gray area) representing unutilized compute-months (data from EpochAI, aggregation prepared by author)
             </p>
 
             <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
@@ -271,9 +271,9 @@ function ComputeMonthPage() {
                 </tr>
                 <tr>
                   <td><strong>IT Overhead</strong></td>
-                  <td>Proportion of IT power redirected to networking, storage, and management infrastructure (non-GPU compute)</td>
-                  <td>1.14</td>
-                  <td>Based on NVIDIA DGX GB200 NVL72 specifications: 14% overhead for networking fabric, storage arrays, and cluster management</td>
+                  <td>Ratio of total IT equipment power to GPU power; accounts for CPUs, networking, storage, and management infrastructure</td>
+                  <td>1.82</td>
+                  <td>Based on NVIDIA DGX H100 specifications: 10.2 kW total system power with 5.6 kW GPU power (8 × 700W H100 GPUs) = 1.82× multiplier (<a href="https://docs.nvidia.com/dgx/dgxh100-user-guide/introduction-to-dgxh100.html" target="_blank" rel="noopener noreferrer">NVIDIA DGX H100 User Guide</a>, <a href="https://www.sunbirddcim.com/blog/can-your-racks-support-nvidia-dgx-h100-systems" target="_blank" rel="noopener noreferrer">Sunbird DCIM</a>)</td>
                 </tr>
                 <tr>
                   <td><strong>GPU "Thermal Design Power" (TDP)</strong></td>
@@ -295,10 +295,10 @@ function ComputeMonthPage() {
 
             <h3>Methodology</h3>
             <p>
-              From these values we can estimate that <strong>1 GW can power 1.04 million H100 GPUs</strong>.
+              From these values we can estimate that <strong>1 GW can power 654,762 H100 GPUs</strong>.
             </p>
             <p>
-              Assuming a 30-day month, this results in <strong>762.3 million H100-hours</strong>.
+              Assuming a 30-day month, this results in <strong>478.0 million H100-hours</strong>.
             </p>
             <p><strong>Formula:</strong></p>
             <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
@@ -307,29 +307,29 @@ GPU Count = (Server Power × 1000 kW/MW) ÷ GPU TDP (kW)
 H100-Hours = GPU Count × 730 hours/month
 
 Example (1 GW):
-Server Power = 1 GW × 1000 ÷ 1.2 ÷ 1.14 = 731 MW
-GPU Count = (731 MW × 1000) ÷ 0.7 kW = 1,044,277 GPUs
-H100-Hours = 1,044,277 × 730 = 762,322,310 H100-hours`}
+Server Power = 1 GW × 1000 ÷ 1.2 ÷ 1.82 = 458.3 MW
+GPU Count = (458.3 MW × 1000) ÷ 0.7 kW = 654,762 GPUs
+H100-Hours = 654,762 × 730 = 477,976,260 H100-hours`}
             </pre>
             <p>
               AI relies heavily on matrix multiplication, which requires a high volume of Floating Point Operations, called <strong>FLOPs</strong>. This is a standard unit used to quantify a computer's raw computational speed, especially for complex math with decimals.
             </p>
             <p>
-              Using Nvidia's specifications on H100 performance, one compute-month produces <strong>2.71 × 10²⁷ FLOPs</strong>.
+              Using Nvidia's specifications on H100 performance, one compute-month produces <strong>1.70 × 10²⁷ FLOPs</strong>.
             </p>
             <p><strong>Formula:</strong></p>
             <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
 {`Total FLOPs = H100-hours × TFLOPS/GPU × seconds/hour
 
-762,322,310 H100-hours
+477,976,260 H100-hours
 × 989 TFLOPS (989 × 10¹² FLOP/s)
 × 3,600 seconds/hour
-= 2.71 × 10²⁷ FLOPs`}
+= 1.70 × 10²⁷ FLOPs`}
             </pre>
             <p><strong>In summary, a standard "Compute-Month" produces:</strong></p>
             <ul>
-              <li><strong>762.3 million H100-hours</strong></li>
-              <li><strong>2.71 × 10²⁷ FLOPs</strong></li>
+              <li><strong>478.0 million H100-hours</strong></li>
+              <li><strong>1.70 × 10²⁷ FLOPs</strong></li>
             </ul>
             <p>
               <strong>Key insight:</strong> Efficiency gains due to technology improvements translate to lower PUE and/or lower IT overhead → results in more compute extracted from the same GW of power provided to the facility (not less energy used). For example, improving PUE from 1.2 to 1.08 (10% improvement) yields 10% more GPU capacity from the same 1 GW facility.
@@ -343,12 +343,12 @@ H100-Hours = 1,044,277 × 730 = 762,322,310 H100-hours`}
               But there are several other GPUs on the market. To account for this variation, we factor in performance gains from these chips as conversion factors to H100 performance using data from EpochAI. For example, considering Google's TPU v7:
             </p>
             <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-{`762,322,310 H100-hours [standard compute-month]
+{`477,976,260 H100-hours [standard compute-month]
 × 2.33 [TPU v7 multiplier: 2307 TFLOPS ÷ 989 TFLOPS]
-= 1,776,210,982 H100-equivalent hours
+= 1,113,684,286 H100-equivalent hours
 × 989 TFLOPS
 × 3,600 seconds/hour
-= 6.32 × 10²⁷ FLOPs`}
+= 3.96 × 10²⁷ FLOPs`}
             </pre>
             <p><strong>GPU Performance Comparison Table</strong> (based on EpochAI ml_hardware.csv):</p>
             <table className="breakdown-table">
@@ -455,11 +455,11 @@ Models Trained / Month = FLOPs Available ÷ Model Training FLOPs
 Realistic Models / Month = Models Trained / Month ÷ R&D Overhead Multiplier
 
 Example for GPT-5 (6.6 × 10²⁵ FLOPs):
-FLOPs Available = 762,322,310 hours × 0.35 × 989 × 10¹² × 3,600
-                = 9.49 × 10²⁶ FLOPs/month
+FLOPs Available = 477,976,260 hours × 0.35 × 989 × 10¹² × 3,600
+                = 5.95 × 10²⁶ FLOPs/month
 
-Models Trained / Month = 9.49 × 10²⁶ ÷ 6.6 × 10²⁵ = 14.4 models/month
-Realistic Models / Month = 14.4 ÷ 10 = 1.4 models/month`}
+Models Trained / Month = 5.95 × 10²⁶ ÷ 6.6 × 10²⁵ = 9.0 models/month
+Realistic Models / Month = 9.0 ÷ 10 = 0.9 models/month`}
             </pre>
             <p><strong>Training Capacity Results:</strong></p>
             <table className="breakdown-table">
@@ -472,13 +472,13 @@ Realistic Models / Month = 14.4 ÷ 10 = 1.4 models/month`}
                 </tr>
               </thead>
               <tbody>
-                <tr><td>GPT-5</td><td>6.6 × 10²⁵</td><td>45.9</td><td><strong>4.6</strong></td></tr>
-                <tr><td>Claude Sonnet 4</td><td>5.0 × 10²⁵</td><td>60.4</td><td><strong>6.0</strong></td></tr>
-                <tr><td>Llama 3.1 405B</td><td>3.8 × 10²⁵</td><td>79.5</td><td><strong>7.9</strong></td></tr>
-                <tr><td>Claude 3.5 Sonnet</td><td>3.6 × 10²⁵</td><td>83.9</td><td><strong>8.4</strong></td></tr>
-                <tr><td>Grok-2</td><td>3.0 × 10²⁵</td><td>100.7</td><td><strong>10.1</strong></td></tr>
-                <tr><td>GPT-4</td><td>2.1 × 10²⁵</td><td>143.8</td><td><strong>14.4</strong></td></tr>
-                <tr><td>Gemini 1.5 Pro</td><td>1.6 × 10²⁵</td><td>189.0</td><td><strong>18.9</strong></td></tr>
+                <tr><td>GPT-5</td><td>6.6 × 10²⁵</td><td>9.0</td><td><strong>0.9</strong></td></tr>
+                <tr><td>Claude Sonnet 4</td><td>5.0 × 10²⁵</td><td>11.9</td><td><strong>1.2</strong></td></tr>
+                <tr><td>Llama 3.1 405B</td><td>3.8 × 10²⁵</td><td>15.7</td><td><strong>1.6</strong></td></tr>
+                <tr><td>Claude 3.5 Sonnet</td><td>3.6 × 10²⁵</td><td>16.5</td><td><strong>1.7</strong></td></tr>
+                <tr><td>Grok-2</td><td>3.0 × 10²⁵</td><td>19.8</td><td><strong>2.0</strong></td></tr>
+                <tr><td>GPT-4</td><td>2.1 × 10²⁵</td><td>28.3</td><td><strong>2.8</strong></td></tr>
+                <tr><td>Gemini 1.5 Pro</td><td>1.6 × 10²⁵</td><td>37.2</td><td><strong>3.7</strong></td></tr>
               </tbody>
             </table>
             <p style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '0.5rem' }}>
@@ -507,24 +507,24 @@ Realistic Models / Month = 14.4 ÷ 10 = 1.4 models/month`}
               <strong>Inference is memory-bandwidth limited, not FLOPs limited.</strong> The bottleneck is loading model weights from GPU memory (HBM) for each token generation step.
             </p>
             <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-{`Tokens/sec per GPU = (GPU Memory Bandwidth ÷ Model Size in bytes) × Batch Efficiency
-Queries/sec = Tokens/sec ÷ Tokens per Query
+{`Tokens/sec per GPU = (GPU Memory Bandwidth / Model Size in bytes) × Batch Efficiency
+Queries/sec = Tokens/sec / Tokens per Query
 Monthly Queries = Queries/sec × GPUs × 730 hours × 3,600 sec/hour
 
 Example for GPT-4 class (280B parameters, FP16):
 Model Size = 280 × 10⁹ params × 2 bytes/param = 560 GB
 GPU Bandwidth (H100) = 3.35 TB/s = 3,350 GB/s
 
-Tokens/sec = (3,350 GB/s ÷ 560 GB) × 0.70 batch efficiency
-           = 4.2 tokens/sec per query stream
+Tokens/sec per GPU = (3,350 GB/s / 560 GB) × 0.70 batch efficiency
+                   = 4.2 tokens/sec per query stream
 
-For 1,044,277 GPUs serving inference:
-Concurrent users = 1,044,277 GPUs
-Aggregate tokens/sec = 1,044,277 × 4.2 = 4,386,963 tokens/sec
+For 654,762 GPUs serving inference:
+Concurrent users = 654,762 GPUs
+Aggregate tokens/sec = 654,762 × 4.2 = 2,750,000 tokens/sec
 
 At 550 tokens/query average:
-Queries/sec = 4,386,963 ÷ 550 = 7,976 queries/sec
-Monthly queries = 7,976 × 730 × 3,600 = 20.9 billion queries/month`}
+Queries/sec = 2,750,000 / 550 = 5,000 queries/sec
+Monthly queries = 5,000 × 730 × 3,600 = 13.1 billion queries/month`}
             </pre>
             <p style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '0.5rem' }}>
               <strong>Note on H200 and higher memory GPUs:</strong> GPUs with larger memory capacity can serve inference more efficiently. The H200 with 141 GB HBM3e (vs H100's 80 GB) has 1.76× the memory and 1.16× the bandwidth (3.9 TB/s vs 3.35 TB/s). Using the memory-to-bandwidth ratio, H200 achieves approximately 1.16× higher inference throughput than H100 for the same model size.
@@ -541,13 +541,13 @@ Monthly queries = 7,976 × 730 × 3,600 = 20.9 billion queries/month`}
                 </tr>
               </thead>
               <tbody>
-                <tr><td>Standard</td><td>GPT-4</td><td>550</td><td>20.9B</td><td>11.5T</td></tr>
-                <tr><td>Standard</td><td>Llama (large)</td><td>400</td><td>115.6B</td><td>46.2T</td></tr>
-                <tr><td>Standard</td><td>Llama (small)</td><td>280</td><td>1,435.0B</td><td>401.8T</td></tr>
-                <tr><td><strong>Total Standard</strong></td><td>-</td><td>-</td><td><strong>1,571.5B</strong></td><td><strong>459.5T</strong></td></tr>
-                <tr><td>Reasoning (10×)</td><td>GPT-4</td><td>5,500</td><td>2.1B</td><td>11.5T</td></tr>
-                <tr><td>Reasoning (50×)</td><td>GPT-4</td><td>27,500</td><td>418M</td><td>11.5T</td></tr>
-                <tr><td>Reasoning (100×)</td><td>GPT-4</td><td>55,000</td><td>209M</td><td>11.5T</td></tr>
+                <tr><td>Standard</td><td>GPT-4</td><td>550</td><td>13.1B</td><td>7.2T</td></tr>
+                <tr><td>Standard</td><td>Llama (large)</td><td>400</td><td>72.5B</td><td>29.0T</td></tr>
+                <tr><td>Standard</td><td>Llama (small)</td><td>280</td><td>900.0B</td><td>252.0T</td></tr>
+                <tr><td><strong>Total Standard</strong></td><td>-</td><td>-</td><td><strong>985.6B</strong></td><td><strong>288.2T</strong></td></tr>
+                <tr><td>Reasoning (10×)</td><td>GPT-4</td><td>5,500</td><td>1.3B</td><td>7.2T</td></tr>
+                <tr><td>Reasoning (50×)</td><td>GPT-4</td><td>27,500</td><td>262M</td><td>7.2T</td></tr>
+                <tr><td>Reasoning (100×)</td><td>GPT-4</td><td>55,000</td><td>131M</td><td>7.2T</td></tr>
               </tbody>
             </table>
             <p style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '0.5rem' }}>
@@ -562,13 +562,13 @@ Monthly queries = 7,976 × 730 × 3,600 = 20.9 billion queries/month`}
             </ul>
             <p><strong>Calculation:</strong></p>
             <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-{`1 Compute-Month = 762,322,310 H100-hours
+{`1 Compute-Month = 477,976,260 H100-hours
 
 At Compute.Exchange rate ($0.74/hr):
-762,322,310 × $0.74 = $564 million/month
+477,976,260 × $0.74 = $354 million/month
 
 At Ornn Exchange rate ($2.19/hr):
-762,322,310 × $2.19 = $1,669 million/month`}
+477,976,260 × $2.19 = $1,047 million/month`}
             </pre>
             <p>Assuming 33% variance, market value ranges:</p>
             <table className="breakdown-table">
@@ -581,8 +581,8 @@ At Ornn Exchange rate ($2.19/hr):
                 </tr>
               </thead>
               <tbody>
-                <tr><td>Compute.Exchange</td><td>$376M</td><td>$564M</td><td>$752M</td></tr>
-                <tr><td>Ornn</td><td>$1.11B</td><td>$1.67B</td><td>$2.23B</td></tr>
+                <tr><td>Compute.Exchange</td><td>$236M</td><td>$354M</td><td>$472M</td></tr>
+                <tr><td>Ornn</td><td>$698M</td><td>$1.05B</td><td>$1.40B</td></tr>
               </tbody>
             </table>
             <p>
@@ -605,7 +605,7 @@ At Ornn Exchange rate ($2.19/hr):
               <li><strong>Economic obsolescence:</strong> Newer GPU architectures offer significantly better performance-per-watt and performance-per-dollar, making replacement economically rational even if original chips still function</li>
             </ol>
             <p>
-              Based on market rates, 1.04 million H100 GPUs (1 GW worth) cost approximately <strong>$25,000-$30,000 per unit</strong>:
+              Based on market rates, 654,762 H100 GPUs (1 GW worth) cost approximately <strong>$25,000-$30,000 per unit</strong>:
             </p>
             <p><strong>NVIDIA H100 Pricing (2025):</strong></p>
             <ul>
@@ -615,9 +615,9 @@ At Ornn Exchange rate ($2.19/hr):
             </ul>
             <p>Total GPU cost for 1 GW capacity:</p>
             <ul>
-              <li><strong>Low estimate:</strong> 1.04M × $25,000 = $26B</li>
-              <li><strong>Mid estimate:</strong> 1.04M × $28,000 = $29.1B</li>
-              <li><strong>High estimate:</strong> 1.04M × $30,000 = $31.2B</li>
+              <li><strong>Low estimate:</strong> 654,762 × $25,000 = $16.4B</li>
+              <li><strong>Mid estimate:</strong> 654,762 × $28,000 = $18.3B</li>
+              <li><strong>High estimate:</strong> 654,762 × $30,000 = $19.6B</li>
             </ul>
             <p>
               Though <strong>energy is the most critical part</strong> of this equation and is the hardest to secure - it doesn't contribute much to the cost model since it only contributes about <strong>10-15% to total monthly costs</strong>. The following table contains assumed power prices per region:
@@ -647,8 +647,8 @@ At Ornn Exchange rate ($2.19/hr):
             <p><strong>Monthly GW-H100 Cost</strong> = GPU amortization + Energy costs + Operations</p>
             <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
 {`GPU Amortization:
-- 1.04M GPUs @ $28,000 average = $29.1B total
-- Amortized over 54 months (4.5 years): $29.1B ÷ 54 = $539M/month
+- 654,762 GPUs @ $28,000 average = $18.3B total
+- Amortized over 54 months (4.5 years): $18.3B ÷ 54 = $339M/month
 
 Energy Costs:
 - 1 GW × 730 hours × $0.080/kWh × 1,000 = $58.4M/month
@@ -656,13 +656,13 @@ Energy Costs:
 Operations (20% of energy):
 - $58.4M × 0.20 = $11.7M/month
 
-Total Monthly GW-H100 Cost: $539M + $58.4M + $11.7M = $609M/month`}
+Total Monthly GW-H100 Cost: $339M + $58.4M + $11.7M = $409M/month`}
             </pre>
             <p><strong>Cost scenarios (monthly):</strong></p>
             <ul>
-              <li><strong>Low:</strong> $480M/month (low GPU cost @ $25K, cheap power @ $0.05/kWh)</li>
-              <li><strong>Mid:</strong> $609M/month (baseline assumptions)</li>
-              <li><strong>High:</strong> $780M/month (premium GPUs @ $30K, expensive power @ $0.15/kWh)</li>
+              <li><strong>Low:</strong> $360M/month (low GPU cost @ $25K, cheap power @ $0.05/kWh)</li>
+              <li><strong>Mid:</strong> $409M/month (baseline assumptions)</li>
+              <li><strong>High:</strong> $530M/month (premium GPUs @ $30K, expensive power @ $0.15/kWh)</li>
             </ul>
 
             <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
@@ -673,11 +673,11 @@ Total Monthly GW-H100 Cost: $539M + $58.4M + $11.7M = $609M/month`}
             </p>
             <p><strong>Key takeaways:</strong></p>
             <ul>
-              <li><strong>Scale & standardization:</strong> One GW-H100-Month = 762M H100-hours = 2.71 × 10²⁷ FLOPs provides a common unit for comparing diverse datacenter projects</li>
-              <li><strong>Training economics:</strong> Can train 4-8 frontier models/month (with 10× R&D overhead)</li>
-              <li><strong>Inference capacity:</strong> Can serve 1.6 trillion standard queries or 209 million-2.1 billion reasoning queries monthly</li>
-              <li><strong>Market value:</strong> $1.1B - $2.2B/month in compute rental value (based on spot markets)</li>
-              <li><strong>Monthly costs:</strong> $480M - $780M/month for GPU amortization, energy, and operations</li>
+              <li><strong>Scale & standardization:</strong> One GW-H100-Month = 478M H100-hours = 1.70 × 10²⁷ FLOPs provides a common unit for comparing diverse datacenter projects</li>
+              <li><strong>Training economics:</strong> Can train 1-4 frontier models/month (with 10× R&D overhead)</li>
+              <li><strong>Inference capacity:</strong> Can serve 986 billion standard queries or 131 million-1.3 billion reasoning queries monthly</li>
+              <li><strong>Market value:</strong> $698M - $1.40B/month in compute rental value (based on spot markets)</li>
+              <li><strong>Monthly costs:</strong> $360M - $530M/month for GPU amortization, energy, and operations</li>
               <li><strong>Efficiency = capacity:</strong> PUE improvements don't reduce power demand - they increase compute density (10% better PUE = 10% more GPUs)</li>
               <li><strong>Energy is critical but not dominant:</strong> While securing power is the hardest challenge, energy represents only 10-15% of monthly costs</li>
             </ul>
