@@ -208,7 +208,7 @@ function ComputeMonthPage() {
               <li>Generate <strong>$1.05 billion revenue</strong> from compute rentals (based on $2.19/H100-hour spot price)</li>
             </ul>
             <p>
-              A compute-month, or GW-H100-Month, represents the output of the maximum number of Nvidia H100-equivalent GPUs that can be powered by 1GW of energy, based on the efficiency of a standard AI data center. The default value is roughly 478M H100-hours, which is generally allocated across different workloads in practice.
+              A compute-month, or GW-H100-Month, represents the expected output of the maximum number of Nvidia H100-equivalent GPUs that can be powered by 1GW of energy, based on the efficiency of a standard AI data center. The default value is roughly 478M H100-hours, which is generally allocated across different workloads in practice.
             </p>
             <p>
               The compute-month bridges energy infrastructure planning (MW/GW) with business outcomes (models, queries, market value), enabling meaningful comparisons across projects, efficiency interventions, and technology roadmaps. It provides a common language for developers, investors, policymakers, and energy providers to evaluate AI datacenter economics.
