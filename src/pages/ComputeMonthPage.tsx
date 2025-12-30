@@ -295,7 +295,7 @@ function ComputeMonthPage() {
                   <td>NVIDIA H100 SXM5: 700W TDP (<a href="https://www.nvidia.com/en-us/data-center/h100/" target="_blank" rel="noopener noreferrer">NVIDIA H100 Datasheet</a>)</td>
                 </tr>
                 <tr>
-                  <td><strong>H100 FP16 Performance</strong></td>
+                  <td>H100 FP16 Performance</td>
                   <td>Floating-point operations per second using 16-bit precision with Tensor Core acceleration</td>
                   <td>989 TFLOPS*</td>
                   <td>NVIDIA H100 SXM5: 1,979 TFLOPS FP16 with sparsity (<a href="https://www.nvidia.com/en-us/data-center/h100/" target="_blank" rel="noopener noreferrer">NVIDIA H100 Datasheet</a>)<br />*We use 989 TFLOPS (dense, without sparsity) for training calculations as most current models use dense architectures</td>

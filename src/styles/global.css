@@ -391,7 +391,6 @@ select:focus {
 
 .breakdown-table tr:last-child td {
   border-bottom: none;
-  font-weight: 700;
 }
 
 /* Map Page */
