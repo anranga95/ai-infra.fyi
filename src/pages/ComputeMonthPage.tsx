@@ -194,10 +194,10 @@ function ComputeMonthPage() {
             <div className="framework-content">
             <h2 id="tldr" style={{ marginTop: 0 }}>TLDR</h2>
             <p style={{ fontStyle: 'italic', fontWeight: 600 }}>
-              What can one month of compute capacity at an AI data center achieve, and how much does it cost?
+              What can a month of compute capacity at an AI data center achieve, and how much does it cost?
             </p>
             <p>
-              A "Compute-Month" is a convenient unit in which to measure the economic value of AI data center capacity. For example, one compute-month can:
+              A "Compute-Month" is a convenient unit in which to measure the value of AI data center capacity. For example, one compute-month can:
             </p>
             <ul>
               <li>Train <strong>0.9 GPT-5 models</strong></li>
@@ -221,7 +221,7 @@ function ComputeMonthPage() {
 
             <h2 id="rationale">Motivation</h2>
             <p>
-              Data centers are not easy to operationalize. Construction takes 2-4 years from groundbreaking to operation; supply chain lead times for key components like GPUs and gas turbines can extend months or years; and grid infrastructure upgrades are multi-year projects. For <a href="https://www.datacenterdynamics.com/en/news/silicon-valley-data-centers-stand-empty-awaiting-power-connections-report/" target="_blank" rel="noopener noreferrer">example</a>, several data centers in Nvidia's hometown of Santa Clara, California have finished construction but can't go live until Silicon Valley Power finishes a system upgrade, expected in 2028.
+              Data centers are not easy to operationalize. Hyperscaler construction takes <a href="https://epoch.ai/data-insights/data-centers-buildout-speeds" target="_blank" rel="noopener noreferrer">1-3.6 years</a> from groundbreaking to operation; supply chain lead times for key components like GPUs and gas turbines can extend months or years; and grid infrastructure upgrades are multi-year projects. For <a href="https://www.datacenterdynamics.com/en/news/silicon-valley-data-centers-stand-empty-awaiting-power-connections-report/" target="_blank" rel="noopener noreferrer">example</a>, several data centers in Nvidia's hometown of Santa Clara, California have finished construction but can't go live until Silicon Valley Power finishes a system upgrade, expected in 2028.
             </p>
             <p>
               Additional factors like land acquisition, permitting, municipal disputes, or extreme weather events could add several additional months to project timelines.
@@ -301,16 +301,19 @@ function ComputeMonthPage() {
               Assuming a 30-day month, this results in <strong>478.0 million H100-hours</strong>.
             </p>
             <p><strong>Formula:</strong></p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-{`Server Power (MW) = Facility Power (GW) × 1000 ÷ PUE ÷ IT Overhead
-GPU Count = (Server Power × 1000 kW/MW) ÷ GPU TDP (kW)
-H100-Hours = GPU Count × 730 hours/month
-
-Example (1 GW):
-Server Power = 1 GW × 1000 ÷ 1.2 ÷ 1.82 = 458.3 MW
-GPU Count = (458.3 MW × 1000) ÷ 0.7 kW = 654,762 GPUs
-H100-Hours = 654,762 × 730 = 477,976,260 H100-hours`}
-            </pre>
+            <div style={{ background: 'var(--bg-tertiary)', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)', fontFamily: 'inherit' }}>
+              <div style={{ marginBottom: '1rem' }}>
+                <div style={{ marginBottom: '0.5rem' }}><em>Server Power (MW)</em> = <em>Facility Power (GW)</em> × 1000 ÷ <em>PUE</em> ÷ <em>IT Overhead</em></div>
+                <div style={{ marginBottom: '0.5rem' }}><em>GPU Count</em> = (<em>Server Power</em> × 1000 kW/MW) ÷ <em>GPU TDP (kW)</em></div>
+                <div><em>H100-Hours</em> = <em>GPU Count</em> × 730 hours/month</div>
+              </div>
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', marginTop: '1rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Example (1 GW):</div>
+                <div style={{ marginBottom: '0.25rem' }}>Server Power = 1 GW × 1000 ÷ 1.2 ÷ 1.82 = 458.3 MW</div>
+                <div style={{ marginBottom: '0.25rem' }}>GPU Count = (458.3 MW × 1000) ÷ 0.7 kW = 654,762 GPUs</div>
+                <div>H100-Hours = 654,762 × 730 = 477,976,260 H100-hours</div>
+              </div>
+            </div>
             <p>
               AI relies heavily on matrix multiplication, which requires a high volume of Floating Point Operations, called <strong>FLOPs</strong>. This is a standard unit used to quantify a computer's raw computational speed, especially for complex math with decimals.
             </p>
@@ -318,14 +321,17 @@ H100-Hours = 654,762 × 730 = 477,976,260 H100-hours`}
               Using Nvidia's specifications on H100 performance, one compute-month produces <strong>1.70 × 10²⁷ FLOPs</strong>.
             </p>
             <p><strong>Formula:</strong></p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-{`Total FLOPs = H100-hours × TFLOPS/GPU × seconds/hour
-
-477,976,260 H100-hours
-× 989 TFLOPS (989 × 10¹² FLOP/s)
-× 3,600 seconds/hour
-= 1.70 × 10²⁷ FLOPs`}
-            </pre>
+            <div style={{ background: 'var(--bg-tertiary)', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)', fontFamily: 'inherit' }}>
+              <div style={{ marginBottom: '1rem' }}>
+                <em>Total FLOPs</em> = <em>H100-hours</em> × <em>TFLOPS/GPU</em> × <em>seconds/hour</em>
+              </div>
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', marginTop: '1rem' }}>
+                <div style={{ marginBottom: '0.25rem' }}>477,976,260 H100-hours</div>
+                <div style={{ marginBottom: '0.25rem' }}>× 989 TFLOPS (989 × 10¹² FLOP/s)</div>
+                <div style={{ marginBottom: '0.25rem' }}>× 3,600 seconds/hour</div>
+                <div style={{ fontWeight: 600, marginTop: '0.5rem' }}>= 1.70 × 10²⁷ FLOPs</div>
+              </div>
+            </div>
             <p><strong>In summary, a standard "Compute-Month" produces:</strong></p>
             <ul>
               <li><strong>478.0 million H100-hours</strong></li>
@@ -342,14 +348,14 @@ H100-Hours = 654,762 × 730 = 477,976,260 H100-hours`}
             <p>
               But there are several other GPUs on the market. To account for this variation, we factor in performance gains from these chips as conversion factors to H100 performance using data from EpochAI. For example, considering Google's TPU v7:
             </p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-{`477,976,260 H100-hours [standard compute-month]
-× 2.33 [TPU v7 multiplier: 2307 TFLOPS ÷ 989 TFLOPS]
-= 1,113,684,286 H100-equivalent hours
-× 989 TFLOPS
-× 3,600 seconds/hour
-= 3.96 × 10²⁷ FLOPs`}
-            </pre>
+            <div style={{ background: 'var(--bg-tertiary)', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)', fontFamily: 'inherit' }}>
+              <div style={{ marginBottom: '0.25rem' }}>477,976,260 H100-hours <span style={{ color: 'var(--text-secondary)' }}>[standard compute-month]</span></div>
+              <div style={{ marginBottom: '0.25rem' }}>× 2.33 <span style={{ color: 'var(--text-secondary)' }}>[TPU v7 multiplier: 2307 TFLOPS ÷ 989 TFLOPS]</span></div>
+              <div style={{ marginBottom: '0.25rem' }}>= 1,113,684,286 H100-equivalent hours</div>
+              <div style={{ marginBottom: '0.25rem' }}>× 989 TFLOPS</div>
+              <div style={{ marginBottom: '0.25rem' }}>× 3,600 seconds/hour</div>
+              <div style={{ fontWeight: 600, marginTop: '0.5rem' }}>= 3.96 × 10²⁷ FLOPs</div>
+            </div>
             <p><strong>GPU Performance Comparison Table</strong> (based on EpochAI ml_hardware.csv):</p>
             <table className="breakdown-table">
               <thead>
@@ -449,18 +455,20 @@ H100-Hours = 654,762 × 730 = 477,976,260 H100-hours`}
 
             <h4>Methodology</h4>
             <p>Training capacity is calculated based on available FLOPs divided by the FLOPs required to train each model:</p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-{`FLOPs Available = H100-Hours × MFU × GPU TFLOPS × seconds/hour
-Models Trained / Month = FLOPs Available ÷ Model Training FLOPs
-Realistic Models / Month = Models Trained / Month ÷ R&D Overhead Multiplier
-
-Example for GPT-5 (6.6 × 10²⁵ FLOPs):
-FLOPs Available = 477,976,260 hours × 0.35 × 989 × 10¹² × 3,600
-                = 5.95 × 10²⁶ FLOPs/month
-
-Models Trained / Month = 5.95 × 10²⁶ ÷ 6.6 × 10²⁵ = 9.0 models/month
-Realistic Models / Month = 9.0 ÷ 10 = 0.9 models/month`}
-            </pre>
+            <div style={{ background: 'var(--bg-tertiary)', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)', fontFamily: 'inherit' }}>
+              <div style={{ marginBottom: '1rem' }}>
+                <div style={{ marginBottom: '0.5rem' }}><em>FLOPs Available</em> = <em>H100-Hours</em> × <em>MFU</em> × <em>GPU TFLOPS</em> × <em>seconds/hour</em></div>
+                <div style={{ marginBottom: '0.5rem' }}><em>Models Trained / Month</em> = <em>FLOPs Available</em> ÷ <em>Model Training FLOPs</em></div>
+                <div><em>Realistic Models / Month</em> = <em>Models Trained / Month</em> ÷ <em>R&D Overhead Multiplier</em></div>
+              </div>
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', marginTop: '1rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Example for GPT-5 (6.6 × 10²⁵ FLOPs):</div>
+                <div style={{ marginBottom: '0.25rem' }}>FLOPs Available = 477,976,260 hours × 0.35 × 989 × 10¹² × 3,600</div>
+                <div style={{ marginBottom: '1rem', marginLeft: '2rem' }}>= 5.95 × 10²⁶ FLOPs/month</div>
+                <div style={{ marginBottom: '0.25rem' }}>Models Trained / Month = 5.95 × 10²⁶ ÷ 6.6 × 10²⁵ = 9.0 models/month</div>
+                <div style={{ fontWeight: 600 }}>Realistic Models / Month = 9.0 ÷ 10 = 0.9 models/month</div>
+              </div>
+            </div>
             <p><strong>Training Capacity Results:</strong></p>
             <table className="breakdown-table">
               <thead>
@@ -506,26 +514,29 @@ Realistic Models / Month = 9.0 ÷ 10 = 0.9 models/month`}
             <p>
               <strong>Inference is memory-bandwidth limited, not FLOPs limited.</strong> The bottleneck is loading model weights from GPU memory (HBM) for each token generation step.
             </p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-{`Tokens/sec per GPU = (GPU Memory Bandwidth / Model Size in bytes) × Batch Efficiency
-Queries/sec = Tokens/sec / Tokens per Query
-Monthly Queries = Queries/sec × GPUs × 730 hours × 3,600 sec/hour
+            <div style={{ background: 'var(--bg-tertiary)', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)', fontFamily: 'inherit' }}>
+              <div style={{ marginBottom: '1rem' }}>
+                <div style={{ marginBottom: '0.5rem' }}><em>Tokens/sec per GPU</em> = (<em>GPU Memory Bandwidth</em> / <em>Model Size in bytes</em>) × <em>Batch Efficiency</em></div>
+                <div style={{ marginBottom: '0.5rem' }}><em>Queries/sec</em> = <em>Tokens/sec</em> / <em>Tokens per Query</em></div>
+                <div><em>Monthly Queries</em> = <em>Queries/sec</em> × <em>GPUs</em> × 730 hours × 3,600 sec/hour</div>
+              </div>
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', marginTop: '1rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Example for GPT-4 class (280B parameters, FP16):</div>
+                <div style={{ marginBottom: '0.25rem' }}>Model Size = 280 × 10⁹ params × 2 bytes/param = 560 GB</div>
+                <div style={{ marginBottom: '1rem' }}>GPU Bandwidth (H100) = 3.35 TB/s = 3,350 GB/s</div>
 
-Example for GPT-4 class (280B parameters, FP16):
-Model Size = 280 × 10⁹ params × 2 bytes/param = 560 GB
-GPU Bandwidth (H100) = 3.35 TB/s = 3,350 GB/s
+                <div style={{ marginBottom: '0.25rem' }}>Tokens/sec per GPU = (3,350 GB/s / 560 GB) × 0.70 batch efficiency</div>
+                <div style={{ marginBottom: '1rem', marginLeft: '2rem' }}>= 4.2 tokens/sec per query stream</div>
 
-Tokens/sec per GPU = (3,350 GB/s / 560 GB) × 0.70 batch efficiency
-                   = 4.2 tokens/sec per query stream
+                <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>For 654,762 GPUs serving inference:</div>
+                <div style={{ marginBottom: '0.25rem' }}>Concurrent users = 654,762 GPUs</div>
+                <div style={{ marginBottom: '1rem' }}>Aggregate tokens/sec = 654,762 × 4.2 = 2,750,000 tokens/sec</div>
 
-For 654,762 GPUs serving inference:
-Concurrent users = 654,762 GPUs
-Aggregate tokens/sec = 654,762 × 4.2 = 2,750,000 tokens/sec
-
-At 550 tokens/query average:
-Queries/sec = 2,750,000 / 550 = 5,000 queries/sec
-Monthly queries = 5,000 × 730 × 3,600 = 13.1 billion queries/month`}
-            </pre>
+                <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>At 550 tokens/query average:</div>
+                <div style={{ marginBottom: '0.25rem' }}>Queries/sec = 2,750,000 / 550 = 5,000 queries/sec</div>
+                <div style={{ fontWeight: 600 }}>Monthly queries = 5,000 × 730 × 3,600 = 13.1 billion queries/month</div>
+              </div>
+            </div>
             <p style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '0.5rem' }}>
               <strong>Note on H200 and higher memory GPUs:</strong> GPUs with larger memory capacity can serve inference more efficiently. The H200 with 141 GB HBM3e (vs H100's 80 GB) has 1.76× the memory and 1.16× the bandwidth (3.9 TB/s vs 3.35 TB/s). Using the memory-to-bandwidth ratio, H200 achieves approximately 1.16× higher inference throughput than H100 for the same model size.
             </p>
@@ -561,15 +572,19 @@ Monthly queries = 5,000 × 730 × 3,600 = 13.1 billion queries/month`}
               <li><strong>Ornn Exchange</strong> (GPU derivatives market): $2.19/H100-hour (<a href="https://www.ornn.io/" target="_blank" rel="noopener noreferrer">ornn.io</a>)</li>
             </ul>
             <p><strong>Calculation:</strong></p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-{`1 Compute-Month = 477,976,260 H100-hours
+            <div style={{ background: 'var(--bg-tertiary)', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)', fontFamily: 'inherit' }}>
+              <div style={{ marginBottom: '1rem', fontWeight: 600 }}>1 Compute-Month = 477,976,260 H100-hours</div>
 
-At Compute.Exchange rate ($0.74/hr):
-477,976,260 × $0.74 = $354 million/month
+              <div style={{ marginBottom: '1rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>At Compute.Exchange rate ($0.74/hr):</div>
+                <div>477,976,260 × $0.74 = <strong>$354 million/month</strong></div>
+              </div>
 
-At Ornn Exchange rate ($2.19/hr):
-477,976,260 × $2.19 = $1,047 million/month`}
-            </pre>
+              <div>
+                <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>At Ornn Exchange rate ($2.19/hr):</div>
+                <div>477,976,260 × $2.19 = <strong>$1,047 million/month</strong></div>
+              </div>
+            </div>
             <p>Assuming 33% variance, market value ranges:</p>
             <table className="breakdown-table">
               <thead>
@@ -645,19 +660,27 @@ At Ornn Exchange rate ($2.19/hr):
 
             <h4>Methodology</h4>
             <p><strong>Monthly GW-H100 Cost</strong> = GPU amortization + Energy costs + Operations</p>
-            <pre style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '8px', overflow: 'auto' }}>
-{`GPU Amortization:
-- 654,762 GPUs @ $28,000 average = $18.3B total
-- Amortized over 54 months (4.5 years): $18.3B ÷ 54 = $339M/month
+            <div style={{ background: 'var(--bg-tertiary)', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)', fontFamily: 'inherit' }}>
+              <div style={{ marginBottom: '1rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>GPU Amortization:</div>
+                <div style={{ marginLeft: '1rem', marginBottom: '0.25rem' }}>• 654,762 GPUs @ $28,000 average = $18.3B total</div>
+                <div style={{ marginLeft: '1rem' }}>• Amortized over 54 months (4.5 years): $18.3B ÷ 54 = <strong>$339M/month</strong></div>
+              </div>
 
-Energy Costs:
-- 1 GW × 730 hours × $0.080/kWh × 1,000 = $58.4M/month
+              <div style={{ marginBottom: '1rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Energy Costs:</div>
+                <div style={{ marginLeft: '1rem' }}>• 1 GW × 730 hours × $0.080/kWh × 1,000 = <strong>$58.4M/month</strong></div>
+              </div>
 
-Operations (20% of energy):
-- $58.4M × 0.20 = $11.7M/month
+              <div style={{ marginBottom: '1rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Operations (20% of energy):</div>
+                <div style={{ marginLeft: '1rem' }}>• $58.4M × 0.20 = <strong>$11.7M/month</strong></div>
+              </div>
 
-Total Monthly GW-H100 Cost: $339M + $58.4M + $11.7M = $409M/month`}
-            </pre>
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', marginTop: '1rem', fontWeight: 600, fontSize: '1.1rem' }}>
+                Total Monthly GW-H100 Cost: $339M + $58.4M + $11.7M = <strong>$409M/month</strong>
+              </div>
+            </div>
             <p><strong>Cost scenarios (monthly):</strong></p>
             <ul>
               <li><strong>Low:</strong> $360M/month (low GPU cost @ $25K, cheap power @ $0.05/kWh)</li>
