@@ -35,7 +35,8 @@ body {
   background-color: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
   padding: 1rem 0;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 1000;
 }
 
