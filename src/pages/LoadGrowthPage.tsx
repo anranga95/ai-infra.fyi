@@ -368,10 +368,10 @@ function LoadGrowthPage() {
         <div className="framework-content">
           <h2 id="tldr" style={{ marginTop: 0 }}>TLDR</h2>
           <p>
-            U.S. datacenter power demand is projected to reach <strong>31-134 GW by 2030</strong>, driven primarily by AI workloads. Industry forecasts vary widely due to opaque hyperscaler spending, anonymous permit filings, and uncertain construction timelines. Our analysis tracks only datacenters that have <strong>broken ground</strong> (not rumored projects), revealing accelerating deployment concentrated in specific grid regions and dominated by hyperscaler tenants.
+            AI datacenter power demand in the US is projected to reach <strong>31-134 GW by 2030</strong>. Industry forecasts vary widely due to opaque hyperscaler spending, anonymous permit filings, and uncertain construction timelines. This analysis tracks only datacenters that have <strong>broken ground</strong> (not rumored projects). Further, projection methodologies vary significantly across the industry, and many do not account for the limitations around the global semiconductor supply - GPUs are the rate limiting factor. 
           </p>
           <p>
-            Key constraints include: (1) Grid interconnection queues averaging 4-7 years, (2) Gas turbine lead times extending to 2029, (3) Utility infrastructure upgrades requiring $1.1T by 2030. Behind-the-meter (BTM) generation—particularly gas turbines and emerging SMRs—is becoming essential to bypass grid bottlenecks.
+          Assuming the US maintains a 50% market share of the global semiconductor chip supply, the maximum projected load growth is <strong>~31.5GW by 2030.</strong> 
           </p>
 
           <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
