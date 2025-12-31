@@ -245,15 +245,17 @@ function ComputeMonthPage() {
             <p>
               This is illustrated in the following plot, where the area shaded in gray represents unutilized compute-months from frontier AI data centers due to the current timelines for construction, hardware procurement, grid interconnection, and other factors.
             </p>
-            <img
-              src="/images/compute months plot.png"
-              alt="Frontier AI Datacenter Load Growth"
-              className="data-image"
-              style={{ marginTop: '1rem' }}
-            />
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}>
-              Figure 1: Announced capacity growth for frontier AI datacenters showing the ramp-up period (gray area) representing unutilized compute-months (data from EpochAI, aggregation prepared by author)
-            </p>
+            <div style={{ maxWidth: '70%', margin: '1rem auto 0' }}>
+              <img
+                src="/images/compute months plot.png"
+                alt="Frontier AI Datacenter Load Growth"
+                className="data-image"
+                style={{ width: '100%', display: 'block' }}
+              />
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}>
+                Figure 1: Announced capacity growth for frontier AI datacenters showing the ramp-up period (gray area) representing unutilized compute-months (data from EpochAI, aggregation prepared by author)
+              </p>
+            </div>
 
             <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
@@ -440,15 +442,17 @@ function ComputeMonthPage() {
             <p>
               Given the competitive nature of the AI market and reprioritization towards production-ready deployments (e.g., OpenAI's "Code Red" protocol emphasizing shipping over research), we assume an <strong>R&D multiplier of 10× averaged across all companies</strong> for our base calculations. This accounts for failed training runs, hyperparameter experimentation, dataset quality iterations, debugging and validation runs, etc.
             </p>
-            <img
-              src="/images/openai compute spend.png"
-              alt="OpenAI R&D Compute Breakdown"
-              className="data-image"
-              style={{ marginTop: '1rem' }}
-            />
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}>
-              Figure 2: OpenAI's 2024 compute allocation showing R&D overhead (EpochAI analysis)
-            </p>
+            <div style={{ maxWidth: '70%', margin: '1rem auto 0' }}>
+              <img
+                src="/images/openai compute spend.png"
+                alt="OpenAI R&D Compute Breakdown"
+                className="data-image"
+                style={{ width: '100%', display: 'block' }}
+              />
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}>
+                Figure 2: OpenAI's 2024 compute allocation showing R&D overhead (EpochAI analysis)
+              </p>
+            </div>
 
             <h3 id="training-capacity">Training Capacity</h3>
             <p>

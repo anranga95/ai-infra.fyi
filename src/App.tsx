@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import ComputeMonthPage from './pages/ComputeMonthPage';
 import MapPage from './pages/MapPage';
 import AboutPage from './pages/AboutPage';
-import EnergyPage from './pages/EnergyPage';
+import LoadGrowthPage from './pages/LoadGrowthPage';
 import SourcesPage from './pages/SourcesPage';
 import './styles/global.css';
 
@@ -61,7 +61,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AboutPage />} />
           <Route path="/compute-month" element={<ComputeMonthPage />} />
-          <Route path="/energy" element={<EnergyPage />} />
+          <Route path="/energy" element={<LoadGrowthPage />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/sources" element={<SourcesPage />} />
         </Routes>
