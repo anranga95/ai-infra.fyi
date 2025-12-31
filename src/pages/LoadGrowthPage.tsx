@@ -368,7 +368,7 @@ function LoadGrowthPage() {
         <div className="framework-content">
           <h2 id="tldr" style={{ marginTop: 0 }}>TLDR</h2>
           <p>
-            AI datacenter power demand in the US is projected to reach <strong>31-134 GW by 2030</strong>. Industry forecasts vary widely due to opaque hyperscaler spending, anonymous permit filings, and uncertain construction timelines. This analysis tracks only datacenters that have <strong>broken ground</strong> (not rumored projects). Further, projection methodologies vary significantly across the industry, and many do not account for the limitations around the global semiconductor supply - GPUs are the rate limiting factor.
+            AI datacenter power demand in the US is projected to reach <strong>31-134 GW by 2030</strong>. Industry forecasts vary widely due to opaque hyperscaler spending, anonymous permit filings, and uncertain construction timelines. Further, projection methodologies vary and may not account for the limitations around the global semiconductor supply - GPUs are the rate limiting factor.
           </p>
           <p>
             → The aggregate load growth from tracked datacenters is <strong>28.29 GW by early 2029</strong>
@@ -482,10 +482,10 @@ function LoadGrowthPage() {
 
           <h3 id="methodology">Methodology</h3>
           <p>
-            <strong>Conservative approach:</strong> This analysis includes <strong>only datacenters that have broken ground</strong> (construction physically started). Announced, planned, or rumored projects are excluded to provide a floor estimate rather than speculative ceiling.
+            <strong>Data sources:</strong> <a href="https://epoch.ai/data/data-centers" target="_blank" rel="noopener noreferrer">EpochAI datacenter database</a> (Accessed 31 Dec 2025), supplemented with additional projects from Oracle and others with a high degree of confidence.
           </p>
           <p>
-            <strong>Data sources:</strong> <a href="https://epoch.ai/data/data-centers" target="_blank" rel="noopener noreferrer">EpochAI datacenter database</a> (Accessed 31 Dec 2025), supplemented with additional projects from Oracle and others with a high degree of confidence.
+            This analysis only includes datacenter campuses (including multi-phase) that can be validated with satellite imagery.
           </p>
           <p>
             See complete <a href="https://docs.google.com/spreadsheets/d/19_33yM4cW-wz-qYEv0irZvpgOpRf3uatqThB8Z-0acc/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">dataset</a>.
