@@ -402,7 +402,7 @@ function LoadGrowthPage() {
                 <td><a href="https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf" target="_blank" rel="noopener noreferrer">Report</a></td>
               </tr>
               <tr>
-                <td>EPRI</td>
+                <td>ERPI</td>
                 <td>62</td>
                 <td>Based on hyperscaler CapEx, extrapolated for recent growth</td>
                 <td><a href="https://www.epri.com/research/products/000000003002033669" target="_blank" rel="noopener noreferrer">Report</a></td>
@@ -459,7 +459,7 @@ function LoadGrowthPage() {
               style={{ width: '100%', display: 'block' }}
             />
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}>
-              Linearly extrapolating the report's methodology reveals that while US utilities forecast ~57 GW of growth (implied &gt;90% chip share), a realistic 50% market share supports only ~31.5 GW of capacity. (Chart prepared by author)
+              Linear extrapolation of London Economics paper methodology; prepared by author
             </p>
           </div>
 
