@@ -368,10 +368,13 @@ function LoadGrowthPage() {
         <div className="framework-content">
           <h2 id="tldr" style={{ marginTop: 0 }}>TLDR</h2>
           <p>
-            AI datacenter power demand in the US is projected to reach <strong>31-134 GW by 2030</strong>. Industry forecasts vary widely due to opaque hyperscaler spending, anonymous permit filings, and uncertain construction timelines. This analysis tracks only datacenters that have <strong>broken ground</strong> (not rumored projects). Further, projection methodologies vary significantly across the industry, and many do not account for the limitations around the global semiconductor supply - GPUs are the rate limiting factor. 
+            AI datacenter power demand in the US is projected to reach <strong>31-134 GW by 2030</strong>. Industry forecasts vary widely due to opaque hyperscaler spending, anonymous permit filings, and uncertain construction timelines. This analysis tracks only datacenters that have <strong>broken ground</strong> (not rumored projects). Further, projection methodologies vary significantly across the industry, and many do not account for the limitations around the global semiconductor supply - GPUs are the rate limiting factor.
           </p>
           <p>
-          Assuming the US maintains a 50% market share of the global semiconductor chip supply, the maximum projected load growth is <strong>~31.5GW by 2030.</strong> 
+            → The aggregate load growth from tracked datacenters is <strong>28.29 GW by early 2029</strong>
+          </p>
+          <p>
+          Assuming the US maintains a 50% market share of the global semiconductor chip supply, the <strong>maximum</strong> projected load growth is <strong>~31.5GW by 2030.</strong>
           </p>
 
           <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
