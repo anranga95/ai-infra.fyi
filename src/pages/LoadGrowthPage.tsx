@@ -392,7 +392,7 @@ function LoadGrowthPage() {
             Projections for the increase in power demand from data centers in the US vary widely: between <strong>31-134GW by 2030</strong>. Estimates on the higher end do not appear to account for limitations around the semiconductor supply chain. Load growth is linearly correlated with the % of global GPU supply secured by US companies.
           </p>
           <p>
-            Assuming the US maintains a 50% market share of the global GPU supply through 2030, aggregate load growth depends on the % annual growth of semiconductor manufacturing:
+            Assuming the US maintains a 50% market share of the global GPU supply through 2030, aggregate load growth depends on the % annual growth of semiconductor manufacturing. Use the calculator tab to model scenarios.
           </p>
           <ul>
             <li>Low (10%): <strong>31.5GW</strong></li>
@@ -501,14 +501,6 @@ function LoadGrowthPage() {
             </p>
           </div>
 
-          <h3 id="data-constraints">Data Constraints</h3>
-          <p>Forecasting datacenter load growth faces significant challenges:</p>
-          <ul>
-            <li><strong>Shell Corp Obfuscation:</strong> Major hyperscalers file permits under anonymous LLCs, obscuring true tenant identity and intended capacity.</li>
-            <li><strong>Construction vs. Energization Lag:</strong> Satellite imagery tracks exterior progress, but cannot confirm the delivery of power and cooling equipment required for "live" load.</li>
-            <li><strong>Interconnection Attrition:</strong> Grid queue positions are unreliable indicators of energization; historically, ~20-45% of projects suspend or withdraw.</li>
-          </ul>
-
           <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
           <h2 id="load-growth">Expected Load Growth</h2>
@@ -535,6 +527,14 @@ function LoadGrowthPage() {
               Frontier datacenter capacity tracked by EpochAI
             </p>
           </div>
+
+          <h3 id="data-constraints">Data Constraints</h3>
+          <p>Forecasting datacenter load growth faces significant challenges:</p>
+          <ul>
+            <li><strong>Shell Corp Obfuscation:</strong> Major hyperscalers file permits under anonymous LLCs, obscuring true tenant identity and intended capacity.</li>
+            <li><strong>Construction vs. Energization Lag:</strong> Satellite imagery tracks exterior progress, but cannot confirm the delivery of power and cooling equipment required for "live" load.</li>
+            <li><strong>Interconnection Attrition:</strong> Grid queue positions are unreliable indicators of energization; historically, ~20-45% of projects suspend or withdraw.</li>
+          </ul>
 
           <h3 id="aggregate">Aggregate</h3>
           <div style={{ maxWidth: '70%', margin: '1rem auto 0' }}>
