@@ -389,7 +389,7 @@ function LoadGrowthPage() {
         <div className="framework-content">
           <h2 id="tldr" style={{ marginTop: 0 }}>TLDR</h2>
           <p>
-            Projections for the increase in power demand from data centers in the US vary widely: between <strong>31-134GW by 2030</strong>. Estimates on the higher end do not appear to account for limitations around the semiconductor supply chain. Load growth is linearly correlated with the % of global GPU supply secured by US companies.
+            Projections for the increase in power demand from data centers in the US vary widely: between <strong>31-134GW by 2030</strong>. Estimates on the higher end do not appear to account for limitations around the semiconductor supply chain. Load growth is highly correlated with the % of global GPU supply secured by US companies.
           </p>
           <p>
             Assuming the US maintains a 50% market share of the global GPU supply through 2030, aggregate load growth depends on the % annual growth of semiconductor manufacturing. Use the calculator tab to model scenarios.
@@ -401,7 +401,7 @@ function LoadGrowthPage() {
             <li>High (70%: EPRI/EpochAI): <strong>70GW</strong></li>
           </ul>
           <p>
-            The aggregate load growth from data centers tracked in this analysis is <strong>28.29GW by early 2029</strong>.
+            The aggregate load growth from data centers tracked in this analysis is <strong>28.29GW expected by early 2029</strong>.
           </p>
 
           <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />

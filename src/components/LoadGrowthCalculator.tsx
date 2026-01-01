@@ -397,6 +397,18 @@ function LoadGrowthCalculator() {
           </div>
         </div>
       </div>
+
+      {/* Note about power density - below the entire calculator */}
+      <p style={{
+        marginTop: '2rem',
+        fontSize: '0.9rem',
+        color: 'var(--text-secondary)',
+        fontStyle: 'italic',
+        lineHeight: '1.6',
+        textAlign: 'center'
+      }}>
+        These load forecasts inherently account for the industry's shift toward higher-density hardware (such as the Nvidia B200), as the underlying LEI and EPRI models expressly factor in the rising per-unit power consumption of next-generation GPU fleets through 2030.
+      </p>
     </div>
   );
 }
