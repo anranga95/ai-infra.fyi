@@ -293,6 +293,28 @@ input[type="range"]::-moz-range-thumb {
   border: none;
 }
 
+/* Vertical Range Slider - Larger thumb for better touch interaction */
+input[type="range"][orient="vertical"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+input[type="range"][orient="vertical"]::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
 select {
   width: 100%;
   padding: 0.75rem;

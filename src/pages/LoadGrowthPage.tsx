@@ -81,8 +81,8 @@ function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
             key={index}
             onClick={() => setCurrentIndex(index)}
             style={{
-              width: '10px',
-              height: '10px',
+              width: '16px',
+              height: '16px',
               borderRadius: '50%',
               border: 'none',
               background: index === currentIndex ? 'var(--primary)' : 'var(--border)',
@@ -98,9 +98,9 @@ function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
       <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}>
         {currentIndex === 0 && 'Source: BloombergNEF'}
         {currentIndex === 1 && 'Source: EPRI and EpochAI'}
-        {currentIndex === 2 && 'Source: GridStrategies'}
-        {currentIndex === 3 && 'Source: S&P Global'}
-        {currentIndex === 4 && 'Source: London Economics'}
+        {currentIndex === 2 && 'Source: S&P Global'}
+        {currentIndex === 3 && 'Source: London Economics'}
+        {currentIndex === 4 && 'Source: GridStrategies'}
       </p>
     </div>
   );
@@ -396,7 +396,7 @@ function LoadGrowthPage() {
           </p>
           <p>Load growth by 2030 based on GPU global supply CAGR:</p>
           <ul>
-            <li>Low (10%: London Economics): <strong>31.5GW</strong></li>
+            <li>Low (11%: London Economics): <strong>31.5GW</strong></li>
             <li>Medium (40%: EPRI/EpochAI): <strong>50GW</strong></li>
             <li>High (70%: EPRI/EpochAI): <strong>70GW</strong></li>
           </ul>
@@ -474,9 +474,9 @@ function LoadGrowthPage() {
             images={[
               { src: '/images/bloomberg nef plot.png', alt: 'BloombergNEF Projection' },
               { src: '/images/epri plot.png', alt: 'EPRI Projection' },
-              { src: '/images/grid strategies plot.png', alt: 'Grid Strategies Projection' },
               { src: '/images/sp plot.png', alt: 'S&P Global Projection' },
-              { src: '/images/le plot.png', alt: 'London Economics Projection' }
+              { src: '/images/le plot.png', alt: 'London Economics Projection' },
+              { src: '/images/grid strategies plot.png', alt: 'Grid Strategies Projection' }
             ]}
           />
 
