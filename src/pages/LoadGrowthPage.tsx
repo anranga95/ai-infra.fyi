@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import LoadGrowthCalculator from '../components/LoadGrowthCalculator';
 
 // Image Carousel Component
 function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
@@ -106,6 +107,7 @@ function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
 }
 
 function LoadGrowthPage() {
+  const [activeTab, setActiveTab] = useState<'analysis' | 'calculator'>('analysis');
   const [activeSection, setActiveSection] = useState<string>('tldr');
   const [tocOpen, setTocOpen] = useState<boolean>(false);
 
@@ -168,12 +170,31 @@ function LoadGrowthPage() {
   };
 
   return (
-    <div className="calculator-container">
-      <div className="header">
-        <h1>⚡ Load Growth</h1>
+    <div>
+      {/* Tabs */}
+      <div className="tabs-container">
+        <div className="tabs">
+          <button
+            className={`tab ${activeTab === 'analysis' ? 'active' : ''}`}
+            onClick={() => setActiveTab('analysis')}
+          >
+            Analysis
+          </button>
+          <button
+            className={`tab ${activeTab === 'calculator' ? 'active' : ''}`}
+            onClick={() => setActiveTab('calculator')}
+          >
+            Calculator
+          </button>
+        </div>
       </div>
 
-      {/* Fixed left sidebar TOC */}
+      {/* Tab Content */}
+      {activeTab === 'analysis' && (
+      <div className="calculator-container">
+        <div className="header">
+          <h1>⚡ Load Growth</h1>
+        </div>
       <div className="framework-layout">
         <aside className="framework-toc-sidebar">
           <div className="toc-sticky">
@@ -926,6 +947,13 @@ function LoadGrowthPage() {
           </p>
         </div>
       </div>
+      </div>
+      )}
+
+      {/* Calculator Tab Content */}
+      {activeTab === 'calculator' && (
+        <LoadGrowthCalculator />
+      )}
     </div>
   );
 }
