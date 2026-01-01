@@ -15,14 +15,6 @@ function AboutPage() {
 
         <div className="modules-grid">
           <div className="module-card">
-            <h2>📈 Compute-Month Framework</h2>
-            <p>
-              Methodology and calculator to model AI datacenter economics using the 1GW-H100-Month standardized unit. Analyze training capacity, inference workloads, and financial metrics.
-            </p>
-            <Link to="/compute-month" className="module-link">Explore Framework →</Link>
-          </div>
-
-          <div className="module-card">
             <h2>🗺️ Market Map</h2>
             <p>
               Interactive network visualization of the AI infrastructure ecosystem. Explore relationships between data centers, hyperscalers, energy providers, hardware manufacturers, investors, and other stakeholders.
@@ -36,6 +28,14 @@ function AboutPage() {
               View regional and aggregate energy demand growth from the AI infrastructure expansion in the USA. Compare Front-of-the-Meter and Behind-the-Meter capacity.
             </p>
             <Link to="/energy" className="module-link">View Model →</Link>
+          </div>
+
+          <div className="module-card">
+            <h2>📈 Compute-Month Framework</h2>
+            <p>
+              Methodology and calculator to model AI datacenter economics using the 1GW-H100-Month standardized unit. Analyze training capacity, inference workloads, and financial metrics.
+            </p>
+            <Link to="/compute-month" className="module-link">Explore Framework →</Link>
           </div>
         </div>
 

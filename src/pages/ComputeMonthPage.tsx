@@ -134,7 +134,7 @@ function ComputeMonthPage() {
                       onClick={(e) => handleTocClick(e, 'economic-value')}
                       className={activeSection === 'economic-value' ? 'active' : ''}
                     >
-                      Economic Value
+                      Economic Benchmarks
                     </a>
                     <ul style={{ listStyle: 'none', paddingLeft: '1rem', margin: '0.25rem 0' }}>
                       <li style={{ margin: '0.25rem 0' }}>
@@ -184,7 +184,7 @@ function ComputeMonthPage() {
                           className={activeSection === 'environmental-impact' ? 'active' : ''}
                           style={{ fontSize: '0.9rem' }}
                         >
-                          Environmental Impact
+                          CO2 & Water
                         </a>
                       </li>
                     </ul>
@@ -409,7 +409,7 @@ function ComputeMonthPage() {
 
             <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
-            <h2 id="economic-value">Economic Value</h2>
+            <h2 id="economic-value">Economic Benchmarks</h2>
             <p>
               The following sections detail the different economic valuation methodologies for a compute-month based on the following data about each model. Note that data is not always published for each model and there is uncertainty about exact values.
             </p>
@@ -705,7 +705,7 @@ function ComputeMonthPage() {
               <li><strong>High:</strong> $530M/month (premium GPUs @ $30K, expensive power @ $0.15/kWh)</li>
             </ul>
 
-            <h3 id="environmental-impact">Environmental Impact</h3>
+            <h3 id="environmental-impact">CO2 & Water</h3>
             <p>
               AI datacenter operations carry significant environmental costs beyond energy consumption. A 1 GW compute-month generates substantial carbon emissions and water consumption that must be understood in context of global sustainability goals.
             </p>

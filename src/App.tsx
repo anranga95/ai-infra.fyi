@@ -50,9 +50,9 @@ function App() {
             </button>
             <div className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
               <Link to="/" onClick={closeMobileMenu}>About</Link>
-              <Link to="/compute-month" onClick={closeMobileMenu}>Compute-Month</Link>
               <Link to="/map" onClick={closeMobileMenu}>Market Map</Link>
               <Link to="/energy" onClick={closeMobileMenu}>Load Growth</Link>
+              <Link to="/compute-month" onClick={closeMobileMenu}>Compute-Month</Link>
               <Link to="/sources" onClick={closeMobileMenu}>Sources</Link>
             </div>
           </div>
