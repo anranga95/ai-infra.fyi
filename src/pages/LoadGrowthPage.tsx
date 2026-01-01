@@ -247,16 +247,6 @@ function LoadGrowthPage() {
                       GPU Ceiling
                     </a>
                   </li>
-                  <li style={{ margin: '0.25rem 0' }}>
-                    <a
-                      href="#data-constraints"
-                      onClick={(e) => handleTocClick(e, 'data-constraints')}
-                      className={activeSection === 'data-constraints' ? 'active' : ''}
-                      style={{ fontSize: '0.9rem' }}
-                    >
-                      Data Constraints
-                    </a>
-                  </li>
                 </ul>
               </li>
               <li style={{ margin: '0.5rem 0' }}>
@@ -276,6 +266,16 @@ function LoadGrowthPage() {
                       style={{ fontSize: '0.9rem' }}
                     >
                       Methodology
+                    </a>
+                  </li>
+                  <li style={{ margin: '0.25rem 0' }}>
+                    <a
+                      href="#data-constraints"
+                      onClick={(e) => handleTocClick(e, 'data-constraints')}
+                      className={activeSection === 'data-constraints' ? 'active' : ''}
+                      style={{ fontSize: '0.9rem' }}
+                    >
+                      Data Constraints
                     </a>
                   </li>
                   <li style={{ margin: '0.25rem 0' }}>
@@ -498,6 +498,7 @@ function LoadGrowthPage() {
               style={{ width: '100%', display: 'block' }}
             />
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}>
+              Load Growth (GW) vs. % of Global Chip Supply Secured (US 2025-2030):<br />
               Linear extrapolation of LEI market-share methodology with EPRI/EpochAI estimates for GPU supply growth; prepared by author
             </p>
           </div>
