@@ -13,7 +13,7 @@ function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
   };
 
   return (
-    <div style={{ maxWidth: '65%', margin: '2rem auto' }}>
+    <div style={{ maxWidth: '65%', margin: '1rem auto' }}>
       <div style={{ position: 'relative', height: '520px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ position: 'relative', maxHeight: '100%', maxWidth: '100%', overflow: 'hidden', borderRadius: '8px' }}>
           <img
@@ -96,7 +96,7 @@ function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
       {/* Caption */}
       <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}>
         {currentIndex === 0 && 'Source: BloombergNEF'}
-        {currentIndex === 1 && 'Source: ERPI and EpochAI'}
+        {currentIndex === 1 && 'Source: EPRI and EpochAI'}
         {currentIndex === 2 && 'Source: GridStrategies'}
         {currentIndex === 3 && 'Source: S&P Global'}
         {currentIndex === 4 && 'Source: London Economics'}
@@ -244,7 +244,7 @@ function LoadGrowthPage() {
                   onClick={(e) => handleTocClick(e, 'load-growth')}
                   className={activeSection === 'load-growth' ? 'active' : ''}
                 >
-                  Load Growth
+                  Expected Load Growth
                 </a>
                 <ul style={{ listStyle: 'none', paddingLeft: '1rem', margin: '0.25rem 0' }}>
                   <li style={{ margin: '0.25rem 0' }}>
@@ -368,13 +368,18 @@ function LoadGrowthPage() {
         <div className="framework-content">
           <h2 id="tldr" style={{ marginTop: 0 }}>TLDR</h2>
           <p>
-            AI datacenter power demand in the US is projected to reach <strong>31-134 GW by 2030</strong>. Industry forecasts vary widely due to opaque hyperscaler spending, anonymous permit filings, and uncertain construction timelines. Further, projection methodologies vary and may not account for the limitations around the global semiconductor supply - GPUs are the rate limiting factor.
+            Projections for the increase in power demand from data centers in the US vary widely: between <strong>31-134GW by 2030</strong>. Estimates on the higher end do not appear to account for limitations around the global semiconductor supply. Load growth is linearly correlated with the % of global GPU supply secured by US companies.
           </p>
           <p>
-            → The aggregate load growth from tracked datacenters is <strong>28.29 GW by early 2029</strong>
+            Assuming the US maintains a 50% market share of the global GPU supply through 2030, aggregate load growth depends on the % annual growth of semiconductor manufacturing:
           </p>
+          <ul>
+            <li>Low (10%): <strong>31.5GW</strong></li>
+            <li>Medium (40%): <strong>50GW</strong></li>
+            <li>High (70%): <strong>70GW</strong></li>
+          </ul>
           <p>
-          Assuming the US maintains a 50% market share of the global semiconductor chip supply, the <strong>maximum</strong> projected load growth is <strong>~31.5GW by 2030.</strong>
+            The aggregate load growth from data centers tracked in this analysis is <strong>28.29GW by early 2029</strong>.
           </p>
 
           <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
@@ -402,7 +407,13 @@ function LoadGrowthPage() {
                 <td><a href="https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf" target="_blank" rel="noopener noreferrer">Report</a></td>
               </tr>
               <tr>
-                <td>ERPI</td>
+                <td>RTO/ISO/BA</td>
+                <td>57</td>
+                <td>Based on estimates from London Economics from aggregated utilities data, extrapolating from 2029 to 2030</td>
+                <td><a href="https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf" target="_blank" rel="noopener noreferrer">Report</a></td>
+              </tr>
+              <tr>
+                <td>EPRI</td>
                 <td>62</td>
                 <td>Based on hyperscaler CapEx, extrapolated for recent growth</td>
                 <td><a href="https://www.epri.com/research/products/000000003002033669" target="_blank" rel="noopener noreferrer">Report</a></td>
@@ -433,14 +444,14 @@ function LoadGrowthPage() {
               </tr>
             </tbody>
           </table>
+          <h3>Why do the estimates vary so widely?</h3>
           <p>
-            <strong>Why estimates vary:</strong> Methodologies differ in which datacenters are tracked (operational vs. planned vs. rumored), how timelines are projected (construction start vs. power-on date), and assumptions about hyperscaler capital allocation and AI adoption rates.
+            The gap between forecasts stems from the opaque nature of data center development, which forces analysts to rely on different signals. Certain projections (BloombergNEF, S&P Global) extrapolate from financial announcements and hyperscaler CapEx, treating the massive capital allocated to AI as a direct proxy for future power demand. Other models (LEI, EPRI, TD Cowen) account for physical bottlenecks, such as chip manufacturing limits.
           </p>
-
           <ImageCarousel
             images={[
               { src: '/images/bloomberg nef plot.png', alt: 'BloombergNEF Projection' },
-              { src: '/images/erpi plot.png', alt: 'ERPI Projection' },
+              { src: '/images/epri plot.png', alt: 'EPRI Projection' },
               { src: '/images/grid strategies plot.png', alt: 'Grid Strategies Projection' },
               { src: '/images/sp plot.png', alt: 'S&P Global Projection' },
               { src: '/images/le plot.png', alt: 'London Economics Projection' }
@@ -449,36 +460,38 @@ function LoadGrowthPage() {
 
           <h3 id="gpu-ceiling">GPU Ceiling</h3>
           <p>
-            A <a href="https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf" target="_blank" rel="noopener noreferrer">paper</a> by London Economics suggests US utility forecasts projecting 57 GW of new data center load by 2030 are critically overstated because they fail to account for global hardware supply limitations. Even under aggressive manufacturing scenarios, the total global production of AI chips through 2030 can only support approximately 63 GW of capacity worldwide. To meet the current US forecast, the nation would need to monopolize over 90% of this global supply, which is unrealistic given its current market share of less than 50%. Adjusting for a feasible 50% market share implies the US supply chain can only support roughly 31.5 GW of new capacity, effectively halving the growth expected by grid operators. This gap highlights a systemic bias where utilities validate "phantom" duplicate requests while ignoring upstream manufacturing bottlenecks that act as a hard speed limit on deployment.
+            A <a href="https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf" target="_blank" rel="noopener noreferrer">paper</a> by London Economics International (LEI) suggests US utility forecasts projecting 57 GW of new data center load by 2030 are critically overstated because they fail to account for global hardware supply limitations. Assuming &lt;11% annual growth in GPU manufacturing capacity, the total global production of AI chips through 2030 can only support approximately 63 GW of capacity worldwide. Current forecasts imply the US would need to monopolize over 90% of this global supply, which is unrealistic given its current market share of less than 50%.
+          </p>
+          <p>
+            Adjusting for a feasible 50% global GPU market share implies the US requires only 31.5 GW of new capacity, effectively halving the growth expected by grid operators. This gap highlights a systemic bias where utilities validate "phantom" duplicate requests while ignoring upstream manufacturing bottlenecks that act as a hard speed limit on deployment.
+          </p>
+          <p>
+            However, the &lt;11% annual growth assumed by LEI is conservative. Contrasting analysis from EPRI and EpochAI projects between 40-70% annual expansion in manufacturing capacity. The figure below applies LEI's market-share methodology to these more aggressive supply chain scenarios to test the feasibility of current load forecasts.
           </p>
           <div style={{ maxWidth: '70%', margin: '1rem auto 0' }}>
             <img
-              src="/images/chip constraint plot.png"
-              alt="GPU Chip Constraints"
+              src="/images/gpu supply vs load growth.png"
+              alt="GPU Supply vs Load Growth"
               className="data-image"
               style={{ width: '100%', display: 'block' }}
             />
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginTop: '0.5rem', textAlign: 'center' }}>
-              Linear extrapolation of London Economics paper methodology; prepared by author
+              Linear extrapolation of LEI market-share methodology with EPRI/EpochAI estimates for GPU supply growth; prepared by author
             </p>
           </div>
 
           <h3 id="data-constraints">Data Constraints</h3>
           <p>Forecasting datacenter load growth faces significant challenges:</p>
           <ul>
-            <li><strong>Opaque hyperscaler spending:</strong> Free cash flow allocation to datacenter infrastructure is not publicly disclosed in granular detail</li>
-            <li><strong>Anonymous permitting:</strong> Many large datacenter applications are filed under shell corporations, obscuring tenant identity and deployment timeline</li>
-            <li><strong>Limited construction visibility:</strong> Progress tracking relies primarily on satellite imagery and sporadic regulatory filings</li>
-            <li><strong>Supply chain opacity:</strong> GPU, networking, and power equipment delivery schedules are closely guarded commercial information</li>
-            <li><strong>Interconnection uncertainty:</strong> Queue positions don't guarantee construction; ~20-45% of projects suspend or withdraw</li>
-            <li><strong>Power source variability:</strong> Behind-the-meter vs. grid-connected deployment decisions shift based on local utility capacity</li>
-            <li><strong>Tenant consolidation:</strong> Hyperscalers may cancel, delay, or relocate projects based on evolving AI strategy</li>
+            <li><strong>Shell Corp Obfuscation:</strong> Major hyperscalers file permits under anonymous LLCs, obscuring true tenant identity and intended capacity.</li>
+            <li><strong>Construction vs. Energization Lag:</strong> Satellite imagery tracks exterior progress, but cannot confirm the delivery of power and cooling equipment required for "live" load.</li>
+            <li><strong>Interconnection Attrition:</strong> Grid queue positions are unreliable indicators of energization; historically, ~20-45% of projects suspend or withdraw.</li>
           </ul>
 
           <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
-          <h2 id="load-growth">Load Growth</h2>
-          <p>→ Projected <strong>28.29 GW</strong> by early <strong>2029</strong> (within estimates considering GPU Ceiling)</p>
+          <h2 id="load-growth">Expected Load Growth</h2>
+          <p>→ Forecasted <strong>28.29 GW</strong> by early <strong>2029</strong></p>
 
           <h3 id="methodology">Methodology</h3>
           <p>
