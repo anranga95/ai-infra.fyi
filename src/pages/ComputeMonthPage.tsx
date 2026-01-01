@@ -107,7 +107,7 @@ function ComputeMonthPage() {
                       onClick={(e) => handleTocClick(e, 'tldr')}
                       className={activeSection === 'tldr' ? 'active' : ''}
                     >
-                      TLDR
+                      Summary
                     </a>
                   </li>
                   <li style={{ margin: '0.5rem 0' }}>
@@ -203,7 +203,7 @@ function ComputeMonthPage() {
             </aside>
 
             <div className="framework-content">
-            <h2 id="tldr" style={{ marginTop: 0 }}>TLDR</h2>
+            <h2 id="tldr" style={{ marginTop: 0 }}>Summary</h2>
             <p style={{ fontStyle: 'italic', fontWeight: 600 }}>
               What can a month of compute capacity at an AI data center achieve, and how much does it cost?
             </p>

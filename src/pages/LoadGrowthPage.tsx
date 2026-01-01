@@ -109,18 +109,8 @@ function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
 function LoadGrowthPage() {
   const [activeTab, setActiveTab] = useState<'analysis' | 'calculator'>('analysis');
   const [activeSection, setActiveSection] = useState<string>('tldr');
-  const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set());
-
-  const toggleRow = (index: number) => {
-    const newExpanded = new Set(expandedRows);
-    if (newExpanded.has(index)) {
-      newExpanded.delete(index);
-    } else {
-      newExpanded.add(index);
-    }
-    setExpandedRows(newExpanded);
-  };
   const [tocOpen, setTocOpen] = useState<boolean>(false);
+  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
 
   // Scroll spy to track active section
   useEffect(() => {
@@ -128,8 +118,8 @@ function LoadGrowthPage() {
       const sections = [
         'tldr',
         'background',
-        'industry-estimates',
-        'gpu-ceiling',
+        'variation-in-methodologies',
+        'gpu-ceiling-hypothesis',
         'data-constraints',
         'load-growth',
         'methodology',
@@ -226,7 +216,7 @@ function LoadGrowthPage() {
                   onClick={(e) => handleTocClick(e, 'tldr')}
                   className={activeSection === 'tldr' ? 'active' : ''}
                 >
-                  TLDR
+                  Summary
                 </a>
               </li>
               <li style={{ margin: '0.5rem 0' }}>
@@ -240,22 +230,22 @@ function LoadGrowthPage() {
                 <ul style={{ listStyle: 'none', paddingLeft: '1rem', margin: '0.25rem 0' }}>
                   <li style={{ margin: '0.25rem 0' }}>
                     <a
-                      href="#industry-estimates"
-                      onClick={(e) => handleTocClick(e, 'industry-estimates')}
-                      className={activeSection === 'industry-estimates' ? 'active' : ''}
+                      href="#variation-in-methodologies"
+                      onClick={(e) => handleTocClick(e, 'variation-in-methodologies')}
+                      className={activeSection === 'variation-in-methodologies' ? 'active' : ''}
                       style={{ fontSize: '0.9rem' }}
                     >
-                      Industry Estimates
+                      Variation in Methodologies
                     </a>
                   </li>
                   <li style={{ margin: '0.25rem 0' }}>
                     <a
-                      href="#gpu-ceiling"
-                      onClick={(e) => handleTocClick(e, 'gpu-ceiling')}
-                      className={activeSection === 'gpu-ceiling' ? 'active' : ''}
+                      href="#gpu-ceiling-hypothesis"
+                      onClick={(e) => handleTocClick(e, 'gpu-ceiling-hypothesis')}
+                      className={activeSection === 'gpu-ceiling-hypothesis' ? 'active' : ''}
                       style={{ fontSize: '0.9rem' }}
                     >
-                      GPU Ceiling
+                      GPU Ceiling Hypothesis
                     </a>
                   </li>
                 </ul>
@@ -398,32 +388,12 @@ function LoadGrowthPage() {
         </aside>
 
         <div className="framework-content">
-          <h2 id="tldr" style={{ marginTop: 0 }}>TLDR</h2>
+          <h2 id="tldr" style={{ marginTop: 0 }}>Summary</h2>
           <p>
-            Projections for the increase in power demand from data centers in the US vary widely: between <strong>31-90GW by 2030</strong>. Estimates on the higher end do not appear to account for limitations around the semiconductor supply chain. Load growth is highly correlated with the % of global GPU supply secured by US companies.
+            Projections for the increase in power demand from data centers in the US vary widely: between <strong>31-90GW by 2030</strong>.
           </p>
-          <p>
-            Assuming the US maintains a 50% market share of the global GPU supply through 2030, aggregate load growth depends on the % annual growth of semiconductor manufacturing. Use the calculator tab to model scenarios.
-          </p>
-          <p>Load growth by 2030 based on GPU global supply CAGR:</p>
-          <ul>
-            <li>Low (11%: London Economics): <strong>31.5GW</strong></li>
-            <li>Medium (40%: EPRI/EpochAI): <strong>50GW</strong></li>
-            <li>High (70%: EPRI/EpochAI): <strong>70GW</strong></li>
-          </ul>
-          <p>
-            The aggregate load growth from data centers tracked in this analysis is <strong>28.29GW expected by early 2029</strong>.
-          </p>
-
-          <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
-
-          <h2 id="background">Background</h2>
-
-          <h3 id="industry-estimates">Industry Estimates</h3>
-          <p>
-            Datacenter power demand projections for 2030 vary significantly across research firms, reflecting different methodologies and assumptions:
-          </p>
-          <table className="breakdown-table" style={{ lineHeight: '1.3', width: 'auto', margin: '0' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', margin: '1.5rem 0' }}>
+            <table className="breakdown-table" style={{ lineHeight: '1.3', width: 'auto', margin: '0' }}>
             <thead>
               <tr>
                 <th style={{ padding: '0.4rem 0.6rem', width: '30px' }}></th>
@@ -514,52 +484,90 @@ function LoadGrowthPage() {
               ].map((row, index) => (
                 <>
                   <tr key={index}>
-                    <td style={{ padding: '0.4rem 0.6rem', textAlign: 'center' }}>
-                      <button
-                        onClick={() => toggleRow(index)}
+                    <td style={{ padding: '0.4rem 0.6rem', textAlign: 'center', position: 'relative' }}>
+                      <span
                         style={{
-                          background: 'none',
-                          border: 'none',
                           cursor: 'pointer',
                           fontSize: '1rem',
-                          color: 'var(--text)',
-                          padding: '0',
+                          color: 'var(--text-secondary)',
                           width: '20px',
                           height: '20px',
-                          display: 'flex',
+                          display: 'inline-flex',
                           alignItems: 'center',
-                          justifyContent: 'center'
+                          justifyContent: 'center',
+                          borderRadius: '50%',
+                          border: '1.5px solid var(--text-secondary)',
+                          fontWeight: 'bold',
+                          fontFamily: 'serif',
+                          position: 'relative'
                         }}
-                        aria-label={expandedRows.has(index) ? 'Collapse details' : 'Expand details'}
+                        onMouseEnter={() => setHoveredRow(index)}
+                        onMouseLeave={() => setHoveredRow(null)}
                       >
-                        {expandedRows.has(index) ? '−' : '+'}
-                      </button>
+                        i
+                        {hoveredRow === index && (row.notes || row.link) && (
+                          <div
+                            style={{
+                              position: 'absolute',
+                              right: '30px',
+                              top: '50%',
+                              transform: 'translateY(-50%)',
+                              backgroundColor: '#f5f5f5',
+                              border: '1px solid #ccc',
+                              borderRadius: '6px',
+                              padding: '0.75rem',
+                              minWidth: '300px',
+                              maxWidth: '400px',
+                              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                              zIndex: 1000,
+                              fontSize: '0.9rem',
+                              lineHeight: '1.4',
+                              whiteSpace: 'normal',
+                              textAlign: 'left',
+                              color: '#333',
+                              fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                            }}
+                          >
+                            {row.notes}
+                            {row.notes && row.link && ' | '}
+                            {row.link && (
+                              <a
+                                href={row.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ color: '#0066cc', textDecoration: 'underline' }}
+                              >
+                                Link
+                              </a>
+                            )}
+                          </div>
+                        )}
+                      </span>
                     </td>
                     <td style={{ padding: '0.4rem 0.6rem' }}>{row.source}</td>
                     <td style={{ padding: '0.4rem 0.6rem' }}>{row.gw}</td>
                     <td style={{ padding: '0.4rem 0.6rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{row.methodology}</td>
                   </tr>
-                  {expandedRows.has(index) && (
-                    <tr key={`${index}-details`}>
-                      <td colSpan={4} style={{ padding: '0.6rem 0.8rem', backgroundColor: 'var(--bg-secondary)', fontSize: '0.9rem' }}>
-                        {row.notes && (
-                          <div style={{ marginBottom: row.link ? '0.5rem' : '0' }}>
-                            <strong>Notes:</strong> {row.notes}
-                          </div>
-                        )}
-                        {row.link && (
-                          <div>
-                            <strong>Link:</strong> <a href={row.link} target="_blank" rel="noopener noreferrer">Link</a>
-                          </div>
-                        )}
-                      </td>
-                    </tr>
-                  )}
                 </>
               ))}
             </tbody>
           </table>
-          <h3>Why do the estimates vary so widely?</h3>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', margin: '0.5rem 0 1.5rem 0' }}>
+            <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.85rem', fontStyle: 'italic', color: 'var(--text-secondary)', textAlign: 'left' }}>
+              <li>* Assuming industry standard conversion of 1 GW = 8.76 TWh/year</li>
+              <li>** Interpolated based on data provided</li>
+            </ul>
+          </div>
+          <p>
+            The aggregate load growth from data centers tracked in this analysis is <strong>28.29GW expected by early 2029</strong>.
+          </p>
+
+          <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
+
+          <h2 id="background">Background</h2>
+
+          <h3 id="variation-in-methodologies">Variation in Methodologies</h3>
           <p>
             The gap between forecasts stems from the opaque nature of data center development, which forces analysts to rely on different signals. Certain projections (BloombergNEF, S&P Global) extrapolate from financial announcements and hyperscaler CapEx, treating the massive capital allocated to AI as a direct proxy for future power demand. Other models (LEI, EPRI, TD Cowen) account for physical bottlenecks, such as chip manufacturing limits.
           </p>
@@ -573,7 +581,7 @@ function LoadGrowthPage() {
             ]}
           />
 
-          <h3 id="gpu-ceiling">GPU Ceiling</h3>
+          <h3 id="gpu-ceiling-hypothesis">GPU Ceiling Hypothesis</h3>
           <p>
             A July 2025 <a href="https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf" target="_blank" rel="noopener noreferrer">report</a> by London Economics International (LEI) suggests US utility forecasts projecting 57 GW of new data center load by 2030 are critically overstated because they fail to account for global hardware supply limitations. Assuming &lt;11% annual growth in GPU manufacturing capacity, the total global production of AI chips through 2030 can only support approximately 63 GW of capacity worldwide. Current forecasts imply the US would need to monopolize over 90% of this global supply, which is unrealistic given its current market share of less than 50%.
           </p>
@@ -595,6 +603,12 @@ function LoadGrowthPage() {
               Linear extrapolation of LEI market-share methodology with EPRI/EpochAI estimates for GPU supply growth; prepared by author
             </p>
           </div>
+          <p>Load growth by 2030 based on GPU global supply CAGR:</p>
+          <ul>
+            <li>Low (11%: London Economics): <strong>31.5GW</strong></li>
+            <li>Medium (40%: EPRI/EpochAI): <strong>50GW</strong></li>
+            <li>High (70%: EPRI/EpochAI): <strong>70GW</strong></li>
+          </ul>
 
           <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 

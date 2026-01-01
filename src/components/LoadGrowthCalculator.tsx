@@ -160,12 +160,13 @@ function LoadGrowthCalculator() {
               max="100"
               value={growthRate}
               onChange={(e) => setGrowthRate(Number(e.target.value))}
-              orient="vertical"
               style={{
                 WebkitAppearance: 'slider-vertical',
                 width: '8px',
                 height: '400px',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                writingMode: 'vertical-lr',
+                direction: 'rtl'
               } as React.CSSProperties}
             />
 
