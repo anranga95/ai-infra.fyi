@@ -392,9 +392,7 @@ function LoadGrowthCalculator() {
             <p style={{ margin: 0, fontSize: '0.9rem' }}>
               <strong>Current Scenario:</strong> At {growthRate}% annual GPU supply growth,
               the global production capacity reaches {totalGlobalCapacity.toFixed(1)} GW ({maxChips.toFixed(1)}M chips).
-              With the US securing 50% market share, this supports {loadGrowthAt50.toFixed(1)} GW
-              of US load growth, which is {loadGrowthAt50 >= 57 ? 'above' : 'below'} the
-              utility forecast of 57 GW.
+              With the US securing 50% market share, this results in {loadGrowthAt50.toFixed(1)} GW of US load growth.
             </p>
           </div>
         </div>
