@@ -398,17 +398,88 @@ function LoadGrowthCalculator() {
         </div>
       </div>
 
-      {/* Note about power density - below the entire calculator */}
-      <p style={{
+      {/* Model Documentation - below the entire calculator */}
+      <div style={{
         marginTop: '2rem',
-        fontSize: '0.9rem',
-        color: 'var(--text-secondary)',
-        fontStyle: 'italic',
-        lineHeight: '1.6',
-        textAlign: 'center'
+        maxWidth: '900px',
+        marginLeft: 'auto',
+        marginRight: 'auto'
       }}>
-        These load forecasts inherently account for the industry's shift toward higher-density hardware (such as the Nvidia B200), as the underlying LEI and EPRI models expressly factor in the rising per-unit power consumption of next-generation GPU fleets through 2030.
-      </p>
+        <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>Calculator Methodology</h3>
+
+        <h4 style={{ fontSize: '1rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Sources</h4>
+        <p style={{
+          fontSize: '0.95rem',
+          color: 'var(--text-secondary)',
+          lineHeight: '1.8',
+          marginBottom: '0.5rem'
+        }}>
+          London Economics International LLC. (2025, July 7). Uncertainty and upward bias are inherent in data center electricity demand projections. Prepared for the Southern Environmental Law Center. <a href="https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'underline' }}>https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf</a>
+        </p>
+        <p style={{
+          fontSize: '0.95rem',
+          color: 'var(--text-secondary)',
+          lineHeight: '1.8',
+          margin: 0
+        }}>
+          Electric Power Research Institute. (2025, August). Scaling intelligence: The exponential growth of AI's power needs (EPRI White Paper). Electric Power Research Institute. <a href="https://www.epri.com/research/products/000000003002033669" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', textDecoration: 'underline' }}>https://www.epri.com/research/products/000000003002033669</a>
+        </p>
+
+        <h4 style={{ fontSize: '1rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Regression Logic</h4>
+        <p style={{
+          fontSize: '0.95rem',
+          color: 'var(--text-secondary)',
+          lineHeight: '1.8',
+          marginBottom: '0.5rem'
+        }}>
+          The model derives <strong>Total Global 2030 Capacity (GW)</strong> directly from the <strong>Annual GPU Supply Growth Rate (CAGR)</strong> using a linear interpolation formula.
+        </p>
+        <ul style={{
+          fontSize: '0.95rem',
+          color: 'var(--text-secondary)',
+          lineHeight: '1.8',
+          marginBottom: '1rem',
+          listStyleType: 'disc'
+        }}>
+          <li><strong>Formula:</strong> Global_GW = 48.6 + (130.5 × Growth_Rate_Decimal)</li>
+          <li><strong>Derivation:</strong> The slope (130.5) and intercept (48.6) are regression coefficients calibrated to fit three industry benchmarks:
+            <ul style={{ marginTop: '0.5rem', listStyleType: 'circle', marginLeft: '1.5rem' }}>
+              <li><strong>LEI Benchmark (11% Growth):</strong> Input 0.107 → Output <strong>62.6 GW</strong>. Matches LEI's projected ~63 GW global limit based on industrial silicon trends.</li>
+              <li><strong>EPRI Low Benchmark (40% Growth):</strong> Input 0.40 → Output <strong>100.8 GW</strong>. Matches EPRI's "Hyperscaler CapEx" scenario.</li>
+              <li><strong>EPRI High Benchmark (70% Growth):</strong> Input 0.70 → Output <strong>139.95 GW</strong>. Matches EPRI's "Aggressive Scale-up" scenario.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h4 style={{ fontSize: '1rem', marginTop: '1.5rem', marginBottom: '0.5rem' }}>Power Density Factor</h4>
+        <p style={{
+          fontSize: '0.95rem',
+          color: 'var(--text-secondary)',
+          lineHeight: '1.8',
+          marginBottom: '0.5rem'
+        }}>
+          To display chip counts, the model applies a fixed conversion factor to the calculated GW capacity. This factor standardizes the conflicting power density methodologies of the two reports into a single "Net Load" metric.
+        </p>
+        <ul style={{
+          fontSize: '0.95rem',
+          color: 'var(--text-secondary)',
+          lineHeight: '1.8',
+          marginBottom: '1rem',
+          listStyleType: 'disc'
+        }}>
+          <li><strong>Conversion Factor:</strong> 1 GW ≈ 0.615 Million AI Accelerators</li>
+          <li><strong>Implied Unit Power:</strong> <strong>1.626 kW per Chip</strong> (1,000 MW / 615,000 chips).</li>
+          <li><strong>Methodological Alignment:</strong>
+            <ul style={{ marginTop: '0.5rem', listStyleType: 'circle', marginLeft: '1.5rem' }}>
+              <li><strong>Vs. LEI:</strong> LEI calculates a rise to <strong>~1.76 kW/chip</strong> by 2030 based on silicon thermal density (W/mm²).</li>
+              <li><strong>Vs. EPRI:</strong> EPRI calculates <strong>~1.50 kW/chip</strong> based on server-level overhead (cooling/networking multipliers).</li>
+              <li><strong>Synthesis:</strong> The model's <strong>1.63 kW</strong> blended value inherently accounts for the transition to higher-density hardware (e.g., NVIDIA B200) without requiring a separate user input for efficiency or power creep.</li>
+            </ul>
+          </li>
+        </ul>
+
+        
+      </div>
     </div>
   );
 }
