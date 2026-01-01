@@ -394,6 +394,7 @@ function LoadGrowthPage() {
           <p>
             Assuming the US maintains a 50% market share of the global GPU supply through 2030, aggregate load growth depends on the % annual growth of semiconductor manufacturing. Use the calculator tab to model scenarios.
           </p>
+          <p>Load growth by 2030 based on GPU global supply CAGR:</p>
           <ul>
             <li>Low (10%): <strong>31.5GW</strong></li>
             <li>Medium (40%): <strong>50GW</strong></li>
