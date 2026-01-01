@@ -396,9 +396,9 @@ function LoadGrowthPage() {
           </p>
           <p>Load growth by 2030 based on GPU global supply CAGR:</p>
           <ul>
-            <li>Low (10%): <strong>31.5GW</strong></li>
-            <li>Medium (40%): <strong>50GW</strong></li>
-            <li>High (70%): <strong>70GW</strong></li>
+            <li>Low (10%: London Economics): <strong>31.5GW</strong></li>
+            <li>Medium (40%: EPRI/EpochAI): <strong>50GW</strong></li>
+            <li>High (70%: EPRI/EpochAI): <strong>70GW</strong></li>
           </ul>
           <p>
             The aggregate load growth from data centers tracked in this analysis is <strong>28.29GW by early 2029</strong>.
@@ -435,7 +435,7 @@ function LoadGrowthPage() {
                 <td><a href="https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf" target="_blank" rel="noopener noreferrer">Report</a></td>
               </tr>
               <tr>
-                <td>EPRI</td>
+                <td>EPRI/EpochAI</td>
                 <td>62</td>
                 <td>Based on hyperscaler CapEx, extrapolated for recent growth</td>
                 <td><a href="https://www.epri.com/research/products/000000003002033669" target="_blank" rel="noopener noreferrer">Report</a></td>
