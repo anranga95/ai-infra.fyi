@@ -109,6 +109,17 @@ function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
 function LoadGrowthPage() {
   const [activeTab, setActiveTab] = useState<'analysis' | 'calculator'>('analysis');
   const [activeSection, setActiveSection] = useState<string>('tldr');
+  const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set());
+
+  const toggleRow = (index: number) => {
+    const newExpanded = new Set(expandedRows);
+    if (newExpanded.has(index)) {
+      newExpanded.delete(index);
+    } else {
+      newExpanded.add(index);
+    }
+    setExpandedRows(newExpanded);
+  };
   const [tocOpen, setTocOpen] = useState<boolean>(false);
 
   // Scroll spy to track active section
@@ -389,7 +400,7 @@ function LoadGrowthPage() {
         <div className="framework-content">
           <h2 id="tldr" style={{ marginTop: 0 }}>TLDR</h2>
           <p>
-            Projections for the increase in power demand from data centers in the US vary widely: between <strong>31-134GW by 2030</strong>. Estimates on the higher end do not appear to account for limitations around the semiconductor supply chain. Load growth is highly correlated with the % of global GPU supply secured by US companies.
+            Projections for the increase in power demand from data centers in the US vary widely: between <strong>31-90GW by 2030</strong>. Estimates on the higher end do not appear to account for limitations around the semiconductor supply chain. Load growth is highly correlated with the % of global GPU supply secured by US companies.
           </p>
           <p>
             Assuming the US maintains a 50% market share of the global GPU supply through 2030, aggregate load growth depends on the % annual growth of semiconductor manufacturing. Use the calculator tab to model scenarios.
@@ -412,58 +423,140 @@ function LoadGrowthPage() {
           <p>
             Datacenter power demand projections for 2030 vary significantly across research firms, reflecting different methodologies and assumptions:
           </p>
-          <table className="breakdown-table">
+          <table className="breakdown-table" style={{ lineHeight: '1.3', width: 'auto', margin: '0' }}>
             <thead>
               <tr>
-                <th>Source</th>
-                <th>2030 Projection (GW)</th>
-                <th>Notes</th>
-                <th>Link</th>
+                <th style={{ padding: '0.4rem 0.6rem', width: '30px' }}></th>
+                <th style={{ padding: '0.4rem 0.6rem' }}>Source</th>
+                <th style={{ padding: '0.4rem 0.6rem' }}>2030 Projection (GW)</th>
+                <th style={{ padding: '0.4rem 0.6rem' }}>Methodology</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>London Economics</td>
-                <td>31.5*</td>
-                <td>Extrapolated using methodology provided in paper, assuming US secures 50% of global semiconductor chip supply</td>
-                <td><a href="https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf" target="_blank" rel="noopener noreferrer">Report</a></td>
-              </tr>
-              <tr>
-                <td>RTO/ISO/BA</td>
-                <td>57</td>
-                <td>Based on estimates from London Economics from aggregated utilities data, extrapolating from 2029 to 2030</td>
-                <td><a href="https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf" target="_blank" rel="noopener noreferrer">Report</a></td>
-              </tr>
-              <tr>
-                <td>EPRI/EpochAI</td>
-                <td>62</td>
-                <td>Based on hyperscaler CapEx, extrapolated for recent growth</td>
-                <td><a href="https://www.epri.com/research/products/000000003002033669" target="_blank" rel="noopener noreferrer">Report</a></td>
-              </tr>
-              <tr>
-                <td>TD Cowen</td>
-                <td>65</td>
-                <td>Based on anticipated shipments of processing chips for datacenters</td>
-                <td><a href="https://www.tdsecurities.com/ca/en/data-centers-2-power-constraints" target="_blank" rel="noopener noreferrer">Report</a></td>
-              </tr>
-              <tr>
-                <td>BloombergNEF</td>
-                <td>78</td>
-                <td></td>
-                <td><a href="https://about.bnef.com/insights/clean-energy/ai-and-the-power-grid-where-the-rubber-meets-the-road/" target="_blank" rel="noopener noreferrer">Report</a></td>
-              </tr>
-              <tr>
-                <td>Grid Strategies</td>
-                <td>90</td>
-                <td>Based on analysis of utility and regional load forecast publications</td>
-                <td><a href="https://gridstrategiesllc.com/wp-content/uploads/Grid-Strategies-National-Load-Growth-Report-2025.pdf" target="_blank" rel="noopener noreferrer">Report</a></td>
-              </tr>
-              <tr>
-                <td>S&P Global</td>
-                <td>134.4</td>
-                <td></td>
-                <td><a href="https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/101425-data-center-grid-power-demand-to-rise-22-in-2025-nearly-triple-by-2030" target="_blank" rel="noopener noreferrer">Report</a></td>
-              </tr>
+              {[
+                {
+                  source: 'London Economics',
+                  gw: '31.5*',
+                  methodology: 'GPU Supply Chain',
+                  notes: 'Extrapolated using methodology provided in paper, assuming US secures 50% of global semiconductor chip supply',
+                  link: 'https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf'
+                },
+                {
+                  source: 'Barclays',
+                  gw: '44',
+                  methodology: 'Utility Data',
+                  notes: 'Based on utility supply contracts (forward-looking PPA filings). Explicitly projects 14–21% CAGR to reach 560 TWh consumption by 2030.',
+                  link: 'https://www.ib.barclays/content/dam/barclaysmicrosites/ibpublic/documents/our-insights/Powering_AI_Impact_Series/ImpactSeries_13_brochure.pdf'
+                },
+                {
+                  source: 'Goldman Sachs',
+                  gw: '47',
+                  methodology: 'AI Demand',
+                  notes: 'Explicitly forecasts 47 GW of incremental growth (reaching ~85 GW total).',
+                  link: 'https://www.goldmansachs.com/insights/articles/ai-to-drive-165-increase-in-data-center-power-demand-by-2030'
+                },
+                {
+                  source: 'McKinsey & Company',
+                  gw: '55',
+                  methodology: 'AI Demand',
+                  notes: 'Projects total US demand to "more than triple" to 80 GW (from 25 GW in 2024). Models growth based on hyperscaler public announcements and committed capital.',
+                  link: 'https://www.mckinsey.com/industries/private-capital/our-insights/scaling-bigger-faster-cheaper-data-centers-with-smarter-designs'
+                },
+                {
+                  source: 'RTO/ISO/BA',
+                  gw: '57',
+                  methodology: 'Utilities Data',
+                  notes: 'Based on estimates from London Economics from aggregated utilities data, extrapolating from 2029 to 2030',
+                  link: 'https://www.londoneconomics.com/wp-content/uploads/2025/07/LEI-Data-Center-Final-Report-07072025.pdf'
+                },
+                {
+                  source: 'EPRI/EpochAI',
+                  gw: '62',
+                  methodology: 'Capex | GPU Supply Chain',
+                  notes: 'Based on hyperscaler CapEx, extrapolated for recent growth',
+                  link: 'https://www.epri.com/research/products/000000003002033669'
+                },
+                {
+                  source: 'TD Cowen',
+                  gw: '65',
+                  methodology: 'GPU Supply Chain',
+                  notes: 'Based on anticipated shipments of processing chips for datacenters',
+                  link: 'https://www.tdsecurities.com/ca/en/data-centers-2-power-constraints'
+                },
+                {
+                  source: 'Bain & Company',
+                  gw: '75',
+                  methodology: 'Scaling Trends',
+                  notes: 'Forecasts total US capacity to reach 100 GW (up from ~25 GW base). Assumes US captures 50% of the global 200 GW target driven by rapid utility expansion.',
+                  link: 'https://www.bain.com/insights/how-can-we-meet-ais-insatiable-demand-for-compute-power-technology-report-2025/'
+                },
+                {
+                  source: 'BloombergNEF',
+                  gw: '78',
+                  methodology: 'Unknown',
+                  notes: '',
+                  link: 'https://about.bnef.com/insights/clean-energy/ai-and-the-power-grid-where-the-rubber-meets-the-road/'
+                },
+                {
+                  source: 'S&P Global',
+                  gw: '84',
+                  methodology: 'Utilities Data',
+                  notes: 'Forecasts total load to reach 61.8 GW by end of 2025, then more than double to 134.4 GW by 2030. (Base ~50 GW)',
+                  link: 'https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/101425-data-center-grid-power-demand-to-rise-22-in-2025-nearly-triple-by-2030'
+                },
+                {
+                  source: 'Grid Strategies',
+                  gw: '90',
+                  methodology: 'Utilities Data',
+                  notes: 'Based on analysis of utility and regional load forecast publications',
+                  link: 'https://gridstrategiesllc.com/wp-content/uploads/Grid-Strategies-National-Load-Growth-Report-2025.pdf'
+                }
+              ].map((row, index) => (
+                <>
+                  <tr key={index}>
+                    <td style={{ padding: '0.4rem 0.6rem', textAlign: 'center' }}>
+                      <button
+                        onClick={() => toggleRow(index)}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          fontSize: '1rem',
+                          color: 'var(--text)',
+                          padding: '0',
+                          width: '20px',
+                          height: '20px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}
+                        aria-label={expandedRows.has(index) ? 'Collapse details' : 'Expand details'}
+                      >
+                        {expandedRows.has(index) ? '−' : '+'}
+                      </button>
+                    </td>
+                    <td style={{ padding: '0.4rem 0.6rem' }}>{row.source}</td>
+                    <td style={{ padding: '0.4rem 0.6rem' }}>{row.gw}</td>
+                    <td style={{ padding: '0.4rem 0.6rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{row.methodology}</td>
+                  </tr>
+                  {expandedRows.has(index) && (
+                    <tr key={`${index}-details`}>
+                      <td colSpan={4} style={{ padding: '0.6rem 0.8rem', backgroundColor: 'var(--bg-secondary)', fontSize: '0.9rem' }}>
+                        {row.notes && (
+                          <div style={{ marginBottom: row.link ? '0.5rem' : '0' }}>
+                            <strong>Notes:</strong> {row.notes}
+                          </div>
+                        )}
+                        {row.link && (
+                          <div>
+                            <strong>Link:</strong> <a href={row.link} target="_blank" rel="noopener noreferrer">Link</a>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  )}
+                </>
+              ))}
             </tbody>
           </table>
           <h3>Why do the estimates vary so widely?</h3>

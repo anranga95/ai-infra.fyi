@@ -16,11 +16,15 @@ interface TooltipProps {
   payload?: Array<{
     value: number;
     dataKey: string;
+    payload: {
+      marketShare: number;
+      capacity: number;
+      chips: number;
+    };
   }>;
-  label?: number;
 }
 
-const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
+const CustomTooltip = ({ active, payload }: TooltipProps) => {
   if (active && payload && payload.length) {
     // Get data from payload instead of relying on label which might be from wrong axis
     const dataPoint = payload[0].payload;
@@ -153,17 +157,16 @@ function LoadGrowthCalculator() {
             <input
               type="range"
               min="0"
-              max="150"
+              max="100"
               value={growthRate}
               onChange={(e) => setGrowthRate(Number(e.target.value))}
               orient="vertical"
               style={{
-                writingMode: 'bt-lr',
                 WebkitAppearance: 'slider-vertical',
                 width: '8px',
                 height: '400px',
                 cursor: 'pointer'
-              }}
+              } as React.CSSProperties}
             />
 
             {/* Benchmark labels and notches (to the left of slider) */}
@@ -174,9 +177,9 @@ function LoadGrowthCalculator() {
               height: '400px'
             }}>
               {benchmarks.map((benchmark) => {
-                // Position from bottom: 0% at bottom (0), 150% at top (100% of slider)
+                // Position from bottom: 0% at bottom (0), 100% at top (100% of slider)
                 // So benchmark.value directly maps to position from bottom
-                const position = (benchmark.value / 150) * 100;
+                const position = (benchmark.value / 100) * 100;
                 return (
                   <div
                     key={benchmark.value}
