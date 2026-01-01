@@ -23,17 +23,17 @@ function AboutPage() {
           </div>
 
           <div className="module-card">
-            <h2>⚡ Load Growth Model</h2>
+            <h2>⚡ Load Growth Analysis</h2>
             <p>
-              View regional and aggregate energy demand growth from the AI infrastructure expansion in the USA. Compare Front-of-the-Meter and Behind-the-Meter capacity.
+              View regional and aggregate energy demand growth from the AI infrastructure expansion in the US. Model load growth as a function of GPU market share.
             </p>
-            <Link to="/energy" className="module-link">View Model →</Link>
+            <Link to="/energy" className="module-link">View Analysis →</Link>
           </div>
 
           <div className="module-card">
             <h2>📈 Compute-Month Framework</h2>
             <p>
-              Methodology and calculator to model AI datacenter economics using the 1GW-H100-Month standardized unit. Analyze training capacity, inference workloads, and financial metrics.
+              Methodology and calculator to model AI datacenter economics using the GW-H100-Month standardized unit. Analyze training capacity, inference workloads, and financial metrics.
             </p>
             <Link to="/compute-month" className="module-link">Explore Framework →</Link>
           </div>
