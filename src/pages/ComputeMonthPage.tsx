@@ -221,10 +221,10 @@ function ComputeMonthPage() {
               <li>Consume <strong>6.8 million m³ of water</strong> (direct + indirect usage)</li>
             </ul>
             <p>
-              A compute-month, or GW-H100-Month, represents the expected output of the maximum number of Nvidia H100-equivalent GPUs that can be powered by 1GW of energy, based on the efficiency of a standard AI data center. The default value is roughly 478M H100-hours, which is generally allocated across different workloads in practice.
+              A compute-month, or GW-H100-Month, represents the expected output of the maximum number of Nvidia H100-equivalent GPUs that can be powered by 1GW of energy, based on the efficiency of a 2025 standard AI data center. The default value is roughly 478M H100-hours, which is generally allocated across different workloads in practice.
             </p>
             <p>
-              The compute-month bridges energy infrastructure planning (MW/GW) with business outcomes (models, queries, market value), enabling meaningful comparisons across projects, efficiency interventions, and technology roadmaps. It provides a common language for developers, investors, policymakers, and energy providers to evaluate AI datacenter economics.
+              This unit bridges energy infrastructure planning (MW/GW) with business outcomes (models, queries, market value), enabling meaningful comparisons across facilities, efficiency interventions, and project timelines. It provides a common language for developers, investors, policymakers, and energy providers to evaluate AI datacenter economics.
             </p>
             <p>
               This framework demonstrates how to derive and utilize the compute-month. Adjust assumptions and model scenarios using the 'Calculator' tab.
@@ -288,7 +288,7 @@ function ComputeMonthPage() {
                   <td><strong>IT Overhead</strong></td>
                   <td>Ratio of total IT equipment power to GPU power; accounts for CPUs, networking, storage, and management infrastructure</td>
                   <td>1.82</td>
-                  <td>Based on NVIDIA DGX H100 specifications: 10.2 kW total system power with 5.6 kW GPU power (8 × 700W H100 GPUs) = 1.82× multiplier (<a href="https://docs.nvidia.com/dgx/dgxh100-user-guide/introduction-to-dgxh100.html" target="_blank" rel="noopener noreferrer">NVIDIA DGX H100 User Guide</a>, <a href="https://www.sunbirddcim.com/blog/can-your-racks-support-nvidia-dgx-h100-systems" target="_blank" rel="noopener noreferrer">Sunbird DCIM</a>)</td>
+                  <td>NVIDIA DGX H100 (IT Overhead = 1.82): 10.2 kW total system power with 5.6 kW GPU power (8 × 700W H100 GPUs) = 1.82× multiplier (<a href="https://docs.nvidia.com/dgx/dgxh100-user-guide/introduction-to-dgxh100.html" target="_blank" rel="noopener noreferrer">NVIDIA DGX H100 User Guide</a>, <a href="https://www.sunbirddcim.com/blog/can-your-racks-support-nvidia-dgx-h100-systems" target="_blank" rel="noopener noreferrer">Sunbird DCIM</a>)</td>
                 </tr>
                 <tr>
                   <td><strong>GPU "Thermal Design Power" (TDP)</strong></td>
@@ -300,7 +300,7 @@ function ComputeMonthPage() {
                   <td>H100 FP16 Performance</td>
                   <td>Floating-point operations per second using 16-bit precision with Tensor Core acceleration</td>
                   <td>989 TFLOPS*</td>
-                  <td>NVIDIA H100 SXM5: 1,979 TFLOPS FP16 with sparsity (<a href="https://www.nvidia.com/en-us/data-center/h100/" target="_blank" rel="noopener noreferrer">NVIDIA H100 Datasheet</a>)<br />*We use 989 TFLOPS (dense, without sparsity) for training calculations as most current models use dense architectures</td>
+                  <td>NVIDIA H100 SXM5: 1,979 TFLOPS FP16 with sparsity (<a href="https://www.nvidia.com/en-us/data-center/h100/" target="_blank" rel="noopener noreferrer">NVIDIA H100 Datasheet</a>)<br />*This framework uses 989 TFLOPS (dense, without sparsity) for training calculations as most current models use dense architectures</td>
                 </tr>
               </tbody>
             </table>
@@ -313,7 +313,7 @@ function ComputeMonthPage() {
               From these values we can estimate that <strong>1 GW can power 654,762 H100 GPUs</strong>.
             </p>
             <p>
-              Assuming a 30-day month, this results in <strong>478.0 million H100-hours</strong>.
+              Assuming a 30-day month, this results in close to <strong>478 million H100-hours</strong>.
             </p>
             <p><strong>Formula:</strong></p>
             <div style={{ background: 'var(--bg-tertiary)', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)', fontFamily: 'inherit' }}>
@@ -361,7 +361,7 @@ function ComputeMonthPage() {
               H100 is currently the most popular semiconductor for AI, hence is used as the benchmark.
             </p>
             <p>
-              But there are several other GPUs on the market. To account for this variation, we factor in performance gains from these chips as conversion factors to H100 performance using data from EpochAI. For example, considering Google's TPU v7:
+              But there are several other GPUs on the market. To account for this variation, this framework factors in performance gains from these chips as conversion factors to H100 performance using data from EpochAI. For example, considering Google's TPU v7:
             </p>
             <div style={{ background: 'var(--bg-tertiary)', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--primary)', fontFamily: 'inherit' }}>
               <div style={{ marginBottom: '0.25rem' }}>477,976,260 H100-hours <span style={{ color: 'var(--text-secondary)' }}>[standard compute-month]</span></div>
@@ -410,9 +410,13 @@ function ComputeMonthPage() {
             <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
             <h2 id="economic-value">Benchmarks</h2>
+
+            <h3 id="training-capacity">Training Capacity</h3>
             <p>
-              The following sections detail the different economic valuation methodologies for a compute-month based on the following data about each model. Note that data is not always published for each model and there is uncertainty about exact values.
+              <strong>AI model training</strong> is the process of teaching an AI system to perform tasks by exposing it to large datasets. During training, the model iteratively adjusts billions of parameters through matrix multiplication operations (measured in FLOPs) until it learns patterns that enable it to generate accurate predictions or outputs.
             </p>
+
+            <h4>Assumptions</h4>
             <p><strong>Frontier AI Model Training Data</strong> (source: EpochAI):</p>
             <table className="breakdown-table">
               <thead>
@@ -420,27 +424,26 @@ function ComputeMonthPage() {
                   <th>Model Name</th>
                   <th>Release Date</th>
                   <th>Training FLOPs</th>
-                  <th># Parameters</th>
                   <th>Confidence</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td>GPT-4</td><td>2023-03</td><td>2.1 × 10²⁵</td><td>~1.76T</td><td>Likely</td></tr>
-                <tr><td><strong>GPT-5</strong></td><td><strong>2025-08</strong></td><td><strong>6.6 × 10²⁵</strong></td><td><strong>Unknown</strong></td><td><strong>Speculative</strong></td></tr>
-                <tr><td>Claude 3 Opus</td><td>2024-03</td><td>1.6 × 10²⁵</td><td>Unknown</td><td>Low-precision</td></tr>
-                <tr><td>Claude 3.5 Sonnet</td><td>2024-06</td><td>3.6 × 10²⁵</td><td>Unknown</td><td>Low-precision</td></tr>
-                <tr><td><strong>Claude Sonnet 4</strong></td><td><strong>2024-11</strong></td><td><strong>5.0 × 10²⁵</strong></td><td><strong>Unknown</strong></td><td><strong>Speculative</strong></td></tr>
-                <tr><td><strong>Llama 3.1-405B</strong></td><td><strong>2024-07</strong></td><td><strong>3.8 × 10²⁵</strong></td><td><strong>405B</strong></td><td><strong>High-precision</strong></td></tr>
-                <tr><td>Gemini 1.5 Pro</td><td>2024-02</td><td>1.6 × 10²⁵</td><td>Unknown</td><td>Low-precision</td></tr>
-                <tr><td>Grok-2</td><td>2024-08</td><td>3.0 × 10²⁵</td><td>Unknown</td><td>High-precision</td></tr>
-                <tr><td>DeepSeek-V3</td><td>2024-12</td><td>2.8 × 10²⁴</td><td>671B</td><td>Confident</td></tr>
+                <tr><td>GPT-4</td><td>2023-03</td><td>2.1 × 10²⁵</td><td>Likely</td></tr>
+                <tr><td><strong>GPT-5</strong></td><td><strong>2025-08</strong></td><td><strong>6.6 × 10²⁵</strong></td><td><strong>Speculative</strong></td></tr>
+                <tr><td>Claude 3 Opus</td><td>2024-03</td><td>1.6 × 10²⁵</td><td>Low-precision</td></tr>
+                <tr><td>Claude 3.5 Sonnet</td><td>2024-06</td><td>3.6 × 10²⁵</td><td>Low-precision</td></tr>
+                <tr><td><strong>Claude Sonnet 4</strong></td><td><strong>2024-11</strong></td><td><strong>5.0 × 10²⁵</strong></td><td><strong>Speculative</strong></td></tr>
+                <tr><td><strong>Llama 3.1-405B</strong></td><td><strong>2024-07</strong></td><td><strong>3.8 × 10²⁵</strong></td><td><strong>High-precision</strong></td></tr>
+                <tr><td>Gemini 1.5 Pro</td><td>2024-02</td><td>1.6 × 10²⁵</td><td>Low-precision</td></tr>
+                <tr><td>Grok-2</td><td>2024-08</td><td>3.0 × 10²⁵</td><td>High-precision</td></tr>
+                <tr><td>DeepSeek-V3</td><td>2024-12</td><td>2.8 × 10²⁴</td><td>Confident</td></tr>
               </tbody>
             </table>
             <p>
-              Considering that in 2024, <strong>OpenAI spent approximately 11.25× on R&D compared to the final training run for GPT-4.5</strong> (total compute spend ~$5B vs. ~$400M for final run), we assume an <strong>"R&D Overhead Multiplier"</strong> variable to capture this dynamic when calculating training capacity.
+              Considering that in 2024, <strong>OpenAI spent approximately 11.25× on R&D compared to the final training run for GPT-4.5</strong> (total compute spend ~$5B vs. ~$400M for final run), this framework assumes an <strong>"R&D Overhead Multiplier"</strong> variable to capture this dynamic when calculating training capacity.
             </p>
             <p>
-              Given the competitive nature of the AI market and reprioritization towards production-ready deployments (e.g., OpenAI's "Code Red" protocol emphasizing shipping over research), we assume an <strong>R&D multiplier of 10× averaged across all companies</strong> for our base calculations. This accounts for failed training runs, hyperparameter experimentation, dataset quality iterations, debugging and validation runs, etc.
+              Given the competitive nature of the AI market and reprioritization towards production-ready deployments (e.g., OpenAI's "Code Red" protocol emphasizing shipping over research), the base calculations assume an <strong>R&D multiplier of 10× averaged across all companies</strong>. This accounts for failed training runs, hyperparameter experimentation, dataset quality iterations, debugging and validation runs, etc.
             </p>
             <div style={{ maxWidth: '70%', margin: '1rem auto 0' }}>
               <img
@@ -454,16 +457,11 @@ function ComputeMonthPage() {
               </p>
             </div>
 
-            <h3 id="training-capacity">Training Capacity</h3>
-            <p>
-              <strong>AI model training</strong> is the process of teaching an AI system to perform tasks by exposing it to large datasets. During training, the model iteratively adjusts billions of parameters through matrix multiplication operations (measured in FLOPs) until it learns patterns that enable it to generate accurate predictions or outputs.
-            </p>
-
-            <h4>Assumptions</h4>
+            <h4>Model FLOPs Utilization (MFU)</h4>
             <p>
               Model FLOPs Utilization (MFU) ranges between <strong>30-40% for training</strong> at state-of-the-art data centers like Nebius and Meta's Grand Teton clusters. Combined with infrastructure overhead, this results in overall utilization rates of <strong>80-90%</strong>.
             </p>
-            <p>The compute-month calculations assume:</p>
+            <p>For training, these calculations assume:</p>
             <ul>
               <li><strong>MFU: 35%</strong> (conservative estimate for frontier model training)</li>
               <li><strong>Utilization: 85%</strong> (accounting for maintenance windows, failures)</li>
@@ -507,7 +505,7 @@ function ComputeMonthPage() {
               </tbody>
             </table>
             <p style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '0.5rem' }}>
-              <strong>Note on token calculations:</strong> The relationship between FLOPs and tokens depends on model parameters: `Training FLOPs = 6 × Parameters × Tokens`. Without parameter counts for most recent models (companies no longer publicly disclose architecture details), we cannot reliably calculate training tokens. For models where parameters are known (like Llama 3.1 405B), training one model processes approximately 15 trillion tokens.
+              <strong>Note on token calculations:</strong> The relationship between FLOPs and tokens depends on model parameters: `Training FLOPs = 6 × Parameters × Tokens`. Without parameter counts for most recent models (companies no longer publicly disclose architecture details), training tokens cannot be reliably calculated. For models where parameters are known (like Llama 3.1 405B), training one model processes approximately 15 trillion tokens.
             </p>
 
             <h3 id="inference-capacity">Inference Capacity</h3>
@@ -524,7 +522,7 @@ function ComputeMonthPage() {
               <li><strong>Utilization: 75%</strong> (varying with demand patterns)</li>
             </ul>
             <p>
-              <strong>Reasoning workloads can take between 10-100× more capacity than standard inference.</strong> Therefore there is no meaningful average, so we include low (10×), medium (50×), and high (100×) cases corresponding to different reasoning depths (e.g., o1-mini, o1, o3 levels).
+              <strong>Reasoning workloads can take between 10-100× more capacity than standard inference.</strong> Therefore there is no meaningful average, so this analysis includes low (10×), medium (50×), and high (100×) cases corresponding to different reasoning depths (e.g., o1-mini, o1, o3 levels).
             </p>
 
             <h4>Methodology</h4>
@@ -647,9 +645,9 @@ function ComputeMonthPage() {
             </ul>
             <p>Total GPU cost for 1 GW capacity:</p>
             <ul>
-              <li><strong>Low estimate:</strong> 654,762 × $25,000 = $16.4B</li>
-              <li><strong>Mid estimate:</strong> 654,762 × $28,000 = $18.3B</li>
-              <li><strong>High estimate:</strong> 654,762 × $30,000 = $19.6B</li>
+              <li>Low estimate: 654,762 × $25,000 = <strong>$16.4B</strong></li>
+              <li>Mid estimate: 654,762 × $28,000 = <strong>$18.3B</strong></li>
+              <li>High estimate: 654,762 × $30,000 = <strong>$19.6B</strong></li>
             </ul>
             <p>
               Though <strong>energy is the most critical part</strong> of this equation and is the hardest to secure - it doesn't contribute much to the cost model since it only contributes about <strong>10-15% to total monthly costs</strong>. The following table contains assumed power prices per region:
