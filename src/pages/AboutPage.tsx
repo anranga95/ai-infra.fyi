@@ -1,47 +1,40 @@
-import { Link } from 'react-router-dom';
-
 function AboutPage() {
   return (
     <div className="about-container">
       <div className="about-content">
-        <h1>AI Infrastructure Economics &<br />Energy Market Intelligence</h1>
-        <p className="description">
-          Open-source set of tools and models for the nexus of AI infrastructure and energy.<br />
-          Intended for researchers, policymakers, investors, operators, and decision-makers.
-        </p>
-        <p className="author">
-          Created by Aditya Nirvaan Ranganathan: <a href="https://www.linkedin.com/in/anranga95/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="mailto:nirvaan.ranga@chicagobooth.edu">nirvaan.ranga@chicagobooth.edu</a>
-        </p>
+        <h1>About</h1>
 
-        <div className="modules-grid">
-          <div className="module-card">
-            <h2>🗺️ Market Map</h2>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '3rem',
+          marginTop: '2rem',
+          alignItems: 'start'
+        }}>
+          {/* Left Column - Text */}
+          <div>
+            <h2>Author</h2>
             <p>
-              Interactive network visualization of the AI infrastructure ecosystem. Explore relationships between data centers, hyperscalers, energy providers, hardware manufacturers, investors, and other stakeholders.
+              Aditya Nirvaan Ranganathan is currently a MBA student at the University of Chicago Booth School of Business. &lt;...&gt;
             </p>
-            <Link to="/map" className="module-link">View Map →</Link>
           </div>
 
-          <div className="module-card">
-            <h2>⚡ Load Growth Analysis</h2>
-            <p>
-              View regional and aggregate energy demand growth from the AI infrastructure expansion in the US. Model load growth as a function of GPU market share.
-            </p>
-            <Link to="/energy" className="module-link">View Analysis →</Link>
-          </div>
-
-          <div className="module-card">
-            <h2>📈 Compute-Month Framework</h2>
-            <p>
-              Methodology and calculator to model AI datacenter economics using the GW-H100-Month standardized unit. Analyze training capacity, inference workloads, and financial metrics.
-            </p>
-            <Link to="/compute-month" className="module-link">Explore Framework →</Link>
+          {/* Right Column - Photo */}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <img
+              src="/images/about pic.JPG"
+              alt="Aditya Nirvaan Ranganathan"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+                borderRadius: '8px',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+              }}
+            />
           </div>
         </div>
 
-        <p className="coming-soon-text">
-          <strong>More Coming Soon:</strong> Additional research content and analysis tools will be added here. Stay tuned for updates.
-        </p>
+        <h2>Background on AI Infra</h2>
       </div>
     </div>
   );

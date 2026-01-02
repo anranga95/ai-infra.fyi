@@ -134,7 +134,7 @@ function ComputeMonthPage() {
                       onClick={(e) => handleTocClick(e, 'economic-value')}
                       className={activeSection === 'economic-value' ? 'active' : ''}
                     >
-                      Economic Benchmarks
+                      Benchmarks
                     </a>
                     <ul style={{ listStyle: 'none', paddingLeft: '1rem', margin: '0.25rem 0' }}>
                       <li style={{ margin: '0.25rem 0' }}>
@@ -208,7 +208,7 @@ function ComputeMonthPage() {
               What can a month of compute capacity at an AI data center achieve, and how much does it cost?
             </p>
             <p>
-              A "Compute-Month" is a convenient unit in which to measure the value of AI data center capacity. For example, one compute-month can:
+              A "Compute-Month" is a standardized unit for measuring the marginal utility and cost of AI datacenter capacity. For example, one compute-month can:
             </p>
             <ul>
               <li>Train <strong>0.9 GPT-5 models</strong></li>
@@ -409,7 +409,7 @@ function ComputeMonthPage() {
 
             <hr style={{ margin: '2rem 0', border: 'none', borderTop: '1px solid var(--border)' }} />
 
-            <h2 id="economic-value">Economic Benchmarks</h2>
+            <h2 id="economic-value">Benchmarks</h2>
             <p>
               The following sections detail the different economic valuation methodologies for a compute-month based on the following data about each model. Note that data is not always published for each model and there is uncertainty about exact values.
             </p>

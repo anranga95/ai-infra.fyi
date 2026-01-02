@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import ComputeMonthPage from './pages/ComputeMonthPage';
 import MapPage from './pages/MapPage';
+import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import LoadGrowthPage from './pages/LoadGrowthPage';
 import SourcesPage from './pages/SourcesPage';
@@ -49,7 +50,8 @@ function App() {
               </span>
             </button>
             <div className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-              <Link to="/" onClick={closeMobileMenu}>About</Link>
+              <Link to="/" onClick={closeMobileMenu}>Home</Link>
+              <Link to="/about" onClick={closeMobileMenu}>About</Link>
               <Link to="/map" onClick={closeMobileMenu}>Market Map</Link>
               <Link to="/energy" onClick={closeMobileMenu}>Load Growth</Link>
               <Link to="/compute-month" onClick={closeMobileMenu}>Compute-Month</Link>
@@ -59,7 +61,8 @@ function App() {
         </nav>
 
         <Routes>
-          <Route path="/" element={<AboutPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/compute-month" element={<ComputeMonthPage />} />
           <Route path="/energy" element={<LoadGrowthPage />} />
           <Route path="/map" element={<MapPage />} />
