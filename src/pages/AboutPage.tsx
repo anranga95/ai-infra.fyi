@@ -15,7 +15,12 @@ function AboutPage() {
           <div>
             <h2>Author</h2>
             <p>
-              Aditya Nirvaan Ranganathan is currently a MBA student at the University of Chicago Booth School of Business. &lt;...&gt;
+              Aditya Nirvaan Ranganathan is currently an MBA student at the University of Chicago Booth School of Business. He is pursuing concentrations in Economics and Applied Artificial Intelligence, and is conducting independent research at the intersection of energy and AI infrastructure.
+            </p>
+            <br></br>
+            <p>
+              <a href="mailto:nirvaan.ranga@chicagobooth.edu" style={{ color: '#ffffff', textDecoration: 'underline' }}>nirvaan.ranga@chicagobooth.edu</a><br />
+              <a href="https://www.linkedin.com/in/anranga95/" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', textDecoration: 'underline' }}>LinkedIn</a>
             </p>
           </div>
 
@@ -35,6 +40,7 @@ function AboutPage() {
         </div>
 
         <h2>Background on AI Infra</h2>
+        <p>Coming soon...</p>
       </div>
     </div>
   );
