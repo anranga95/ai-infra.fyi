@@ -20,19 +20,19 @@ function HomePage() {
           </div>
 
           <div className="module-card">
-            <h2>⚡ Load Growth Analysis</h2>
-            <p>
-              View regional and aggregate energy demand growth from the AI infrastructure expansion in the US. Model load growth as a function of GPU market share.
-            </p>
-            <Link to="/energy" className="module-link">View Analysis →</Link>
-          </div>
-
-          <div className="module-card">
             <h2>📈 Compute-Month Framework</h2>
             <p>
               Methodology and calculator to model AI datacenter economics using the GW-H100-Month standardized unit. Analyze training capacity, inference workloads, financial metrics, and more.
             </p>
             <Link to="/compute-month" className="module-link">Explore Framework →</Link>
+          </div>
+
+          <div className="module-card">
+            <h2>⚡ Load Growth Analysis</h2>
+            <p>
+              View regional and aggregate energy demand growth from the AI infrastructure expansion in the US. Model load growth as a function of GPU market share.
+            </p>
+            <Link to="/energy" className="module-link">View Analysis →</Link>
           </div>
         </div>
 
