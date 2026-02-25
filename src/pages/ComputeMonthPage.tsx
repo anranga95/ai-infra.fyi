@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import CalculatorPage from './CalculatorPage';
 
 function ComputeMonthPage() {
-  const [activeTab, setActiveTab] = useState<'framework' | 'calculator'>('framework');
+  const [activeTab, setActiveTab] = useState<'report' | 'framework' | 'calculator'>('report');
   const [activeSection, setActiveSection] = useState<string>('tldr');
   const [tocOpen, setTocOpen] = useState<boolean>(false);
 
@@ -65,6 +65,12 @@ function ComputeMonthPage() {
       <div className="tabs-container">
         <div className="tabs">
           <button
+            className={`tab ${activeTab === 'report' ? 'active' : ''}`}
+            onClick={() => setActiveTab('report')}
+          >
+            Report
+          </button>
+          <button
             className={`tab ${activeTab === 'framework' ? 'active' : ''}`}
             onClick={() => setActiveTab('framework')}
           >
@@ -80,6 +86,47 @@ function ComputeMonthPage() {
       </div>
 
       {/* Tab Content */}
+      {activeTab === 'report' && (
+        <div className="calculator-container">
+          <div className="header">
+            <h1>📄 Competitive Analysis Report</h1>
+            <p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
+              Competitive Analysis of Hyperscale Compute Capacity Using the GW-GPU-month Model
+            </p>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+            <a
+              href="/Competitive Analysis of Hyperscale Compute Capacity Using the GW-GPU-month Model_v1.pdf"
+              download
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.75rem 1.5rem',
+                background: 'var(--accent)',
+                color: '#fff',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                fontWeight: 600,
+                fontSize: '0.95rem',
+                transition: 'opacity 0.2s',
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.opacity = '0.85')}
+              onMouseOut={(e) => (e.currentTarget.style.opacity = '1')}
+            >
+              ⬇ Download PDF
+            </a>
+          </div>
+          <div style={{ width: '100%', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border)' }}>
+            <iframe
+              src="/Competitive Analysis of Hyperscale Compute Capacity Using the GW-GPU-month Model_v1.pdf"
+              style={{ width: '100%', height: '80vh', border: 'none' }}
+              title="Competitive Analysis of Hyperscale Compute Capacity Using the GW-GPU-month Model"
+            />
+          </div>
+        </div>
+      )}
+
       {activeTab === 'framework' && (
         <div className="calculator-container">
           <div className="header">
